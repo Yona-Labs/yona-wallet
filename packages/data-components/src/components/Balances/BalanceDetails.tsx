@@ -15,6 +15,7 @@ import {
   DEFAULT_SOLANA_CLUSTER,
   explorerAddressUrl,
 } from "@coral-xyz/secure-background/legacyCommon";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
   ListItemIconCore,
   QuestionIcon,
@@ -102,6 +103,42 @@ export type BalanceDetailsProps = {
   widgets?: ReactNode;
 };
 
+const useTokensForWalletDetails = (payload: any) => {
+  const { data } = useSuspenseQuery(GET_TOKENS_FOR_WALLET_DETAILS, {
+    fetchPolicy: "cache-and-network",
+    errorPolicy: "all",
+    variables: {
+      address: payload.publicKey,
+      transactionFilters: {
+        token: payload.tokenMint,
+      },
+      providerId: payload.providerId,
+    },
+  });
+
+  if (data?.wallet?.balances?.tokens.edges) {
+    const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
+      (balance) => balance.node.token === BTC_TOKEN.token
+    );
+
+    if (balanceIndex >= 0) {
+      data.wallet.balances.tokens.edges[balanceIndex] = {
+        node: {
+          ...BTC_TOKEN,
+          displayAmount:
+            data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
+          marketData:
+            data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
+          __typename:
+            data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+        },
+      };
+    }
+  }
+
+  return data;
+};
+
 export function BalanceDetails({
   loaderComponent,
   onLinkClick,
@@ -112,16 +149,22 @@ export function BalanceDetails({
   const { t } = useTranslation();
   const activeWallet = useActiveWallet();
   const providerId = activeWallet.blockchain.toUpperCase() as ProviderId;
-  const { data } = useSuspenseQuery(GET_TOKENS_FOR_WALLET_DETAILS, {
-    fetchPolicy: "cache-and-network",
-    errorPolicy: "all",
-    variables: {
-      address: activeWallet.publicKey,
-      transactionFilters: {
-        token: tokenMint,
-      },
-      providerId,
-    },
+  // const { data } = useSuspenseQuery(GET_TOKENS_FOR_WALLET_DETAILS, {
+  //   fetchPolicy: "cache-and-network",
+  //   errorPolicy: "all",
+  //   variables: {
+  //     address: activeWallet.publicKey,
+  //     transactionFilters: {
+  //       token: tokenMint,
+  //     },
+  //     providerId,
+  //   },
+  // });
+
+  const data = useTokensForWalletDetails({
+    publicKey: activeWallet.publicKey,
+    tokenMint,
+    providerId,
   });
 
   const token: _ResponseToken | undefined = useMemo(

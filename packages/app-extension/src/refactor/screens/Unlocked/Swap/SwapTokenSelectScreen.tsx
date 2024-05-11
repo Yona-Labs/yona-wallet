@@ -116,7 +116,7 @@ function ToTokenTable({ onClickRow }: { onClickRow: any }) {
     return <Loading />;
   }
 
-  // Need to convert SOL here because the wallet uses a different
+  // Need to convert BTC here because the wallet uses a different
   // internal representation of native sol vs the gql api server.
   const fromMint =
     from.mint === SOL_NATIVE_MINT

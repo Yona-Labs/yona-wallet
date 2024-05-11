@@ -77,7 +77,7 @@ export function ApproveOriginRequest({
             severity: "CRITICAL",
             kind: "OriginBlockedWarning",
             message:
-              "Backpack has blocked this origin from wallet connections due to malicious or suspicious activity.",
+              "Yona Wallet has blocked this origin from wallet connections due to malicious or suspicious activity.",
           }}
         />
       </Stack>

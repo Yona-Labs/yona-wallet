@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { openPopupWindow } from "@coral-xyz/common";
-import { ErrorCrossMarkIcon, HardwareIcon, Loader, PrimaryButton, StyledText, SuccessCheckMarkIcon, YStack } from "@coral-xyz/tamagui";
+import {
+  ErrorCrossMarkIcon,
+  HardwareIcon,
+  Loader,
+  PrimaryButton,
+  StyledText,
+  SuccessCheckMarkIcon,
+  YStack,
+} from "@coral-xyz/tamagui";
 import TransportWebHid from "@ledgerhq/hw-transport-webhid";
 
 import { OptionsContainer } from ".";
@@ -20,17 +28,11 @@ export const LedgerPermissions = () => {
 
         {isError ? (
           <YStack alignItems="center">
-            <ErrorCrossMarkIcon
-              height={100}
-              width={100}
-            />
+            <ErrorCrossMarkIcon height={100} width={100} />
           </YStack>
         ) : isDone ? (
           <YStack alignItems="center">
-            <SuccessCheckMarkIcon
-              height={100}
-              width={100}
-            />
+            <SuccessCheckMarkIcon height={100} width={100} />
           </YStack>
         ) : (
           <YStack alignItems="center">
@@ -48,7 +50,7 @@ export const LedgerPermissions = () => {
         <YStack>
           {isDone ? (
             <PrimaryButton
-              label="Open Backpack"
+              label="Open Yona Wallet"
               onPress={() => {
                 void openPopupWindow("popup.html");
               }}
@@ -56,20 +58,21 @@ export const LedgerPermissions = () => {
           ) : (
             <PrimaryButton
               label={isError ? "Try Again" : "Connect"}
-              onPress={
-                () => {
-                  setIsError(false);
-                  TransportWebHid.create().then(() => {
-                    setIsDone(true)
-                  }).catch(e => {
-                    setIsError(true)
-                    console.error(e)
+              onPress={() => {
+                setIsError(false);
+                TransportWebHid.create()
+                  .then(() => {
+                    setIsDone(true);
                   })
-                }}
+                  .catch((e) => {
+                    setIsError(true);
+                    console.error(e);
+                  });
+              }}
             />
           )}
         </YStack>
       </YStack>
-    </OptionsContainer >
+    </OptionsContainer>
   );
-}
+};

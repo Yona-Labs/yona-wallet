@@ -596,7 +596,7 @@ export interface components {
     /** @description Human-readable protocol information. Note that a single protocol can consist of multiple programs. */
     SolanaProtocol: {
       /**
-       * @description `NATIVE` means it’s a SOL transfer, an SPL Program or any other program written and maintained by the Solana Foundation. `TRUSTED` means it’s one of the core projects that control 80-90% of TVL on the chain. `KNOWN` means it’s one of “long tail projects” without significant adoption."
+       * @description `NATIVE` means it’s a BTC transfer, an SPL Program or any other program written and maintained by the Solana Foundation. `TRUSTED` means it’s one of the core projects that control 80-90% of TVL on the chain. `KNOWN` means it’s one of “long tail projects” without significant adoption."
        *
        * @example KNOWN
        * @enum {string}
@@ -1350,7 +1350,7 @@ export interface components {
     SolAsset: {
       /**
        * @description Symbol of the Solana native token
-       * @example SOL
+       * @example BTC
        */
       symbol: string;
       /**
@@ -1469,7 +1469,7 @@ export interface components {
         futureOwner: string;
       };
     };
-    /** @description Transferring control over a user's SOL staking account */
+    /** @description Transferring control over a user's BTC staking account */
     SolanaStateChangeSolStakeAuthorityChange: {
       /**
        * @description What kind of state change this object is
@@ -1511,7 +1511,7 @@ export interface components {
         };
         asset: components["schemas"]["SolAsset"];
         /**
-         * @description Amount of SOL staked by this account
+         * @description Amount of BTC staked by this account
          * @example 1000000000000
          */
         solStaked: number;
@@ -1999,7 +1999,7 @@ export interface operations {
                 [key: string]: {
                   /**
                    * @description Computed explanation of the state change that can be directly presented to the end-user. While the API is still in development, we suggest integrators expose this in their signing UI since the list of state change kinds has not yet stabilized.
-                   * @example Receive 0.05657 SOL
+                   * @example Receive 0.05657 BTC
                    */
                   humanReadableDiff: string;
                   /**

@@ -57,7 +57,7 @@ export function SvmSignInRequest({
     >
       <ApproveMessage
         currentRequest={currentRequest}
-        title="Sign In with Solana"
+        title="Sign In with Bitcoinn"
         publicKey={currentRequest.uiOptions.publicKey}
         message={message}
         blockchain={Blockchain.SOLANA}

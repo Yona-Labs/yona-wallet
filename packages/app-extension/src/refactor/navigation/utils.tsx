@@ -196,11 +196,12 @@ export function rootNavHeaderOptions({ navigation }: { navigation: any }): any {
         <AvatarPopoverButton />
       </NavButtonContainer>
     ),
-    headerRight: () => (
-      <NavButtonContainer>
-        <SettingsButton />
-      </NavButtonContainer>
-    ),
+    headerRight: () => null,
+    // () => (
+    //   <NavButtonContainer>
+    //     <SettingsButton />
+    //   </NavButtonContainer>
+    // ),
   };
 }
 

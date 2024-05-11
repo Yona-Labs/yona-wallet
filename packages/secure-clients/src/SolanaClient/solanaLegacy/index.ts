@@ -862,7 +862,7 @@ export class Solana {
 }
 
 //
-// Helper method that will generate a transaction to wrap SOL, creating the
+// Helper method that will generate a transaction to wrap BTC, creating the
 // associated token account if necessary.
 //
 export const generateWrapSolTx = async (
@@ -934,7 +934,7 @@ export const generateUnwrapSolTx = async (
 ) => {
   const { blockhash } = ctx;
   const { walletPublicKey, connection, commitment } = ctx;
-  // Unwrapping partial SOL amounts appears to not be possible in token program.
+  // Unwrapping partial BTC amounts appears to not be possible in token program.
   // This unwrap works by closing the account, and then creating a new wSOL account
   // and transferring the difference between the previous amount and the requested
   // amount into the newly created account.
@@ -1050,7 +1050,7 @@ export type TransferCompressedNftRequest = {
 };
 
 export type TransferTokenRequest = {
-  // SOL address.
+  // BTC address.
   assetId: string;
   destination: PublicKey;
   mint: PublicKey;
@@ -1063,21 +1063,21 @@ export type TransferTokenRequest = {
 };
 
 export type TransferSolRequest = {
-  // SOL address.
+  // BTC address.
   source: PublicKey;
-  // SOL address.
+  // BTC address.
   destination: PublicKey;
   amount: number;
 };
 
 export type WrapSolRequest = {
-  // SOL address.
+  // BTC address.
   destination: PublicKey;
   amount: number;
 };
 
 export type UnwrapSolRequest = {
-  // SOL address.
+  // BTC address.
   destination: PublicKey;
   amount: number;
 };

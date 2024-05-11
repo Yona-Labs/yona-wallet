@@ -96,7 +96,7 @@ export const BLOCKCHAIN_COMPONENTS: Record<
 
     MaxFeeOffset: (token: { address: string; mint?: string }) => {
       if (token.mint === SOL_NATIVE_MINT) {
-        // When sending SOL, account for the tx fee and rent exempt minimum.
+        // When sending BTC, account for the tx fee and rent exempt minimum.
         return BigNumber.from(5000).add(
           BigNumber.from(NATIVE_ACCOUNT_RENT_EXEMPTION_LAMPORTS)
         );

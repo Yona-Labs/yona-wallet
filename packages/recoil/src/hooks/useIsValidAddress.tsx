@@ -78,7 +78,7 @@ export async function validateAddress(
     let pubkey;
 
     if (!solanaConnection) {
-      throw new Error("Solana connection is required for address validation.");
+      throw new Error("Bitcoin connection is required for address validation.");
     }
 
     // SNS Domain
@@ -95,7 +95,7 @@ export async function validateAddress(
       }
     }
 
-    // If it's not .SOL throw an error
+    // If it's not .BTC throw an error
     if (
       !pubkey &&
       address.split(".").length === 2 &&

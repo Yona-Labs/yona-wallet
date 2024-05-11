@@ -110,7 +110,7 @@ export function AnyTransaction({
   if (hasGas !== true) {
     customWarnings.push({
       message:
-        "Not enought SOL to pay for gas. Top up your wallet and try again.",
+        "Not enought BTC to pay for gas. Top up your wallet and try again.",
       severity: "CRITICAL" as const,
       kind: "error",
     });
@@ -126,15 +126,15 @@ export function AnyTransaction({
           blowfishEvaluation.error ||
           !blowfishEvaluation.normalizedEvaluation) &&
         showSimulationFailed ? (
-          <BlockingWarning
-            title="Simulation failed"
-            warning={{
+        <BlockingWarning
+          title="Simulation failed"
+          warning={{
             severity: "WARNING",
             kind: "error",
             message: "Please try again.",
           }}
-            onIgnore={() => setShowSimulationFailed(false)}
-            onDeny={onDeny}
+          onIgnore={() => setShowSimulationFailed(false)}
+          onDeny={onDeny}
         />
       ) : (
         <BlowfishTransactionDetails
@@ -148,10 +148,10 @@ export function AnyTransaction({
           prepend={
             isTxMutable && transactionOverrides
               ? [
-                <TransactionSettings
-                  key="TransactionSettings"
-                  overrides={transactionOverrides}
-                  setOverrides={setTransactionOverrides}
+                  <TransactionSettings
+                    key="TransactionSettings"
+                    overrides={transactionOverrides}
+                    setOverrides={setTransactionOverrides}
                   />,
                 ]
               : undefined

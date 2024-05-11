@@ -408,7 +408,7 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
     } catch (err: any) {
       throw err instanceof Error
         ? err
-        : new Error(err.message ?? `Solana Send Asset Failed`);
+        : new Error(err.message ?? `Bitcoin Send Asset Failed`);
     }
 
     return txSig;

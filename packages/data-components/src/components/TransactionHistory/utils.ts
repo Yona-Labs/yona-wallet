@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { formatDate, UNKNOWN_ICON_SRC } from "@coral-xyz/common";
 import { useActiveWallet } from "@coral-xyz/recoil";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import { useMemo } from "react";
 
 import type { GetTransactionsQuery, ProviderId } from "../../apollo/graphql";
@@ -69,6 +70,12 @@ export function useTokenLogo({
       return e.node.tokenListEntry?.symbol === symbol;
     });
   }, [data, name, symbol]);
+
+  if (
+    item?.node.tokenListEntry?.name === "Solana" ||
+    item?.node.tokenListEntry?.symbol === "SOL"
+  )
+    return BTC_TOKEN.tokenListEntry.logo;
 
   return item?.node?.tokenListEntry?.logo ?? UNKNOWN_ICON_SRC;
 }

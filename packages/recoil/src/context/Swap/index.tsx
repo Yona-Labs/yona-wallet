@@ -228,7 +228,7 @@ export class SwapQuoteResponseFormatter {
   }
 
   public networkFee(): string {
-    return "~0.000005 SOL"; // TODO: we should account for ATA account creation here as well.
+    return "~0.000005 BTC"; // TODO: we should account for ATA account creation here as well.
   }
 
   public exchangeRate({

@@ -76,7 +76,7 @@ const Container = ({
               providerId,
             },
           });
-          // Refresh SOL transactions
+          // Refresh BTC transactions
           void apollo.query({
             query: GET_TRANSACTIONS_QUERY,
             fetchPolicy: "network-only",

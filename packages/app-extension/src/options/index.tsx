@@ -31,7 +31,7 @@ const windowId = requestWindowId ?? v4();
 const extensionTransportSender =
   new FromExtensionTransportSender<SECURE_EVENTS>({
     origin: {
-      name: "Backpack Extension Options",
+      name: "Yona Extension Options",
       address: window.location.origin,
       context: "extension",
     },

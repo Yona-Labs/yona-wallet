@@ -5,8 +5,7 @@ import type { BlockchainConfig } from "../../types/blockchain";
 
 import { SolanaCluster } from "./cluster";
 import { SolanaExplorer } from "./explorer";
-const remoteLogoUri =
-  "https://s3.us-east-1.amazonaws.com/app-assets.xnfts.dev/images/useBlockchainLogo/solana.png";
+const remoteLogoUri = "https://yona.network/icon.svg";
 const bip44CoinType = 501;
 
 export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
@@ -21,16 +20,16 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
 
   Enabled: true,
   Blockchain: Blockchain.SOLANA,
-  Name: "Solana",
-  GasTokenName: "SOL",
+  Name: "Bitcoin",
+  GasTokenName: "BTC",
   GasTokenDecimals: 9,
   AppTokenName: "SPL",
 
   RampSupportedTokens: [
     {
-      title: "SOL",
+      title: "BTC",
       icon: remoteLogoUri,
-      subtitle: "Solana",
+      subtitle: "Bitcoin",
     },
   ],
   DerivationPathPrefix: "m/44'/501'",
@@ -82,7 +81,7 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
   },
   logoUri: remoteLogoUri,
   bip44CoinType: bip44CoinType,
-  localLogoUri: "./solana.png",
+  localLogoUri: "./yona.svg",
   requiresChainId: false,
   RpcConnectionUrls: {
     MAINNET: {

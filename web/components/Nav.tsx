@@ -1,23 +1,23 @@
-import { Disclosure, Menu } from '@headlessui/react';
-import { ExternalLinkIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import Image from 'next/legacy/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { memo } from 'react';
+import { Disclosure, Menu } from "@headlessui/react";
+import { ExternalLinkIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import Image from "next/legacy/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { memo } from "react";
 
 function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export const mainMenu = [
   {
-    title: 'Exchange',
-    path: 'https://backpack.exchange'
+    title: "Exchange",
+    path: "https://backpack.exchange",
   },
   {
-    title: 'Downloads',
-    path: '/downloads'
-  }
+    title: "Downloads",
+    path: "/downloads",
+  },
 ];
 
 function Nav() {
@@ -34,7 +34,12 @@ function Nav() {
                   {/* Logo */}
                   <Link href="/">
                     <div className="flex">
-                      <Image alt="Backpack" src="/backpack.svg" width={150} height={50} />
+                      <Image
+                        alt="Yona"
+                        src="/yona.png"
+                        width={150}
+                        height={50}
+                      />
                     </div>
                   </Link>
                 </div>
@@ -42,7 +47,7 @@ function Nav() {
                 {/* Navigation */}
                 <div className="hidden justify-center gap-2 lg:flex">
                   {mainMenu.map((item, index) => {
-                    if (item.title === 'Exchange') {
+                    if (item.title === "Exchange") {
                       return (
                         <a
                           key={index}
@@ -50,14 +55,15 @@ function Nav() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={classNames(
-                            'flex gap-1 px-3 py-2 text-sm font-medium tracking-wide text-zinc-100',
-                            router.pathname === item.path && 'rounded-lg bg-zinc-900'
+                            "flex gap-1 px-3 py-2 text-sm font-medium tracking-wide text-zinc-100",
+                            router.pathname === item.path &&
+                              "rounded-lg bg-zinc-900"
                           )}
                         >
                           {item.title}
                         </a>
                       );
-                    } else if (item.title === 'Support') {
+                    } else if (item.title === "Support") {
                       return (
                         <Menu key={index} as="div" className="relative">
                           <Menu.Button className="px-3 py-2 text-sm font-medium tracking-wide text-zinc-100">
@@ -65,12 +71,22 @@ function Nav() {
                           </Menu.Button>
                           <Menu.Items className="absolute left-0 mt-2 rounded-lg bg-[#27272A] px-3 text-sm font-medium tracking-wide text-zinc-100">
                             {[
-                              { title: 'Discord', link: 'http://discord.gg/backpack' },
-                              { title: 'User Guides', link: 'https://help.backpack.app' }
-                            ].map(item => (
+                              {
+                                title: "Discord",
+                                link: "http://discord.gg/backpack",
+                              },
+                              {
+                                title: "User Guides",
+                                link: "https://help.backpack.app",
+                              },
+                            ].map((item) => (
                               <Menu.Item key={item.title}>
                                 <div className="w-24 py-2">
-                                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                  <a
+                                    href={item.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
                                     {item.title}
                                   </a>
                                 </div>
@@ -84,13 +100,14 @@ function Nav() {
                         <Link key={index} href={item.path}>
                           <button
                             className={classNames(
-                              'flex gap-1 px-3 py-2 text-sm font-medium',
-                              'tracking-wide text-zinc-100',
-                              router.pathname === item.path && 'rounded-lg bg-zinc-900'
+                              "flex gap-1 px-3 py-2 text-sm font-medium",
+                              "tracking-wide text-zinc-100",
+                              router.pathname === item.path &&
+                                "rounded-lg bg-zinc-900"
                             )}
                           >
                             {item.title}
-                            {item.title === 'For Developers' && (
+                            {item.title === "For Developers" && (
                               <ExternalLinkIcon className="g-5 w-5" />
                             )}
                           </button>
@@ -113,7 +130,10 @@ function Nav() {
                       {open ? (
                         <XIcon className="block h-6 w-6" aria-hidden="true" />
                       ) : (
-                        <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                        <MenuIcon
+                          className="block h-6 w-6"
+                          aria-hidden="true"
+                        />
                       )}
                     </Disclosure.Button>
                   </div>
@@ -127,12 +147,15 @@ function Nav() {
                   <Link key={index} href={item.path}>
                     <button
                       className={classNames(
-                        'flex gap-1 px-3 py-2 font-medium tracking-wide text-zinc-100',
-                        router.pathname === item.path && 'rounded-lg bg-zinc-900'
+                        "flex gap-1 px-3 py-2 font-medium tracking-wide text-zinc-100",
+                        router.pathname === item.path &&
+                          "rounded-lg bg-zinc-900"
                       )}
                     >
                       {item.title}
-                      {item.title === 'For Developers' && <ExternalLinkIcon className="g-5 w-5" />}
+                      {item.title === "For Developers" && (
+                        <ExternalLinkIcon className="g-5 w-5" />
+                      )}
                     </button>
                   </Link>
                 ))}

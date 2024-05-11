@@ -23,7 +23,7 @@ export const SignMessageButtonSolanaOffchainASCII: FC = () => {
 
   return (
     <button onClick={onClick} disabled={!wallet.publicKey}>
-      Sign Solana offchain message ASCII: "hello World"
+      Sign Bitcoin offchain message ASCII: "hello World"
     </button>
   );
 };

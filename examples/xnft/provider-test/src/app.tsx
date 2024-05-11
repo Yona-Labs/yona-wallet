@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import ReactXnft, { Button, View } from "react-xnft";
-import { BigNumber } from "ethers";
-import { UnsignedTransaction } from "@ethersproject/transactions";
+import type { UnsignedTransaction } from "@ethersproject/transactions";
 import {
-  TransactionMessage,
-  VersionedTransaction,
+  PublicKey,
   SystemProgram,
   Transaction,
-  PublicKey,
+  TransactionMessage,
+  VersionedTransaction,
 } from "@solana/web3.js";
+import { BigNumber } from "ethers";
 //
 // On connection to the host environment, warm the cache.
 //
@@ -20,7 +20,7 @@ export function App() {
   useEffect(() => {
     (async () => {
       console.log(
-        "Solana balance",
+        "Bitcoin balance",
         await window.xnft.solana.connection.getBalance(
           window.xnft.solana.publicKey
         )
@@ -198,7 +198,7 @@ export function App() {
       </View>
       <View style={{ margin: "24px" }}>
         <Button style={{ width: "100%" }} onClick={solanaSignMessage}>
-          Sign Solana Message
+          Sign Bitcoin Message
         </Button>
       </View>
       <View style={{ margin: "24px" }}>
@@ -206,27 +206,27 @@ export function App() {
           style={{ width: "100%" }}
           onClick={solanaSignAndConfirmTransaction}
         >
-          Sign and confirm Solana Tx
+          Sign and confirm Bitcoin Tx
         </Button>
       </View>
       <View style={{ margin: "24px" }}>
         <Button style={{ width: "100%" }} onClick={solanaSignAllTransactions}>
-          Sign Multiple Solana Transactions
+          Sign Multiple Bitcoin Transactions
         </Button>
       </View>
       <View style={{ margin: "24px" }}>
         <Button style={{ width: "100%" }} onClick={solanaSendTransaction}>
-          Send Solana Transaction
+          Send Bitcoin Transaction
         </Button>
       </View>
       <View style={{ margin: "24px" }}>
         <Button style={{ width: "100%" }} onClick={solanaSendLegacyTransaction}>
-          Send Legacy Solana Transaction (Devnet)
+          Send Legacy Bitcoin Transaction (Devnet)
         </Button>
       </View>
       <View style={{ margin: "24px" }}>
         <Button style={{ width: "100%" }} onClick={solanaSendV0Transaction}>
-          Send V0 Solana Transaction (Devnet)
+          Send V0 Bitcoin Transaction (Devnet)
         </Button>
       </View>
     </View>

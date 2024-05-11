@@ -1,10 +1,10 @@
-import { memo, useState } from 'react';
-import { CheckIcon } from '@heroicons/react/outline';
+import { memo, useState } from "react";
+import { CheckIcon } from "@heroicons/react/outline";
 
-import { subscribe } from '../lib/mailchimp';
+import { subscribe } from "../lib/mailchimp";
 
 function Newsletter() {
-  const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
   const [subscribed, setSubscribed] = useState<boolean>(false);
 
   async function subscribeEmail(e) {
@@ -13,7 +13,7 @@ function Newsletter() {
     // TODO: improve error handling
     try {
       await subscribe(email);
-      setEmail('');
+      setEmail("");
       setSubscribed(true);
     } catch {
       // Pass
@@ -29,7 +29,7 @@ function Newsletter() {
         >
           <div className="xl:w-0 xl:flex-1">
             <h2 className="text-2xl font-extrabold tracking-tight text-zinc-50 sm:text-3xl">
-              Want Backpack news and updates?
+              Want Yona news and updates?
             </h2>
             <p className="mt-3 max-w-3xl text-lg leading-6 text-teal-200">
               Sign up for our Substack to stay up to date.
@@ -46,7 +46,7 @@ function Newsletter() {
                 type="email"
                 autoComplete="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 px-4 py-3
                             text-base text-gray-900 placeholder-gray-500"
@@ -59,13 +59,13 @@ function Newsletter() {
                    bg-teal-500 text-base font-medium text-teal-50
                     shadow hover:bg-teal-400 sm:mt-0 sm:ml-3"
               >
-                {subscribed ? <CheckIcon className="h-8 w-8" /> : 'Notify me'}
+                {subscribed ? <CheckIcon className="h-8 w-8" /> : "Notify me"}
               </button>
             </form>
             <p className="mt-3 text-sm text-teal-200">
               {subscribed
-                ? 'You’ll be the first to know when Backpack is ready.'
-                : 'We hate spam as much as you do.'}
+                ? "You’ll be the first to know when Backpack is ready."
+                : "We hate spam as much as you do."}
             </p>
           </div>
         </div>

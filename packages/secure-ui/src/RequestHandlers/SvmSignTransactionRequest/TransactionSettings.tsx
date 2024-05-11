@@ -209,7 +209,7 @@ export function TransactionSettings({
           </StyledText>
         </YStack>
         <StyledText color="$baseTextMedEmphasis" fontSize="$xs">
-          {maxPriorityFeeSol.toFixed(9)} SOL
+          {maxPriorityFeeSol.toFixed(9)} BTC
         </StyledText>
       </XStack>
     </YStack>

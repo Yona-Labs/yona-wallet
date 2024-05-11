@@ -45,7 +45,7 @@ export function ImpersonateMetamaskInfo() {
             lineHeight="$md"
             color="$baseTextMedEmphasis"
           >
-            We are simulating MetaMask to enable you to use Backpack in more
+            We are simulating MetaMask to enable you to use Yona Wallet in more
             places.
           </StyledText>
           <XStack
@@ -74,7 +74,7 @@ export function ImpersonateMetamaskInfo() {
                 }
                 checked={!user.preferences.doNotImpersonateMetaMask}
               >
-                <Switch.Thumb margin="$-1" animation="quick"  />
+                <Switch.Thumb margin="$-1" animation="quick" />
               </Switch>
             </Stack>
           </XStack>

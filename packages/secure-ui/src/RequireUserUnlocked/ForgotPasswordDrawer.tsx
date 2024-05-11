@@ -107,7 +107,7 @@ export function ForgotPasswordDrawer({
               }}
               onPress={handleReset}
             >
-              Reset Backpack
+              Reset Yona Wallet
             </Button>
           </Stack>
         </Stack>

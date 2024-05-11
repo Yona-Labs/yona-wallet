@@ -126,7 +126,7 @@ function Container({ navigation }: StakeScreenProps<Routes.NewStakeScreen>) {
           {maxPossibleLamports.gt(constants.Zero) ? (
             <MaxAmountButton
               decimals={9}
-              ticker="SOL"
+              ticker="BTC"
               maxAmount={maxPossibleLamports}
               setStrAmount={setStrAmount}
               setAmount={setLamportsToStake}

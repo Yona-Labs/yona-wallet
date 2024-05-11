@@ -17,7 +17,7 @@ import { SolanaWallet } from "./SolanaWallet";
 function App() {
   return (
     <div className="App">
-      <h1>Solana</h1>
+      <h1>Bitcoin</h1>
       <SolanaWallet>
         <SendLamportButton />
         <SendLamportWritableButton />

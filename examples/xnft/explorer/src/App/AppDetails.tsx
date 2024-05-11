@@ -106,7 +106,7 @@ function AppDetails({ app }: { app: XnftWithMetadata }) {
                     onClick={() => install()}
                     tw="flex items-center gap-2.5 bg-white py-2 text-[#374151] px-3 rounded text-xs font-medium tracking-wide"
                   >
-                    {price === 0 ? "Free" : `${price / LAMPORTS_PER_SOL} SOL`}
+                    {price === 0 ? "Free" : `${price / LAMPORTS_PER_SOL} BTC`}
                     <InstallIcon size={16} color={"#374151"} />
                   </Button>
                   <Button

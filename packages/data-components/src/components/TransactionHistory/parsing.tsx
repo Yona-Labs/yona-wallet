@@ -164,7 +164,7 @@ function _parseCreateMerkleTree(
  * @param {string} description
  * @param {((key: string) => string)} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> <STAKED | UNSTAKED> <AMOUNT> SOL <from | to> <ADDRESS>"
+ * @example "<WALLET> <STAKED | UNSTAKED> <AMOUNT> BTC <from | to> <ADDRESS>"
  */
 function _parseNativeStaking(
   description: string,
@@ -177,11 +177,11 @@ function _parseNativeStaking(
   return {
     card: {
       tl: title,
-      tr: _truncateAmount(`${amount} SOL`),
+      tr: _truncateAmount(`${amount} BTC`),
       bl: `${accDir}: ${formatWalletAddress(stakeAddr)}`,
     },
     details: {
-      amount: `${amount} SOL`,
+      amount: `${amount} BTC`,
       headerText: (
         <StyledText fontSize="$lg">{`${formatTitleCase(
           action
@@ -199,7 +199,7 @@ function _parseNativeStaking(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> withdrew 0.003 SOL from <ACCOUNT>"
+ * @example "<WALLET> withdrew 0.003 BTC from <ACCOUNT>"
  */
 function _parseNativeStakingWithdraw(
   description: string,
@@ -263,7 +263,7 @@ function _parseNftAuctionCreated(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> bid <AMOUNT> SOL on <TOKEN_NAME> on <SOURCE>"
+ * @example "<WALLET> bid <AMOUNT> BTC on <TOKEN_NAME> on <SOURCE>"
  */
 function _parseNftBid(
   transaction: ResponseTransaction,
@@ -295,7 +295,7 @@ function _parseNftBid(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> cancelled <AMOUNT> SOL bid for <TOKEN_NAME> on <SOURCE>"
+ * @example "<WALLET> cancelled <AMOUNT> BTC bid for <TOKEN_NAME> on <SOURCE>"
  */
 function _parseNftBidCancelled(
   transaction: ResponseTransaction,
@@ -362,7 +362,7 @@ function _parseNftBurn(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> cancelled 80 SOL listing for Mad Lads #2699 on TENSOR"
+ * @example "<WALLET> cancelled 80 BTC listing for Mad Lads #2699 on TENSOR"
  */
 function _parseNftListingCanceled(
   transaction: ResponseTransaction,
@@ -395,7 +395,7 @@ function _parseNftListingCanceled(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> listed Mad Lad #8811 for 131 SOL on MAGIC_EDEN."
+ * @example "<WALLET> listed Mad Lad #8811 for 131 BTC on MAGIC_EDEN."
  */
 function _parseNftListing(
   transaction: ResponseTransaction,
@@ -428,7 +428,7 @@ function _parseNftListing(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> minted Mad Lads #6477 for 6.9114946 SOL on CANDY_MACHINE_V3"
+ * @example "<WALLET> minted Mad Lads #6477 for 6.9114946 BTC on CANDY_MACHINE_V3"
  */
 function _parseNftMint(
   transaction: ResponseTransaction,
@@ -462,7 +462,7 @@ function _parseNftMint(
  * @param {string} description
  * @param {(key: string, args?: any) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> sold Mad Lad #3150 to <WALLET> for 131 SOL on MAGIC_EDEN"
+ * @example "<WALLET> sold Mad Lad #3150 to <WALLET> for 131 BTC on MAGIC_EDEN"
  */
 function _parseNftSale(
   transaction: ResponseTransaction,
@@ -510,7 +510,7 @@ function _parseNftSale(
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> swapped 0.001 SOL for 0.022 USDC"
+ * @example "<WALLET> swapped 0.001 BTC for 0.022 USDC"
  */
 function _parseSwap(
   description: string,
@@ -629,8 +629,8 @@ function _parseTokenStaking(description: string): ParseTransactionDetails {
  * @param {string} description
  * @param {(key: string) => string} t
  * @returns {ParseTransactionDetails}
- * @example "<WALLET> transferred 0.1 SOL to <WALLET>"
- * @example "<WALLET> transferred a total 0.1 SOL to multiple accounts"
+ * @example "<WALLET> transferred 0.1 BTC to <WALLET>"
+ * @example "<WALLET> transferred a total 0.1 BTC to multiple accounts"
  */
 function _parseTransfer(
   transaction: ResponseTransaction,

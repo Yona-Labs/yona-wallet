@@ -102,7 +102,7 @@ const ValidatorRowRenderer = ({
           },
           state: (BigInt(validator.info.stake) / BigInt(LAMPORTS_PER_SOL))
             .toLocaleString()
-            .concat(" SOL"),
+            .concat(" BTC"),
           amount: validator.info.apy
             ? `${validator.info.apy}% APY`
             : `${validator.info.commission}% Fee`,

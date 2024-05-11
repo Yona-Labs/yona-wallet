@@ -107,7 +107,7 @@ export function LockedMenuDrawer({
                   <UserCircleIcon color="$baseIcon" size="$1xl" />
                 </Stack>
                 <StyledText flexGrow={1} fontSize={16} fontWeight="500">
-                  Reset Backpack
+                  Reset Yona Wallet
                 </StyledText>
                 <Stack
                   height="$2"

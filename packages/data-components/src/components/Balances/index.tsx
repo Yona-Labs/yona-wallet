@@ -1,5 +1,7 @@
+import { SuspenseQueryHookFetchPolicy } from "@apollo/client";
 import type { Blockchain } from "@coral-xyz/common";
 import { hiddenTokenAddresses } from "@coral-xyz/recoil";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import { YStack } from "@coral-xyz/tamagui";
 import { type ReactElement, type ReactNode, Suspense, useMemo } from "react";
 import { useRecoilValue } from "recoil";
@@ -107,6 +109,49 @@ export const TokenBalances = ({
   </Suspense>
 );
 
+const useTokenBalancesQuery = (
+  address: string,
+  providerId: ProviderId,
+  pollingIntervalSeconds?: any,
+  fetchPolicy?: SuspenseQueryHookFetchPolicy
+) => {
+  const { data } = usePolledSuspenseQuery(
+    pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
+    GET_TOKEN_BALANCES_QUERY,
+    {
+      fetchPolicy,
+      errorPolicy: "all",
+      variables: {
+        address,
+        providerId,
+      },
+    }
+  );
+
+  if (data?.wallet?.balances?.tokens.edges) {
+    const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
+      (balance) => balance.node.token === BTC_TOKEN.token
+    );
+
+    if (balanceIndex >= 0) {
+      data.wallet.balances.tokens.edges[balanceIndex] = {
+        node: {
+          ...BTC_TOKEN,
+          amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
+          displayAmount:
+            data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
+          marketData:
+            data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
+          __typename:
+            data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+        },
+      };
+    }
+  }
+
+  return data;
+};
+
 function _TokenBalances({
   address,
   fetchPolicy,
@@ -121,17 +166,24 @@ function _TokenBalances({
     hiddenTokenAddresses(providerId.toLowerCase() as Blockchain)
   );
 
-  const { data } = usePolledSuspenseQuery(
-    pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
-    GET_TOKEN_BALANCES_QUERY,
-    {
-      fetchPolicy,
-      errorPolicy: "all",
-      variables: {
-        address,
-        providerId,
-      },
-    }
+  // const { data } = usePolledSuspenseQuery(
+  //   pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
+  //   GET_TOKEN_BALANCES_QUERY,
+  //   {
+  //     fetchPolicy,
+  //     errorPolicy: "all",
+  //     variables: {
+  //       address,
+  //       providerId,
+  //     },
+  //   }
+  // );
+
+  const data = useTokenBalancesQuery(
+    address,
+    providerId,
+    pollingIntervalSeconds,
+    fetchPolicy
   );
 
   /**

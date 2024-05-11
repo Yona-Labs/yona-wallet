@@ -46,7 +46,7 @@ export function ResetBackpackRequest({
         </Stack>
         <Stack padding="$2" space="$2">
           <StyledText fontSize="$2xl" fontWeight="$medium" lineHeight="$2xl">
-            Reset Backpack?
+            Reset Yona Wallet?
           </StyledText>
           <StyledText
             fontSize="$md"

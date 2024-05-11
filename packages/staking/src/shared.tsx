@@ -3,7 +3,7 @@ import { type BigNumberish, utils } from "ethers";
 import { atom } from "recoil";
 
 /**
- * Hides miniscule amounts of SOL
+ * Hides miniscule amounts of BTC
  * @example approximateAmount(0.00203928) = "0.002"
  * @param value BigNumberish amount of Solana Lamports
  */
@@ -114,7 +114,7 @@ export const lamportsToSolAsString = (
   if (integerIfIsOneOrMore && !str.startsWith("0.")) {
     str = str.split(".")[0];
   }
-  return appendTicker ? str.concat(" SOL") : str;
+  return appendTicker ? str.concat(" BTC") : str;
 };
 
 export const sleep = (ms: number) =>

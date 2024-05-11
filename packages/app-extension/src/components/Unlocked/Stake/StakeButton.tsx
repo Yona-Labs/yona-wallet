@@ -11,7 +11,7 @@ import { Routes as StakeRoutes } from "../../../refactor/navigation/StakeNavigat
 import { Routes } from "../../../refactor/navigation/WalletsNavigator";
 
 /**
- * Loaded lazily on the Solana Token Detail Page, hence the default function export
+ * Loaded lazily on the Bitcoin Token Detail Page, hence the default function export
  */
 export default function StakeButton() {
   const { publicKey } = useActiveWallet();
@@ -23,10 +23,10 @@ export default function StakeButton() {
   const subtitle = isError
     ? "Error fetching accounts"
     : isLoading
-    ? undefined
-    : data && data.length > 0
-    ? `${data.length} account${data.length > 1 ? "s" : ""}`
-    : "Stake some SOL";
+      ? undefined
+      : data && data.length > 0
+        ? `${data.length} account${data.length > 1 ? "s" : ""}`
+        : "Stake some BTC";
 
   const total =
     data && data?.length > 0

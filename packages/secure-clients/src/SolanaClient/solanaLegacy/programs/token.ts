@@ -43,7 +43,7 @@ export const USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
 export const WSOL_MINT = "So11111111111111111111111111111111111111112";
 //
 // App's dummy representation of native sol as an SPL token. This is *not*
-// wrapped SOL. We treat native sol in the same way as we do SPL tokens.
+// wrapped BTC. We treat native sol in the same way as we do SPL tokens.
 //
 export const SOL_NATIVE_MINT = PublicKey.default.toString();
 
@@ -156,7 +156,7 @@ export async function customSplTokenAccounts(
     );
 
   //
-  // Add native SOL to the token and metadata list.
+  // Add native BTC to the token and metadata list.
   //
   const nativeSol: SolanaTokenAccountWithKeyAndProgramId = {
     key: publicKey,
@@ -363,22 +363,25 @@ export async function fetchSplMetadataUri(
   //
   // Zip it all together.
   //
-  const splMetadata = tokens.reduce((acc, m, idx) => {
-    const metadata = tokenMetadata[idx];
-    if (!metadata || !tokenMetaUriData[idx]) {
+  const splMetadata = tokens.reduce(
+    (acc, m, idx) => {
+      const metadata = tokenMetadata[idx];
+      if (!metadata || !tokenMetaUriData[idx]) {
+        return acc;
+      }
+      acc.push([
+        m.key.toString(),
+        {
+          publicKey: m.key,
+          metadataAddress: metadata.publicKey,
+          metadata: metadata.account,
+          tokenMetaUriData: tokenMetaUriData[idx],
+        },
+      ]);
       return acc;
-    }
-    acc.push([
-      m.key.toString(),
-      {
-        publicKey: m.key,
-        metadataAddress: metadata.publicKey,
-        metadata: metadata.account,
-        tokenMetaUriData: tokenMetaUriData[idx],
-      },
-    ]);
-    return acc;
-  }, [] as Array<[string, SplNftMetadataString]>);
+    },
+    [] as Array<[string, SplNftMetadataString]>
+  );
 
   return splMetadata;
 }

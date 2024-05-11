@@ -46,6 +46,7 @@ export function useApolloClientHeaders():
 }
 
 export function useIsDevnet(): boolean {
-  const headers = useApolloClientHeaders();
-  return headers?.["x-blockchain-devnet"] === "true";
+  // const headers = useApolloClientHeaders();
+  // return headers?.["x-blockchain-devnet"] === "true";
+  return true;
 }

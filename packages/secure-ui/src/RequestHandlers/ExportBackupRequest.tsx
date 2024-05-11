@@ -61,11 +61,11 @@ function ShowBackup({
           <EyeIcon size="$5xl" />
         </XStack>
         <StyledText textAlign="center" fontSize="$2xl">
-          Your Backpack Backup
+          Your Yona Wallet Backup
         </StyledText>
         <StyledText textAlign="center">
           contains your encrypted private keys. Do not share it. Reach out to
-          Backpack support for help.
+          Yona Wallet support for help.
         </StyledText>
       </YStack>
       <YStack marginLeft="$4" marginRight="$4" marginBottom="$4">

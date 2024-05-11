@@ -125,7 +125,7 @@ class ErrorBoundaryWithHooks extends React.Component<Props, State> {
                 }
               }}
             >
-              Reset Backpack
+              Reset Yona Wallet
             </Typography>
           </Box>
         </div>

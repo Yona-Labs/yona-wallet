@@ -55,7 +55,7 @@ export class SolanaStakeClient {
   }
 
   /**
-   * Withdraws all SOL from the provided `stakeAccount`, which should be
+   * Withdraws all BTC from the provided `stakeAccount`, which should be
    * in the `inactive` state.
    */
   async withdraw(req: { authority: string; stakeAccount: string }) {

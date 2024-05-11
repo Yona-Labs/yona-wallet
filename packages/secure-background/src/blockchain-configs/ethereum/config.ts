@@ -16,7 +16,7 @@ export const ethereumBlockchainConfig: BlockchainConfig<Blockchain.ETHEREUM> = {
     "https://blowfish.xnftdata.com/ethereum/v0/mainnet/scan/transactions",
   isTestnet: false,
 
-  Enabled: true,
+  Enabled: false,
   Blockchain: Blockchain.ETHEREUM,
   Name: "Ethereum",
   GasTokenName: "ETH",

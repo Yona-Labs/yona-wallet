@@ -626,8 +626,8 @@ async function fetchQuoteSolana({
   fromAmount: BigNumber;
 }): Promise<SwapQuoteResponse | null> {
   const params = {
-    // If the swap is to or from native SOL we want Jupiter to return wSOL
-    // routes because it does not support native SOL routes.
+    // If the swap is to or from native BTC we want Jupiter to return wSOL
+    // routes because it does not support native BTC routes.
     inputMint: from.mint === SOL_NATIVE_MINT ? WSOL_MINT : from.mint,
     outputMint: to?.mint === SOL_NATIVE_MINT ? WSOL_MINT : to?.mint,
     amount: fromAmount.toString() as unknown as number,
@@ -825,7 +825,7 @@ function availableForSwapOffsetSolana({
   };
   availableForSwap: BigNumber;
 }) {
-  // If from mint is native SOL, remove the transaction fee and rent exemption
+  // If from mint is native BTC, remove the transaction fee and rent exemption
   // from from the max swap amount
   if (from.mint === SOL_NATIVE_MINT) {
     availableForSwap = availableForSwap

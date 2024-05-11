@@ -19,6 +19,7 @@ import {
 } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import { hiddenTokenAddresses, useBackgroundClient } from "@coral-xyz/recoil";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
   ListItemCore,
   ListItemIconCore,
@@ -63,6 +64,39 @@ export function TokenDisplayManagement({
   );
 }
 
+const useTokenBalancesQuery = (address: string, blockchain: Blockchain) => {
+  const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
+    fetchPolicy: "cache-only",
+    variables: {
+      address,
+      providerId: blockchain.toUpperCase() as ProviderId,
+    },
+  });
+
+  if (data?.wallet?.balances?.tokens.edges) {
+    const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
+      (balance) => balance.node.token === BTC_TOKEN.token
+    );
+
+    if (balanceIndex >= 0) {
+      data.wallet.balances.tokens.edges[balanceIndex] = {
+        node: {
+          ...BTC_TOKEN,
+          amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
+          displayAmount:
+            data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
+          marketData:
+            data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
+          __typename:
+            data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+        },
+      };
+    }
+  }
+
+  return data;
+};
+
 export function HiddenTokensList({
   address,
   blockchain,
@@ -71,13 +105,14 @@ export function HiddenTokensList({
   blockchain: Blockchain;
 }) {
   const hiddenTokens = useRecoilValue(hiddenTokenAddresses(blockchain));
-  const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
-    fetchPolicy: "cache-only",
-    variables: {
-      address,
-      providerId: blockchain.toUpperCase() as ProviderId,
-    },
-  });
+  // const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
+  //   fetchPolicy: "cache-only",
+  //   variables: {
+  //     address,
+  //     providerId: blockchain.toUpperCase() as ProviderId,
+  //   },
+  // });
+  const data = useTokenBalancesQuery(address, blockchain);
 
   const ownedTokens = useMemo<_TokenListEntryFragmentType[]>(
     () =>

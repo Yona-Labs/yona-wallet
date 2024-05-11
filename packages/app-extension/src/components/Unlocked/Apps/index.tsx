@@ -93,7 +93,7 @@ function PluginGrid() {
         title={`${
           enabledBlockchainConfigs[wallet.blockchain]?.Name
         } xNFTs not yet supported`}
-        subtitle="Switch to Solana to use xNFTs"
+        subtitle="Switch to Bitcoin to use xNFTs"
         buttonText=""
         onClick={() => {}}
       />
@@ -124,7 +124,7 @@ function PluginGrid() {
   }
 
   //
-  // Render all the Solana wallet xNFTs.
+  // Render all the Bitcoin wallet xNFTs.
   //
   return (
     <>

@@ -141,7 +141,7 @@ function WarningPasswordGate({
                   <AlertTriangleIcon color="$redIcon" size="$1xl" />
                 </Stack>
                 <Text flexGrow={1} fontSize="$base" fontWeight="$medium">
-                  Backpack support will never ask for your secret phrase.
+                  Yona Wallet support will never ask for your secret phrase.
                 </Text>
               </XStack>
               <XStack
@@ -244,11 +244,11 @@ function ShowMnemonic({
           <EyeIcon size="$5xl" />
         </XStack>
         <StyledText textAlign="center" fontSize="$2xl">
-          Your Backpack Backup
+          Your Yona Wallet Backup
         </StyledText>
         <StyledText textAlign="center">
-          Contains all your mnemonics and private keys currently stored in
-          Backpack.
+          Contains all your mnemonics and private keys currently stored in Yona
+          Wallet.
         </StyledText>
       </YStack>
       <YStack flex={1}>

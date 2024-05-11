@@ -112,14 +112,14 @@ const Container = ({
             color="$baseTextMedEmphasis"
             paddingLeft={24}
           >
-            {t("total_balance").concat(" (SOL)")}
+            {t("total_balance").concat(" (BTC)")}
           </StyledText>
           <StyledText
             fontSize="$sm"
             color="$baseTextMedEmphasis"
             textAlign="right"
           >
-            {t("active_stake").concat(" (SOL)")}
+            {t("active_stake").concat(" (BTC)")}
           </StyledText>
         </XStack>
         <YStack space="$4">

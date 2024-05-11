@@ -575,7 +575,7 @@ const SwapInfoRow = ({ label, value, tooltip }: SwapInfoRowProps) => {
 };
 
 /**
- * Hides miniscule amounts of SOL
+ * Hides miniscule amounts of BTC
  * @example approximateAmount(0.00203928) = "0.002"
  * @param value BigNumberish amount of Solana Lamports
  */

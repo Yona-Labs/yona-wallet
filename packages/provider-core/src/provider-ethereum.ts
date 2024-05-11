@@ -68,13 +68,13 @@ export interface EIP1193Provider {
 const messages = {
   errors: {
     disconnected: () =>
-      "Backpack: Disconnected from chain. Attempting to connect.",
+      "Yona Wallet: Disconnected from chain. Attempting to connect.",
     invalidRequestArgs: () =>
-      `Backpack: Expected a single, non-array, object argument.`,
+      `Yona Wallet: Expected a single, non-array, object argument.`,
     invalidRequestMethod: () =>
-      `Backpack: 'args.method' must be a non-empty string.`,
+      `Yona Wallet: 'args.method' must be a non-empty string.`,
     invalidRequestParams: () =>
-      `Backpack: 'args.params' must be an object or array if provided.`,
+      `Yona Wallet: 'args.params' must be an object or array if provided.`,
   },
 };
 

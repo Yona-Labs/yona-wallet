@@ -56,21 +56,21 @@ export function withContextPort<Backend>(
  * Message to be signed for authenticating a user.
  */
 export function getAuthMessage(uuid: string) {
-  return `Backpack login ${uuid}`;
+  return `Yona Wallet login ${uuid}`;
 }
 
 /**
  * Message to be signed for creating a Backpack account.
  */
 export function getCreateMessage(publicKey: string) {
-  return `Backpack create ${publicKey}`;
+  return `Yona Wallet create ${publicKey}`;
 }
 
 /**
  * Message to be signed when adding public keys to an existing Backpack account.
  */
 export function getAddMessage(publicKey: string) {
-  return `Backpack add ${publicKey}`;
+  return `Yona Wallet add ${publicKey}`;
 }
 
 //

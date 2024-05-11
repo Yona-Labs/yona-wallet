@@ -1,13 +1,11 @@
-import type { QueuedUiRequest } from "../_atoms/requestAtoms";
-
-import { useState } from "react";
-
 import { Blockchain } from "@coral-xyz/common";
 import { secureUserAtom } from "@coral-xyz/recoil";
 import { decode } from "bs58";
+import { useState } from "react";
 import { useRecoilValue } from "recoil";
 
 import { RequireUserUnlocked } from "../RequireUserUnlocked/RequireUserUnlocked";
+import type { QueuedUiRequest } from "../_atoms/requestAtoms";
 import { ApproveMessage } from "../_sharedComponents/ApproveMessage";
 import { IsColdWalletWarning } from "../_sharedComponents/IsColdWalletWarning";
 
@@ -25,7 +23,7 @@ export function SvmSignMessageRequest({
 
   const publicKeyInfo =
     user.publicKeys.platforms[Blockchain.SOLANA]?.publicKeys[
-    currentRequest.request.publicKey
+      currentRequest.request.publicKey
     ];
   if (
     !coldWalletWarningIgnored &&
@@ -48,7 +46,7 @@ export function SvmSignMessageRequest({
       <ApproveMessage
         publicKey={currentRequest.request.publicKey}
         currentRequest={currentRequest}
-        title="Approve Solana Message"
+        title="Approve Yona Message"
         message={message}
         blockchain={Blockchain.SOLANA}
       />
