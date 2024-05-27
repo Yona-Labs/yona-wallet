@@ -1,10 +1,14 @@
 import { useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import type { ProviderId } from "@coral-xyz/data-components";
-import { GET_TOKEN_BALANCES_QUERY } from "@coral-xyz/data-components";
+import {
+  GET_TOKEN_BALANCES_QUERY,
+  useBitcoinPrice,
+} from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import { EmptyState, WarningIcon } from "@coral-xyz/react-common";
 import { useActiveWallet } from "@coral-xyz/recoil";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
   ETH_NATIVE_MINT,
   SOL_NATIVE_MINT,
@@ -43,9 +47,30 @@ function Container({ navigation }: SendTokenSelectScreenProps) {
     },
   });
 
+  const price = useBitcoinPrice();
+
   const tokens = useMemo(
-    () => data?.wallet?.balances?.tokens.edges.map((e) => e.node) ?? [],
-    [data]
+    () =>
+      data?.wallet?.balances?.tokens.edges.map((e) => {
+        if (e.node.token === BTC_TOKEN.token) {
+          const token = JSON.parse(JSON.stringify(e.node));
+
+          const value = Number(token.displayAmount) * Number(price?.lastPrice);
+
+          token.marketData = {
+            id: token.marketData?.id ?? "",
+            price: Number(price?.lastPrice),
+            percentChange: Number(price?.priceChangePercent),
+            value,
+            valueChange: value * Number(price?.priceChangePercent),
+          };
+
+          return token;
+        } else {
+          return e.node;
+        }
+      }) ?? [],
+    [data, price]
   );
 
   if (error) {

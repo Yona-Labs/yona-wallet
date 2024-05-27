@@ -102,9 +102,9 @@ export function ConfirmationButtons({
 
   return (
     <YStack ai="center" gap={24} width="100%">
-      {confirmed ? (
+      {/* {confirmed ? (
         <_ConfirmationViewTransaction onPress={openExplorerLink} />
-      ) : null}
+      ) : null} */}
       <BpPrimaryButton
         label={confirmed ? confirmedLabel : t("view_explorer")}
         onPress={confirmed ? onConfirmedPress : openExplorerLink}

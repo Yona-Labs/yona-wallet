@@ -6,8 +6,8 @@ export const BTC_TOKEN = {
   displayAmount: "0.0",
   marketData: {
     id: "Y29pbmdlY2tvX21hcmtldF9kYXRhOkFYaFkzejdyUVl3djdiRHVOSm82ZjZEQ2hmUHdmZGNRQzFXRWR3aFZYSFFvL3NvbGFuYQ==",
-    percentChange: -0.43751,
-    price: 153.55,
+    percentChange: 0,
+    price: 0,
     value: 0,
     valueChange: 0,
   },
@@ -20,4 +20,30 @@ export const BTC_TOKEN = {
     name: "Bitcoin",
     symbol: "BTC",
   },
+};
+
+export interface IGetBitcoinPriceResponse {
+  firstPrice: string;
+  high: string;
+  lastPrice: string;
+  low: string;
+  priceChange: string;
+  priceChangePercent: string;
+  quoteVolume: string;
+  symbol: string;
+  trades: string;
+  volume: string;
+}
+
+export const getBitcoinPrice = async (): Promise<IGetBitcoinPriceResponse> => {
+  const data = await fetch(
+    "https://api.backpack.exchange/api/v1/ticker?symbol=BTC_USDC",
+    {
+      method: "GET",
+    }
+  ).then((res) => res.json());
+
+  window.localStorage.setItem("bitcoinPrice", JSON.stringify(data));
+
+  return data;
 };

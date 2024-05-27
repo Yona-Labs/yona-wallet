@@ -56,12 +56,12 @@ export function SetupComplete({ onClose }: { onClose: () => void }) {
             }
             title={t("support")}
             onClick={() => {
-              window.open("https://support.backpack.exchange", "_blank");
+              window.open("https://yona.network", "_blank");
             }}
           />
           <_CallToAction
             icon={<XTwitterIcon style={{ height: 24 }} />}
-            title="@Backpack"
+            title="@Yona"
             onClick={() => window.open(TWITTER_LINK, "_blank")}
           />
           <_CallToAction

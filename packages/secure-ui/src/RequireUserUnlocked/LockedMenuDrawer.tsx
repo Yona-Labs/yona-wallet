@@ -37,7 +37,7 @@ export function LockedMenuDrawer({
 
   const links = [
     {
-      label: "Backpack.app",
+      label: "Yona.network",
       icon: <ShoppingBagIcon color="$baseIcon" size="$1xl" />,
       url: BACKPACK_LINK,
     },

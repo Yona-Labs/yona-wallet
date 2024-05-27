@@ -1,4 +1,4 @@
-import { type ChangeEvent,useRef } from "react";
+import { type ChangeEvent, useRef } from "react";
 import type { Blockchain } from "@coral-xyz/common";
 import {
   decimalNumberStringIntoBigNumber,
@@ -192,8 +192,8 @@ export function Sending({
             {titleOverride
               ? titleOverride
               : isComplete
-              ? t("sent")
-              : t("sending_dots")}
+                ? t("sent")
+                : t("sending_dots")}
           </Typography>
           {isComplete ? (
             <div
@@ -258,14 +258,14 @@ export function Sending({
             }}
           />
         ) : null}
-        {signature && explorer && connectionUrl ? (
+        {/* {signature && explorer && connectionUrl ? (
           <SecondaryButton
             onClick={async () => {
               window.open(explorerUrl(explorer, signature, connectionUrl));
             }}
             label={t("view_explorer")}
           />
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );

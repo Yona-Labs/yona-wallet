@@ -433,17 +433,15 @@ export const SIMULATOR_PORT = 9933;
 export const NATIVE_ACCOUNT_RENT_EXEMPTION_LAMPORTS = 890880 as const;
 export const TOKEN_ACCOUNT_RENT_EXEMPTION_LAMPORTS = 2039280 as const;
 
-export const DISCORD_INVITE_LINK = "https://discord.gg/RhKxgS8SaD";
-export const TWITTER_LINK = "https://twitter.com/backpack";
+export const DISCORD_INVITE_LINK = "https://discord.gg/QtYPJ9KZ";
+export const TWITTER_LINK = "https://twitter.com/yona_network";
 export const XNFT_GG_LINK = "https://xnft.gg";
-export const BACKPACK_LINK = "https://backpack.app";
-export const BACKPACK_TERMS_OF_SERVICE =
-  "https://support.backpack.exchange/en/categories/264513-backpack-wallet-terms";
-export const BACKPACK_HELP_AND_SUPPORT = "https://support.backpack.exchange/";
-export const BACKPACK_GITHUB_LINK = "https://github.com/coral-xyz/backpack";
+export const BACKPACK_LINK = "https://yona.network";
+export const BACKPACK_TERMS_OF_SERVICE = "https://yona.network";
+export const BACKPACK_HELP_AND_SUPPORT = "https://discord.gg/QtYPJ9KZ";
+export const BACKPACK_GITHUB_LINK = "https://github.com/Yona-Network";
 
-export const EXCHANGE_TERMS_OF_SERVICE_URL =
-  "https://support.backpack.exchange/en/categories/265857-backpack-exchange-terms";
+export const EXCHANGE_TERMS_OF_SERVICE_URL = "https://yona.network";
 export const EXCHANGE_SUMSUB_DOCS_URL =
   "https://sumsub.com/supported-documents";
 

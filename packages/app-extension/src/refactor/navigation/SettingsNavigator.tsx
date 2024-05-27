@@ -162,7 +162,7 @@ type SettingsScreenStackNavigatorParamList = {
 };
 
 export type SettingsScreenProps<
-  T extends keyof SettingsScreenStackNavigatorParamList
+  T extends keyof SettingsScreenStackNavigatorParamList,
 > = StackScreenProps<SettingsScreenStackNavigatorParamList, T>;
 
 const Stack = createStackNavigator<SettingsScreenStackNavigatorParamList>();
@@ -471,7 +471,10 @@ export function SettingsNavigator({
           },
         }) => {
           return {
-            title: blockchain.slice(0, 1).toUpperCase() + blockchain.slice(1),
+            title:
+              blockchain === "solana"
+                ? "Yona"
+                : blockchain.slice(0, 1).toUpperCase() + blockchain.slice(1),
             ...maybeCloseButton(false, navigation),
           };
         }}

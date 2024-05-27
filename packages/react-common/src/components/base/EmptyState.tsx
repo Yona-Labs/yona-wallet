@@ -21,70 +21,70 @@ export const EmptyState: React.FC<{
   header,
   title,
   subtitle,
-  buttonText,
-  onClick,
+  buttonText: _buttonText,
+  onClick: _onClick,
   contentStyle,
-  style,
+  style: _style,
   innerStyle,
   minimize,
-  verticallyCentered = true,
+  verticallyCentered: _verticallyCentered = true,
 }) => {
-    const theme = useTheme();
+  const theme = useTheme();
 
-    return (
+  return (
+    <div
+      style={{
+        borderRadius: "12px",
+        background: theme.baseBackgroundL1.val,
+        border: `${theme.baseBorderLight.val}`,
+        overflow: "hidden",
+        ...innerStyle,
+      }}
+    >
+      {header}
       <div
         style={{
-          borderRadius: "12px",
-          background: theme.baseBackgroundL1.val,
-          border: `${theme.baseBorderLight.val}`,
-          overflow: "hidden",
-          ...innerStyle,
+          padding: "16px",
+          ...contentStyle,
         }}
       >
-        {header}
-        <div
+        {icon({
+          style: {
+            color: theme.baseIcon.val,
+            width: "56px",
+            height: "56px",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "16px",
+          },
+        })}
+        <Typography
           style={{
-            padding: "16px",
-            ...contentStyle,
+            fontSize: "24px",
+            lineHeight: "32px",
+            textAlign: "center",
+            fontWeight: 500,
+            color: theme.baseTextHighEmphasis.val,
           }}
         >
-          {icon({
-            style: {
-              color: theme.baseIcon.val,
-              width: "56px",
-              height: "56px",
-              display: "block",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginBottom: "16px",
-            },
-          })}
+          {title}
+        </Typography>
+        {!minimize ? (
           <Typography
             style={{
-              fontSize: "24px",
-              lineHeight: "32px",
+              marginTop: "8px",
+              color: theme.baseTextMedEmphasis.val,
               textAlign: "center",
+              fontSize: "16px",
+              lineHeight: "24px",
               fontWeight: 500,
-              color: theme.baseTextHighEmphasis.val,
             }}
           >
-            {title}
+            {subtitle}
           </Typography>
-          {!minimize ? (
-            <Typography
-              style={{
-                marginTop: "8px",
-                color: theme.baseTextMedEmphasis.val,
-                textAlign: "center",
-                fontSize: "16px",
-                lineHeight: "24px",
-                fontWeight: 500,
-              }}
-            >
-              {subtitle}
-            </Typography>
-          ) : null}
-          {!minimize && buttonText ? (
+        ) : null}
+        {/* {!minimize && buttonText ? (
             <YStack
               marginTop={"40px"}
             >
@@ -106,8 +106,8 @@ export const EmptyState: React.FC<{
               // }}
               />
             </YStack>
-          ) : null}
-        </div>
+          ) : null} */}
       </div>
-    );
-  };
+    </div>
+  );
+};

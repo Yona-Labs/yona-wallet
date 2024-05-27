@@ -11,6 +11,7 @@ import {
   useEthereumCtx,
   useIsValidAddress,
 } from "@coral-xyz/recoil";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
   BpDangerButton,
   IncognitoAvatar,
@@ -54,17 +55,10 @@ function Container(props: SendAmountSelectScreenProps) {
   return <_Send {...props} />;
 }
 
-// TODO: probably needs rewriting.
-function _Send({
-  navigation,
-  route: {
-    params: { assetId, to },
-  },
-}: SendAmountSelectScreenProps) {
-  // publicKey should only be undefined if the user is in single-wallet mode
-  // (rather than aggregate mode).
+const useTokenBalanceFragment = (assetId: string) => {
   const apollo = useApolloClient();
-  const data = apollo.readFragment<TokenTableBalance>({
+
+  let data = apollo.readFragment<TokenTableBalance>({
     id: `TokenBalance:${assetId}`,
     fragment: gql`
       fragment SelectorTokenBalanceFragment on TokenBalance {
@@ -90,6 +84,43 @@ function _Send({
       }
     `,
   });
+  console.log(assetId, "assetId");
+  console.log(JSON.stringify(data), "PRE DATA");
+
+  if (!data) return null;
+
+  if (data.token === BTC_TOKEN.token) {
+    // data = {
+    //   ...data,
+    //   ...BTC_TOKEN,
+    //   marketData: data.marketData,
+    //   displayAmount: data.displayAmount,
+    //   amount: data.amount,
+    // };
+    data = {
+      ...data,
+      tokenListEntry: {
+        ...BTC_TOKEN.tokenListEntry,
+        id: data.tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
+      },
+      marketData: BTC_TOKEN.marketData,
+    };
+  }
+  console.log(JSON.stringify(data), "POST DATA");
+
+  return data;
+};
+
+// TODO: probably needs rewriting.
+function _Send({
+  navigation,
+  route: {
+    params: { assetId, to },
+  },
+}: SendAmountSelectScreenProps) {
+  // publicKey should only be undefined if the user is in single-wallet mode
+  // (rather than aggregate mode).
+  const data = useTokenBalanceFragment(assetId);
 
   if (!data) return null;
 

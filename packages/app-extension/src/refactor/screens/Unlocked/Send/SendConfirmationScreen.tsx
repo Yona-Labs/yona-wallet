@@ -7,6 +7,7 @@ import {
 } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import { blockchainClientAtom, useActiveWallet } from "@coral-xyz/recoil";
+import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import { ListItemIconCore, YStack } from "@coral-xyz/tamagui";
 import { useRecoilValue } from "recoil";
 import { useAsyncEffect } from "use-async-effect";
@@ -38,6 +39,39 @@ type _TokenBalanceConfirmationFragment = {
     logo?: string;
     symbol?: string;
   };
+};
+
+const useTokenBalanceFragment = (tokenId: string) => {
+  let { data } = useFragment<_TokenBalanceConfirmationFragment>({
+    fragmentName: "TokenBalanceConfirmationFragment",
+    from: {
+      __typename: "TokenBalance",
+      id: tokenId,
+    },
+    fragment: gql`
+      fragment TokenBalanceConfirmationFragment on TokenBalance {
+        token
+        tokenListEntry {
+          logo
+          symbol
+        }
+      }
+    `,
+  });
+
+  if (!data) return null;
+
+  if (data.token === BTC_TOKEN.token) {
+    data = {
+      ...data,
+      tokenListEntry: {
+        logo: BTC_TOKEN.tokenListEntry.logo,
+        symbol: BTC_TOKEN.tokenListEntry.symbol,
+      },
+    };
+  }
+
+  return data;
 };
 
 function Container({ navigation, route }: SendConfirmationScreenProps) {
@@ -98,22 +132,23 @@ function Container({ navigation, route }: SendConfirmationScreenProps) {
   }, [isConfirmed, navigation]);
 
   // Fetch the Apollo cache data for the argued token balance node ID
-  const { data } = useFragment<_TokenBalanceConfirmationFragment>({
-    fragmentName: "TokenBalanceConfirmationFragment",
-    from: {
-      __typename: "TokenBalance",
-      id: tokenId,
-    },
-    fragment: gql`
-      fragment TokenBalanceConfirmationFragment on TokenBalance {
-        token
-        tokenListEntry {
-          logo
-          symbol
-        }
-      }
-    `,
-  });
+  // const { data } = useFragment<_TokenBalanceConfirmationFragment>({
+  //   fragmentName: "TokenBalanceConfirmationFragment",
+  //   from: {
+  //     __typename: "TokenBalance",
+  //     id: tokenId,
+  //   },
+  //   fragment: gql`
+  //     fragment TokenBalanceConfirmationFragment on TokenBalance {
+  //       token
+  //       tokenListEntry {
+  //         logo
+  //         symbol
+  //       }
+  //     }
+  //   `,
+  // });
+  const data = useTokenBalanceFragment(tokenId);
 
   const symbol = data?.tokenListEntry?.symbol || "";
   const subtitle = errorMessage || t("send_pending", { symbol });
@@ -135,13 +170,15 @@ function Container({ navigation, route }: SendConfirmationScreenProps) {
       </YStack>
       <ConfirmationIcon confirmed={isConfirmed} hasError={!!errorMessage} />
       <ConfirmationSubtitle confirmed={isConfirmed} content={subtitle} />
-      <ConfirmationButtons
-        blockchain={blockchain}
-        confirmed={isConfirmed}
-        confirmedLabel={t("view_balances")}
-        onConfirmedPress={handlePressPrimary}
-        signature={signature}
-      />
+      {isConfirmed ? (
+        <ConfirmationButtons
+          blockchain={blockchain}
+          confirmed={isConfirmed}
+          confirmedLabel={t("view_balances")}
+          onConfirmedPress={handlePressPrimary}
+          signature={signature}
+        />
+      ) : null}
     </YStack>
   );
 }

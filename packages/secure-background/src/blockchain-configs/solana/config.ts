@@ -16,11 +16,11 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
   defaultRpcUrl: SolanaCluster.MAINNET,
   blowfishUrl:
     "https://blowfish.xnftdata.com/solana/v0/mainnet/scan/transactions",
-  isTestnet: false,
+  isTestnet: true,
 
   Enabled: true,
   Blockchain: Blockchain.SOLANA,
-  Name: "Bitcoin",
+  Name: "Yona",
   GasTokenName: "BTC",
   GasTokenDecimals: 9,
   AppTokenName: "SPL",
@@ -84,14 +84,14 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
   localLogoUri: "./yona.svg",
   requiresChainId: false,
   RpcConnectionUrls: {
-    MAINNET: {
-      name: "Mainnet (Beta)",
-      url: SolanaCluster.MAINNET,
-    },
-    // DEVNET: {
-    //   name: "Devnet",
-    //   url: SolanaCluster.DEVNET,
+    // MAINNET: {
+    //   name: "Mainnet (Beta)",
+    //   url: SolanaCluster.MAINNET,
     // },
+    DEVNET: {
+      name: "Devnet",
+      url: SolanaCluster.DEVNET,
+    },
   },
   ConfirmationCommitments: {
     Processed: {

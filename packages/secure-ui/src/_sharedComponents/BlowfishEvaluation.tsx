@@ -1,5 +1,3 @@
-import { useEffect, useState, ReactNode } from "react";
-
 import { UNKNOWN_ICON_SRC } from "@coral-xyz/common";
 import { useTranslation } from "@coral-xyz/i18n";
 import { secureUserAtom } from "@coral-xyz/recoil";
@@ -20,6 +18,7 @@ import {
   UserAvatar,
   PrimaryButton,
 } from "@coral-xyz/tamagui";
+import { useEffect, useState, ReactNode } from "react";
 import { useRecoilValue } from "recoil";
 
 import { RenderWallet } from "./RenderWallet";
@@ -68,16 +67,16 @@ function renderHumanReadableDiff(change: Change) {
     (action && debitActions.includes(action))
       ? "$redText"
       : change.suggestedColor === "CREDIT" ||
-        (action && creditActions.includes(action))
-      ? "$greenText"
-      : "$baseTextHighEmphasis";
+          (action && creditActions.includes(action))
+        ? "$greenText"
+        : "$baseTextHighEmphasis";
 
   return [
     ...(action
       ? [
-        <StyledText key="action" fontSize="$sm" color={color}>
-          {action}
-        </StyledText>,
+          <StyledText key="action" fontSize="$sm" color={color}>
+            {action}
+          </StyledText>,
         ]
       : []),
     <StyledText key="asset" fontSize="$sm" color={color}>
@@ -157,12 +156,12 @@ export function BlowfishTransactionDetails({
       return changesA.length > changesB.length
         ? -1
         : changesA.length < changesB.length
-        ? 1
-        : publicKeyA > publicKeyB
-        ? -1
-        : publicKeyA < publicKeyB
-        ? 1
-        : 0;
+          ? 1
+          : publicKeyA > publicKeyB
+            ? -1
+            : publicKeyA < publicKeyB
+              ? 1
+              : 0;
     })
     .map(([address, changes], i, all) => {
       // count changes
@@ -265,6 +264,7 @@ export function BlowfishTransactionDetails({
   }
 
   const originAddress = origin.address;
+  const isBackpack = origin.address === "https://backpack.app";
   const originIcon =
     originAddress.startsWith("http") && !originAddress.includes("localhost")
       ? `https://www.google.com/s2/favicons?domain=${originAddress}&sz=50`
@@ -285,7 +285,7 @@ export function BlowfishTransactionDetails({
       onDeny={onDeny}
     >
       <YStack space="$4">
-        {customWarnings.length > 0 ||
+        {/* {customWarnings.length > 0 ||
         (evaluation?.warnings.length ?? 0) > 0 ||
         (evaluation?.errors.length ?? 0) > 0 ? (
           <YStack space="$3">
@@ -305,8 +305,8 @@ export function BlowfishTransactionDetails({
               />
             ))}
           </YStack>
-        ) : null}
-        {assetsList.length > 0 ? (
+        ) : null} */}
+        {/* {assetsList.length > 0 ? (
           <YStack space="$4">
             {assetRows.map((assetRow, i) => {
               return (
@@ -361,7 +361,7 @@ export function BlowfishTransactionDetails({
             })}
           </YStack>
         ) : null}
-        {prepend}
+        {prepend} */}
         <YStack space="$4">
           <StyledText fontWeight="$semiBold" color="$baseTextHighEmphasis">
             Requested by
@@ -379,21 +379,23 @@ export function BlowfishTransactionDetails({
                 source={{
                   width: 24,
                   height: 24,
-                  uri: originIcon,
+                  uri: isBackpack
+                    ? "https://yona.network/icon.svg"
+                    : originIcon,
                 }}
               />
             </Square>
             <YStack space="$1">
               <StyledText fontWeight="$bold" fontSize="$md">
-                {new URL(originAddress).host}
+                {isBackpack ? "yona.network" : new URL(originAddress).host}
               </StyledText>
               <StyledText color="$baseTextMedEmphasis" fontSize="$xs">
-                {origin.name}
+                {isBackpack ? "Yona Extension" : origin.name}
               </StyledText>
             </YStack>
           </XStack>
         </YStack>
-        {signerDiff.length + walletDiffs.length > 0 ? (
+        {/* {signerDiff.length + walletDiffs.length > 0 ? (
           <YStack space="$4">
             <StyledText fontWeight="$semiBold" color="$baseTextHighEmphasis">
               Simulation Result
@@ -403,7 +405,7 @@ export function BlowfishTransactionDetails({
               {user.preferences.developerMode ? walletDiffs : null}
             </YStack>
           </YStack>
-        ) : null}
+        ) : null} */}
         {append}
       </YStack>
     </RequestConfirmation>

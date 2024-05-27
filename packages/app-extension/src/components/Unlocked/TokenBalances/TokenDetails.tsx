@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { Blockchain } from "@coral-xyz/common";
 import { BalanceDetails } from "@coral-xyz/data-components";
 import { useActiveWallet, useIsDevnet, useSolanaCtx } from "@coral-xyz/recoil";
-import { SOL_NATIVE_MINT } from "@coral-xyz/secure-clients/legacyCommon";
+// import { SOL_NATIVE_MINT } from "@coral-xyz/secure-clients/legacyCommon";
 import { StakeButtonComponent } from "@coral-xyz/staking/src/StakeButtonComponent";
 import { View } from "@coral-xyz/tamagui";
 import { useNavigation } from "@react-navigation/native";
@@ -23,24 +23,24 @@ export type TokenDetailsProps = {
 
 export function TokenDetails({
   id,
-  displayAmount,
+  displayAmount: _,
   symbol,
   token,
   tokenAddress,
 }: TokenDetailsProps) {
   const { blockchain, publicKey } = useActiveWallet();
-  const { connectionCluster } = useSolanaCtx();
+  // const { connectionCluster } = useSolanaCtx();
   const isDevnet = useIsDevnet();
   const navigation = useNavigation<any>();
   const swapEnabled = blockchain === Blockchain.SOLANA && !isDevnet;
 
-  const isSolanaNativeToken =
-    token === SOL_NATIVE_MINT && blockchain === Blockchain.SOLANA;
+  // const isSolanaNativeToken =
+  //   token === SOL_NATIVE_MINT && blockchain === Blockchain.SOLANA;
 
-  const stakingEnabled =
-    isSolanaNativeToken &&
-    Number(displayAmount) > 0 &&
-    connectionCluster !== "devnet";
+  const stakingEnabled = false;
+  // isSolanaNativeToken &&
+  // Number(displayAmount) > 0 &&
+  // connectionCluster !== "devnet";
 
   return (
     <BalanceDetails

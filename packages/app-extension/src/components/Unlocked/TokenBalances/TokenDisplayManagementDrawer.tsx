@@ -79,16 +79,29 @@ const useTokenBalancesQuery = (address: string, blockchain: Blockchain) => {
     );
 
     if (balanceIndex >= 0) {
+      // data.wallet.balances.tokens.edges[balanceIndex] = {
+      //   node: {
+      //     ...BTC_TOKEN,
+      //     id: data.wallet.balances.tokens.edges[balanceIndex].node.id,
+      //     amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
+      //     displayAmount:
+      //       data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
+      //     marketData:
+      //       data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
+      //     __typename:
+      //       data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+      //   },
+      // };
       data.wallet.balances.tokens.edges[balanceIndex] = {
         node: {
-          ...BTC_TOKEN,
-          amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
-          displayAmount:
-            data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
-          marketData:
-            data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
-          __typename:
-            data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+          ...data.wallet.balances.tokens.edges[balanceIndex].node,
+          tokenListEntry: {
+            ...BTC_TOKEN.tokenListEntry,
+            id:
+              data.wallet.balances.tokens.edges[balanceIndex].node
+                .tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
+          },
+          marketData: BTC_TOKEN.marketData,
         },
       };
     }

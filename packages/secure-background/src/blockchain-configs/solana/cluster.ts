@@ -1,6 +1,11 @@
-export const DEFAULT_SOLANA_CLUSTER = "https://139.59.156.238:9901";
+export const DEFAULT_SOLANA_CLUSTER = "https://devnet-rpc.yona.network";
 export const SolanaCluster = {
   MAINNET: DEFAULT_SOLANA_CLUSTER,
-  DEVNET: "https://api.devnet.solana.com",
-  DEFAULT: process.env.DEFAULT_SOLANA_CONNECTION_URL || DEFAULT_SOLANA_CLUSTER,
+  DEVNET: DEFAULT_SOLANA_CLUSTER,
+  DEFAULT: DEFAULT_SOLANA_CLUSTER,
 };
+
+// chrome-extension://aflkmfhebedbjioipglgcbcmnbpgliof/popup.html
+// lecture plug start lock addict ripple upgrade payment sun kingdom wild laptop
+// http://161.97.164.98:8899
+// https://swr.xnftdata.com/rpc-proxy/

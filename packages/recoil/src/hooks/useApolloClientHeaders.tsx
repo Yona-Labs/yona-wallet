@@ -1,5 +1,5 @@
 import { Blockchain } from "@coral-xyz/common";
-import { getBlockchainConfig } from "@coral-xyz/secure-clients";
+// import { getBlockchainConfig } from "@coral-xyz/secure-clients";
 import { useMemo } from "react";
 
 import { useBlockchainConnectionUrlNullable } from "./useBlockchain";
@@ -14,33 +14,37 @@ export function useApolloClientHeaders():
   | ApolloClientCustomHeaders
   | undefined {
   const wallet = useActiveWalletNullable();
-  const config = getBlockchainConfig(wallet?.blockchain ?? Blockchain.SOLANA);
+  // const config = getBlockchainConfig(wallet?.blockchain ?? Blockchain.SOLANA);
   const url = useBlockchainConnectionUrlNullable(
     wallet?.blockchain ?? Blockchain.SOLANA
   );
 
   const headers = useMemo<ApolloClientCustomHeaders | undefined>(() => {
-    const isDefault =
-      config.RpcConnectionUrls["MAINNET"]?.url === url ||
-      config.RpcConnectionUrls["DEFAULT"]?.url === url;
+    const isDefault = false;
+    // config.RpcConnectionUrls["MAINNET"]?.url === url ||
+    // config.RpcConnectionUrls["DEFAULT"]?.url === url;
 
     if (wallet === null || url === null || isDefault) {
       return undefined;
     }
 
-    const isDevnet =
-      url === "https://api.devnet.solana.com" ||
-      Object.entries(config.RpcConnectionUrls).some(
-        // NOTE: update list if other possible devnet key names exist
-        ([key, val]) =>
-          val.url === url && (key === "DEVNET" || key === "SEPOLIA")
-      );
+    // const isDevnet =
+    //   url === "https://api.devnet.solana.com" ||
+    //   Object.entries(config.RpcConnectionUrls).some(
+    //     // NOTE: update list if other possible devnet key names exist
+    //     ([key, val]) =>
+    //       val.url === url && (key === "DEVNET" || key === "SEPOLIA")
+    //   );
 
-    if (isDevnet) {
-      return { "x-blockchain-devnet": "true" };
-    }
+    // if (isDevnet) {
+    //   return { "x-blockchain-devnet": "true" };
+    // }
     return { "x-blockchain-rpc": url };
-  }, [config.RpcConnectionUrls, url, wallet]);
+  }, [
+    // config.RpcConnectionUrls,
+    url,
+    wallet,
+  ]);
 
   return headers;
 }

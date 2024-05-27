@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Yona Wallet</title>
       </Head>
 
-      <PlausibleProvider domain="backpack.app" trackOutboundLinks={true}>
+      <PlausibleProvider domain="yona.network" trackOutboundLinks={true}>
         <div className="bg-zinc-900">
           <div
             className="justify-betwee mx-auto flex min-h-screen

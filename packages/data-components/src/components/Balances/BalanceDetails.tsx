@@ -15,7 +15,10 @@ import {
   DEFAULT_SOLANA_CLUSTER,
   explorerAddressUrl,
 } from "@coral-xyz/secure-background/legacyCommon";
-import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
+import {
+  BTC_TOKEN,
+  getBitcoinPrice,
+} from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
   ListItemIconCore,
   QuestionIcon,
@@ -27,7 +30,7 @@ import {
   YStack,
   TableRowCoreLinkValue,
 } from "@coral-xyz/tamagui";
-import { type ReactNode, useMemo } from "react";
+import { type ReactNode, useMemo, useEffect } from "react";
 
 import { type BalanceSummaryProps, PercentChange } from "./BalanceSummary";
 import { ErrorMessage } from "./ErrorMessage";
@@ -36,6 +39,7 @@ import type {
   GetTokensForWalletDetailsQuery,
   ProviderId,
 } from "../../apollo/graphql";
+import { useBitcoinPrice } from "../../hooks";
 import {
   TransactionHistory,
   type TransactionHistoryProps,
@@ -122,15 +126,46 @@ const useTokensForWalletDetails = (payload: any) => {
     );
 
     if (balanceIndex >= 0) {
+      // data.wallet.balances.tokens.edges[balanceIndex] = {
+      //   node: {
+      //     ...BTC_TOKEN,
+      //     displayAmount:
+      //       data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
+      //     marketData:
+      //       data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
+      //     __typename:
+      //       data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+      //   },
+      // };
       data.wallet.balances.tokens.edges[balanceIndex] = {
         node: {
-          ...BTC_TOKEN,
-          displayAmount:
-            data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
-          marketData:
-            data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
-          __typename:
-            data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+          ...data.wallet.balances.tokens.edges[balanceIndex].node,
+          tokenListEntry: {
+            ...BTC_TOKEN.tokenListEntry,
+            id:
+              data.wallet.balances.tokens.edges[balanceIndex].node
+                .tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
+          },
+          marketData: {
+            // id:
+            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
+            //     ?.id ?? "",
+            // percentChange:
+            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
+            //     ?.percentChange ?? 0,
+            // price:
+            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
+            //     ?.price ?? 0,
+            // value:
+            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
+            //     ?.value ?? 0,
+            // valueChange:
+            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
+            //     ?.value ?? 0,
+            ...BTC_TOKEN.marketData,
+            marketUrl: "https://www.coingecko.com/en/coins/bitcoin",
+            marketId: "bitcoin",
+          },
         },
       };
     }
@@ -167,13 +202,35 @@ export function BalanceDetails({
     providerId,
   });
 
-  const token: _ResponseToken | undefined = useMemo(
-    () =>
-      data?.wallet?.balances?.tokens?.edges.find(
-        (e) => e.node.token === tokenMint
-      )?.node,
-    [data?.wallet, tokenMint]
-  );
+  const price = useBitcoinPrice();
+
+  const token: _ResponseToken | undefined = useMemo(() => {
+    const token = JSON.parse(
+      JSON.stringify(
+        data?.wallet?.balances?.tokens?.edges.find(
+          (e) => e.node.token === tokenMint
+        )?.node
+      )
+    );
+
+    if (price && token && token.token === BTC_TOKEN.token) {
+      if (token.marketData) {
+        const value = Number(token.displayAmount) * Number(price?.lastPrice);
+
+        token.marketData = {
+          id: token.marketData?.id ?? "",
+          price: Number(price?.lastPrice),
+          percentChange: Number(price?.priceChangePercent),
+          value,
+          valueChange: value * Number(price?.priceChangePercent),
+          marketId: token.marketData.marketId,
+          marketUrl: token.marketData.marketUrl,
+        };
+      }
+    }
+
+    return token;
+  }, [data?.wallet, tokenMint, price]);
 
   if (!token) {
     return (
