@@ -67,22 +67,22 @@ export function ApproveOriginRequest({
 
   const onDeny = () => currentRequest.error(new Error("Approval Denied"));
 
-  if (isBlocked) {
-    return (
-      <Stack height="100%" width="100%" backgroundColor="$baseBackgroundL0">
-        <BlockingWarning
-          onDeny={onDeny}
-          title="Origin Connection Blocked!"
-          warning={{
-            severity: "CRITICAL",
-            kind: "OriginBlockedWarning",
-            message:
-              "Yona Wallet has blocked this origin from wallet connections due to malicious or suspicious activity.",
-          }}
-        />
-      </Stack>
-    );
-  }
+  // if (isBlocked) {
+  //   return (
+  //     <Stack height="100%" width="100%" backgroundColor="$baseBackgroundL0">
+  //       <BlockingWarning
+  //         onDeny={onDeny}
+  //         title="Origin Connection Blocked!"
+  //         warning={{
+  //           severity: "CRITICAL",
+  //           kind: "OriginBlockedWarning",
+  //           message:
+  //             "Yona Wallet has blocked this origin from wallet connections due to malicious or suspicious activity.",
+  //         }}
+  //       />
+  //     </Stack>
+  //   );
+  // }
 
   if (
     !user.preferences.confirmedMetaMaskSetting &&

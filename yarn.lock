@@ -4014,8 +4014,8 @@ __metadata:
     "@solana/web3.js": "npm:^1.58.0"
     "@types/bs58": "npm:^4.0.1"
     "@types/node-fetch": "npm:^2.6.2"
-    "@wallet-standard/base": "npm:^1.0.1"
-    "@wallet-standard/features": "npm:^1.0.3"
+    "@yona-wallet-standard/base": "npm:^1.0.1"
+    "@yona-wallet-standard/features": "npm:^1.0.3"
     bs58: "npm:^4.0.1"
     prettier: "npm:^2.7.1"
     shx: "npm:^0.3.4"
@@ -16078,6 +16078,22 @@ __metadata:
   version: 1.1.0
   resolution: "@yarnpkg/lockfile@npm:1.1.0"
   checksum: cd19e1114aaf10a05126aeea8833ef4ca8af8a46e88e12884f8359d19333fd19711036dbc2698dbe937f81f037070cf9a8da45c2e8c6ca19cafd7d15659094ed
+  languageName: node
+  linkType: hard
+
+"@yona-wallet-standard/base@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@yona-wallet-standard/base@npm:1.0.1"
+  checksum: bd8df39c3552996881b85a6162f550cbaa813e876fc0f26e86aeb8d59a3003439f2aafd5148e4fe03547ff7b4ae7d1e6a067780e03728fcdc83027bb99172050
+  languageName: node
+  linkType: hard
+
+"@yona-wallet-standard/features@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@yona-wallet-standard/features@npm:1.0.3"
+  dependencies:
+    "@yona-wallet-standard/base": "npm:^1.0.1"
+  checksum: 4eff79a17a538f77f99c5db9e6d6f079e7209975d90db9af83b9ba261f2d3e5f856c8940e6aa77fc3fafde8cf4cab7b7e20931cb30b1ce21ce173373ce7e5e48
   languageName: node
   linkType: hard
 

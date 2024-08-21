@@ -113,19 +113,19 @@ export function BlowfishTransactionDetails({
     console.log(evaluation);
   }, []);
 
-  if ((false || evaluation?.action === "BLOCK") && !blockIgnored) {
-    return (
-      <BlockingWarning
-        warning={
-          evaluation.warnings.find(
-            (warning) => warning.severity === "CRITICAL"
-          )!
-        }
-        onDeny={onDeny}
-        onIgnore={() => setBlockIgnored(true)}
-      />
-    );
-  }
+  // if ((false || evaluation?.action === "BLOCK") && !blockIgnored) {
+  //   return (
+  //     <BlockingWarning
+  //       warning={
+  //         evaluation.warnings.find(
+  //           (warning) => warning.severity === "CRITICAL"
+  //         )!
+  //       }
+  //       onDeny={onDeny}
+  //       onIgnore={() => setBlockIgnored(true)}
+  //     />
+  //   );
+  // }
 
   // const testWarnings: BlowfishCrossChainResult["warnings"] = [
   //   {
@@ -264,7 +264,7 @@ export function BlowfishTransactionDetails({
   }
 
   const originAddress = origin.address;
-  const isBackpack = origin.address === "https://backpack.app";
+  const isYona = origin.address === "https://yona.network";
   const originIcon =
     originAddress.startsWith("http") && !originAddress.includes("localhost")
       ? `https://www.google.com/s2/favicons?domain=${originAddress}&sz=50`
@@ -369,7 +369,7 @@ export function BlowfishTransactionDetails({
           <XStack alignItems="center" justifyContent="flex-start" space="$3">
             <Square
               size={24}
-              // circular={originAddress !== "https://backpack.app"}
+              // circular={originAddress !== "https://yona.network"}
               overflow="hidden"
               alignItems="center"
               justifyContent="center"
@@ -379,18 +379,18 @@ export function BlowfishTransactionDetails({
                 source={{
                   width: 24,
                   height: 24,
-                  uri: isBackpack
-                    ? "https://yona.network/icon.svg"
+                  uri: isYona
+                    ? "https://yona.network/new-icon.svg"
                     : originIcon,
                 }}
               />
             </Square>
             <YStack space="$1">
               <StyledText fontWeight="$bold" fontSize="$md">
-                {isBackpack ? "yona.network" : new URL(originAddress).host}
+                {isYona ? "yona.network" : new URL(originAddress).host}
               </StyledText>
               <StyledText color="$baseTextMedEmphasis" fontSize="$xs">
-                {isBackpack ? "Yona Extension" : origin.name}
+                {isYona ? "Yona Extension" : origin.name}
               </StyledText>
             </YStack>
           </XStack>

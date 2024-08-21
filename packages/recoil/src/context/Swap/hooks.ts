@@ -13,7 +13,7 @@ import {
   useFetchTransaction,
   useSendTransaction,
   useSwapOutputTokens,
-  useSwapValidInputTokens,
+  // useSwapValidInputTokens,
 } from "./blockchain-hooks";
 import { gql } from "../../apollo";
 import type {
@@ -33,11 +33,11 @@ const TokenMintForAssetIdFragment = gql(`
   }
 `);
 
-export const GET_SWAP_VALID_INPUT_TOKENS = gql(`
-    query GetSwapValidInputTokens($tokens: [String!]!) {
-      jupiterSwapValidInputTokens(tokens: $tokens)
-    }
-`);
+// export const GET_SWAP_VALID_INPUT_TOKENS = gql(`
+//     query GetSwapValidInputTokens($tokens: [String!]!) {
+//       jupiterSwapValidInputTokens(tokens: $tokens)
+//     }
+// `);
 
 const GET_TOKEN_BALANCES = gql(`
   query GetCachedTokenBalances($providerId: ProviderID!, $address: String!) {
@@ -70,18 +70,18 @@ const GET_TOKEN_BALANCES = gql(`
   }
 `);
 
-export const GET_SWAP_OUTPUT_TOKENS = gql(`
-  query GetSwapOutputTokens($inputToken: String!) {
-    jupiterSwapOutputTokens(inputToken: $inputToken) {
-      id
-      address
-      decimals
-      logo
-      name
-      symbol
-    }
-  }
-`);
+// export const GET_SWAP_OUTPUT_TOKENS = gql(`
+//   query GetSwapOutputTokens($inputToken: String!) {
+//     jupiterSwapOutputTokens(inputToken: $inputToken) {
+//       id
+//       address
+//       decimals
+//       logo
+//       name
+//       symbol
+//     }
+//   }
+// `);
 
 // TODO: need to test if this works for asset ids for other chains.
 export function useMintForAssetId(id?: string): string | null {
@@ -370,11 +370,11 @@ export function useFromToken({
         blockchain: Blockchain.SOLANA,
       }
     );
-  const [fromTokens, isLoadingFromTokens] = useSwapValidInputTokens({
-    fromBalances,
-    from,
-    to,
-  });
+  // const [fromTokens, isLoadingFromTokens] = useSwapValidInputTokens({
+  //   fromBalances,
+  //   from,
+  //   to,
+  // });
 
   if (from === null) {
     return {
@@ -390,7 +390,7 @@ export function useFromToken({
       ? "So11111111111111111111111111111111111111112"
       : from?.mint;
   const fromToken =
-    fromTokens.find((t) => {
+    ([] as any).find((t) => {
       if (fromMint === "So11111111111111111111111111111111111111112") {
         if (t.token === SOL_NATIVE_MINT) {
           return true;
@@ -401,7 +401,7 @@ export function useFromToken({
 
   return {
     fromToken,
-    isLoading: isLoadingFromTokens || isLoadingTokenBalances,
+    isLoading: true || isLoadingTokenBalances,
   };
 }
 

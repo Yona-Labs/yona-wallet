@@ -5,7 +5,7 @@ import type { BlockchainConfig } from "../../types/blockchain";
 
 import { SolanaCluster } from "./cluster";
 import { SolanaExplorer } from "./explorer";
-const remoteLogoUri = "https://yona.network/icon.svg";
+const remoteLogoUri = "https://yona.network/new-icon.svg";
 const bip44CoinType = 501;
 
 export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {

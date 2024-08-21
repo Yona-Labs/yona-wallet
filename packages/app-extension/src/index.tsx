@@ -38,8 +38,8 @@ const windowId = requestWindowId ?? v4();
 const extensionTransportSender =
   new FromExtensionTransportSender<SECURE_EVENTS>({
     origin: {
-      name: "Backpack Extension",
-      address: "https://backpack.app",
+      name: "Yona Extension",
+      address: "https://yona.network",
       context: "extension",
     },
   });
@@ -52,8 +52,8 @@ const secureUITransportReceiver = new ToSecureUITransportReceiver<
 const secureUITransportSender = new FromExtensionTransportSender<SECURE_EVENTS>(
   {
     origin: {
-      name: "Backpack Extension",
-      address: "https://backpack.app",
+      name: "Yona Extension",
+      address: "https://yona.network",
       context: "secureUI",
     },
   }

@@ -233,7 +233,7 @@ function _SendInner({
       });
     } catch (err: any) {
       setError(err.message);
-      setOpenDrawer(true);
+      // setOpenDrawer(true);
     }
   };
 
@@ -257,12 +257,12 @@ function _SendInner({
           setStrAmount={setStrAmount}
         />
       </form>
-      <ConfirmationErrorDrawer
+      {/* <ConfirmationErrorDrawer
         error={error}
         open={openDrawer}
         resetError={() => setError(undefined)}
         setOpen={setOpenDrawer}
-      />
+      /> */}
     </>
   );
 }

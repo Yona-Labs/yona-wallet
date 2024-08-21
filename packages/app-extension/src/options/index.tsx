@@ -47,8 +47,8 @@ const secureUITransportReceiver = new ToSecureUITransportReceiver<
 const secureUITransportSender = new FromExtensionTransportSender<SECURE_EVENTS>(
   {
     origin: {
-      name: "Backpack Extension",
-      address: "https://backpack.app",
+      name: "Yona Extension",
+      address: "https://yona.network",
       context: "secureUI",
     },
   }

@@ -111,11 +111,11 @@ export class ProviderEthereumInjection
    * Boolean indicating that the provider is Backpack.
    * And Flag if backpack was recognized so we dont have to impersonate Metamask.
    */
-  backpackRecognized: boolean = false;
+  yonaRecognized: boolean = false;
 
-  public get isBackpack(): true {
+  public get isYona(): true {
     try {
-      this.backpackRecognized = true;
+      this.yonaRecognized = true;
     } catch {
       null;
     }
@@ -128,7 +128,7 @@ export class ProviderEthereumInjection
   #shouldBeMetaMask: boolean = true;
   public get isMetaMask(): boolean {
     this.#metaMaskRecognized = true;
-    return this.#shouldBeMetaMask && !this.backpackRecognized;
+    return this.#shouldBeMetaMask && !this.yonaRecognized;
   }
 
   /**
@@ -405,7 +405,7 @@ export class ProviderEthereumInjection
     }
 
     const impersonatingMetaMask =
-      !this.backpackRecognized &&
+      !this.yonaRecognized &&
       this.#metaMaskRecognized &&
       this.#shouldBeMetaMask;
 

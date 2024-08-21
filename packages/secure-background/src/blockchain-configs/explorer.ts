@@ -133,13 +133,14 @@ function clusterSuffix(base: string, connectionUrl: string): string {
     case SolanaExplorer.XRAY:
       switch (connectionUrl) {
         case SolanaCluster.MAINNET:
-          return "?cluster=mainnet";
+          return "?cluster=devnet";
         case SolanaCluster.DEVNET:
           return "?cluster=devnet";
         default:
-          return `?cluster=custom&customUrl=${encodeURIComponent(
-            connectionUrl
-          )}`;
+          return "?cluster=devnet";
+        // return `?cluster=custom&customUrl=${encodeURIComponent(
+        //   connectionUrl
+        // )}`;
       }
     default:
       throw new Error("unknown explorer base");

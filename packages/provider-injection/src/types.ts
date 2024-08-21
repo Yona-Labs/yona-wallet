@@ -14,7 +14,7 @@ export interface EIP1193Provider {
   ) => unknown;
   request(args: RequestArguments): Promise<unknown>;
   [optionalProps: string]: unknown;
-};
+}
 
 export interface EIP6963ProviderInfo {
   uuid: string;
@@ -39,13 +39,13 @@ export interface EIP6963ProviderDetail {
 
 export type WindowEthereum = EIP1193Provider & {
   isMetaMask?: boolean;
-  isBackpack?: boolean;
+  isYona?: boolean;
   autoRefreshOnNetworkChange?: boolean;
 };
 
 declare global {
   interface Window {
-    walletRouter?: {
+    yonaWalletRouter?: {
       currentProvider: EIP1193Provider;
       providers: EIP1193Provider[];
       getProviderInfo: (

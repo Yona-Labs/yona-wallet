@@ -14,7 +14,7 @@ export const SignMessageButtonSolanaOffchain: FC = () => {
     console.log("requesting sig over", msg);
 
     const preparedMessage =
-      await window.backpack?.prepareSolanaOffchainMessage(msg);
+      await window.yona?.prepareSolanaOffchainMessage(msg);
     const signature = await wallet.signMessage!(preparedMessage);
     console.log("signature", signature);
   }, [wallet.publicKey, wallet.sendTransaction, connection]);

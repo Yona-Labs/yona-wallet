@@ -98,21 +98,22 @@ export function AnyTransaction({
     >
       {blowfishEvaluation.isLoading ? (
         <Loading />
-      ) : (blowfishError ||
-          blowfishEvaluation.error ||
-          !blowfishEvaluation.normalizedEvaluation) &&
-        showSimulationFailed ? (
-          <BlockingWarning
-            title="Simulation failed"
-            warning={{
-            severity: "WARNING",
-            kind: "error",
-            message: "Please try again.",
-          }}
-            onIgnore={() => setShowSimulationFailed(false)}
-            onDeny={onDeny}
-        />
       ) : (
+        //  : (blowfishError ||
+        //     blowfishEvaluation.error ||
+        //     !blowfishEvaluation.normalizedEvaluation) &&
+        //   showSimulationFailed ? (
+        //     <BlockingWarning
+        //       title="Simulation failed"
+        //       warning={{
+        //       severity: "WARNING",
+        //       kind: "error",
+        //       message: "Please try again.",
+        //     }}
+        //       onIgnore={() => setShowSimulationFailed(false)}
+        //       onDeny={onDeny}
+        //   />
+        // )
         <BlowfishTransactionDetails
           origin={currentRequest.event.origin}
           signerPublicKey={currentRequest.request.publicKey}

@@ -15,9 +15,9 @@ export function getLogger(mod: string) {
         : "";
     return {
       debug: (str: string, ...args: any) =>
-        debug(`backpack:${prefix} ${_mod}: ${str}`, ...args),
+        debug(`yona:${prefix} ${_mod}: ${str}`, ...args),
       error: (str: string, ...args: any) =>
-        error(`backpack:${prefix} ${_mod}: ${str}`, ...args),
+        error(`yona:${prefix} ${_mod}: ${str}`, ...args),
       _log,
     };
   })();

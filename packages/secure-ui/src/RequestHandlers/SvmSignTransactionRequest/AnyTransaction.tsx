@@ -81,22 +81,22 @@ export function AnyTransaction({
 
   const onDeny = () => currentRequest.error(new Error("Approval Denied"));
 
-  if (
-    mutableLockedNftsLoadable.state === "hasValue" &&
-    mutableLockedNfts.length > 0
-  ) {
-    const lockedNft = mutableLockedNfts[0];
-    return (
-      <BlockingWarning
-        warning={{
-          severity: "CRITICAL",
-          kind: "warning",
-          message: `Collection ${lockedNft.collection?.name} is locked. This transaction would affect ${lockedNft?.name} (${lockedNft.token}). If this is intentional, unlock the collection first.`,
-        }}
-        onDeny={onDeny}
-      />
-    );
-  }
+  // if (
+  //   mutableLockedNftsLoadable.state === "hasValue" &&
+  //   mutableLockedNfts.length > 0
+  // ) {
+  //   const lockedNft = mutableLockedNfts[0];
+  //   return (
+  //     <BlockingWarning
+  //       warning={{
+  //         severity: "CRITICAL",
+  //         kind: "warning",
+  //         message: `Collection ${lockedNft.collection?.name} is locked. This transaction would affect ${lockedNft?.name} (${lockedNft.token}). If this is intentional, unlock the collection first.`,
+  //       }}
+  //       onDeny={onDeny}
+  //     />
+  //   );
+  // }
 
   const customWarnings: BlowfishCrossChainResult["warnings"] = [];
   if (mutableLockedNftsLoadable.state === "hasError") {
@@ -122,21 +122,23 @@ export function AnyTransaction({
     >
       {blowfishEvaluation.isLoading ? (
         <Loading />
-      ) : (blowfishError ||
-          blowfishEvaluation.error ||
-          !blowfishEvaluation.normalizedEvaluation) &&
-        showSimulationFailed ? (
-        <BlockingWarning
-          title="Simulation failed"
-          warning={{
-            severity: "WARNING",
-            kind: "error",
-            message: "Please try again.",
-          }}
-          onIgnore={() => setShowSimulationFailed(false)}
-          onDeny={onDeny}
-        />
       ) : (
+        //  : (blowfishError ||
+        //     blowfishEvaluation.error ||
+        //     !blowfishEvaluation.normalizedEvaluation) &&
+        //   showSimulationFailed ? (
+        //   <BlockingWarning
+        //     title="Simulation failed"
+        //     warning={{
+        //       severity: "WARNING",
+        //       kind: "error",
+        //       message: "Please try again.",
+        //     }}
+        //     onIgnore={() => setShowSimulationFailed(false)}
+        //     onDeny={onDeny}
+        //   />
+        // )
+
         <BlowfishTransactionDetails
           origin={currentRequest.event.origin}
           signerPublicKey={currentRequest.request.publicKey}

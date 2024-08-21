@@ -24,9 +24,9 @@ export const blue100 = "rgb(214, 237, 255)";
 export const blue200 = "rgb(181, 226, 255)";
 export const blue300 = "rgb(131, 209, 255)";
 export const blue400 = "rgb(119, 182, 255)";
-export const blue500 = "rgb(76, 148, 255)";
+export const blue500 = "rgb(245, 117, 0)";
 export const blue600 = "rgb(6, 115, 255)";
-export const blue700 = "rgb(0, 87, 235)";
+export const blue700 = "rgb(50, 24, 0)";
 export const blue800 = "rgb(13, 65, 155)";
 export const blue900 = "rgb(13, 41, 93)";
 export const blue950 = "rgb(13, 21, 37)";
@@ -36,13 +36,13 @@ export const base50 = "rgba(244, 244, 246, 1)"; // formerly #f8f8f9
 export const base100 = "rgba(238, 239, 241, 1)"; // formerly #f0f0f2
 export const base200 = "rgba(227, 228, 232, 1)"; // formerly #dfe0e5
 export const base300 = "rgba(200, 201, 208, 1)"; // formerly #c2c4cc
-export const base400 = "rgba(150, 159, 175, 1)"; // formerly #8f929e
-export const base500 = "rgba(117, 121, 138, 1)"; // formerly #787c89
+export const base400 = "rgba(136, 136, 136, 1)"; // formerly #8f929e
+export const base500 = "rgba(136, 136, 136, 1)"; // formerly #787c89
 export const base600 = "rgba(93, 96, 111, 1)"; // formerly #555c6b
 export const base700 = "rgba(56, 58, 69, 1)"; // formerly #4e5768
-export const base800 = "rgba(32, 33, 39, 1)"; // formerly #212938
-export const base900 = "rgba(20, 21, 27, 1)"; // formerly #030a19
-export const base950 = "rgba(14, 15, 20, 1)";
+export const base800 = "rgba(32, 32, 32, 1)"; // formerly #212938
+export const base900 = "rgba(10, 10, 10, 1)"; // formerly #030a19
+export const base950 = "rgba(10, 10, 10, 1)";
 
 // Success Colors
 export const green50 = "rgba(239, 251, 245, 1)";
@@ -179,7 +179,7 @@ export const darkBaseIconHighContrast = base400; // icon hover if not using opac
 
 // Dark Mode Borders
 
-export const darkBaseDivider = color(baseWhite).alpha(0.1).string(); // used for separators between list items or tables
+export const darkBaseDivider = color("rgba(71, 71, 71, 1)").alpha(0.1).string(); // used for separators between list items or tables
 export const darkBaseBorderLight = base800; // default border color outside of cards
 export const darkBaseBorderMed = color(baseWhite).alpha(0.15).string();
 export const darkBaseBorderFocus = base300; // input focus border color
@@ -210,7 +210,7 @@ export const darkBlueSecondaryButtonTextColor = blue500;
 
 // Dark Mode Blue
 export const darkAccentBlue = blue500; // used for text and icons
-export const darkAccentBlueBackground = color(blue700).alpha(0.2).string();
+export const darkAccentBlueBackground = color(blue700).alpha(1).string();
 
 // Dark Mode Success
 export const darkGreenText = green500;

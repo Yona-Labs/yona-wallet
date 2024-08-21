@@ -1,9 +1,9 @@
 export const SolanaExplorer = {
-  SOLANA_EXPLORER: "https://explorer.solana.com",
-  SOLSCAN: "https://solscan.io",
-  SOLANA_BEACH: "https://solanabeach.io",
-  SOLANA_FM: "https://solana.fm",
-  XRAY: "https://xray.helius.xyz/",
+  SOLANA_EXPLORER: "https://explorer.yona.network",
+  SOLSCAN: "https://explorer.yona.network",
+  SOLANA_BEACH: "https://explorer.yona.network",
+  SOLANA_FM: "https://explorer.yona.network",
+  XRAY: "https://explorer.yona.network",
 
-  DEFAULT: "https://solscan.io",
+  DEFAULT: "https://explorer.yona.network",
 };

@@ -1,57 +1,58 @@
 //
-// Secure-background /client communication channels
+// Secure-background /client communication yona:channels
 //
 export const CHANNEL_SECURE_BACKGROUND_REQUEST =
-  "channel-secure-background-request";
+  "yona:channel-secure-background-request";
 export const CHANNEL_SECURE_BACKGROUND_RESPONSE =
-  "channel-secure-background-response";
-export const CHANNEL_SECURE_UI_REQUEST = "channel-secure-ui-request";
-export const CHANNEL_SECURE_UI_RESPONSE = "channel-secure-ui-response";
+  "yona:channel-secure-background-response";
+export const CHANNEL_SECURE_UI_REQUEST = "yona:channel-secure-ui-request";
+export const CHANNEL_SECURE_UI_RESPONSE = "yona:channel-secure-ui-response";
 export const CHANNEL_SECURE_BACKGROUND_EXTENSION_REQUEST =
-  "channel-secure-ui-background-request";
+  "yona:channel-secure-ui-background-request";
 export const CHANNEL_SECURE_BACKGROUND_EXTENSION_RESPONSE =
-  "channel-secure-ui-background-response";
+  "yona:channel-secure-ui-background-response";
 export const CHANNEL_SECURE_BACKGROUND_NOTIFICATION =
-  "channel-secure-background-notification";
+  "yona:channel-secure-background-notification";
 
 //
-// Messaging communication channel topics.
+// Messaging communication yona:channel topics.
 //
-export const CHANNEL_PLUGIN_RPC_REQUEST = "channel-plugin-request";
-export const CHANNEL_PLUGIN_RPC_RESPONSE = "channel-plugin-response";
+export const CHANNEL_PLUGIN_RPC_REQUEST = "yona:channel-plugin-request";
+export const CHANNEL_PLUGIN_RPC_RESPONSE = "yona:channel-plugin-response";
 export const CHANNEL_PLUGIN_RENDER_REQUEST =
-  "channel-channel-plugin-render-request";
+  "yona:channel-channel-plugin-render-request";
 export const CHANNEL_PLUGIN_LAUNCH_REQUEST =
-  "channel-channel-plugin-launch-request";
+  "yona:channel-channel-plugin-launch-request";
 export const CHANNEL_PLUGIN_NOTIFICATION =
-  "channel-channel-plugin-notification";
+  "yona:channel-channel-plugin-notification";
 export const CHANNEL_PLUGIN_CONNECTION_BRIDGE =
-  "channel-channel-plugin-connection-bridge";
-export const CHANNEL_POPUP_RPC = "channel-popup-rpc";
-export const CHANNEL_POPUP_RESPONSE = "channel-popup-response";
-export const CHANNEL_POPUP_NOTIFICATIONS = "channel-popup-notifications";
-export const CHANNEL_SOLANA_RPC_REQUEST = "channel-solana-rpc-request";
-export const CHANNEL_SOLANA_RPC_RESPONSE = "channel-solana-rpc-response";
-export const CHANNEL_SOLANA_NOTIFICATION = "channel-solana-notification";
+  "yona:channel-channel-plugin-connection-bridge";
+export const CHANNEL_POPUP_RPC = "yona:channel-popup-rpc";
+export const CHANNEL_POPUP_RESPONSE = "yona:channel-popup-response";
+export const CHANNEL_POPUP_NOTIFICATIONS = "yona:channel-popup-notifications";
+export const CHANNEL_SOLANA_RPC_REQUEST = "yona:channel-solana-rpc-request";
+export const CHANNEL_SOLANA_RPC_RESPONSE = "yona:channel-solana-rpc-response";
+export const CHANNEL_SOLANA_NOTIFICATION = "yona:channel-solana-notification";
 export const CHANNEL_SOLANA_CONNECTION_RPC_UI =
-  "channel-solana-connection-rpc-ui";
+  "yona:channel-solana-connection-rpc-ui";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_REQUEST =
-  "channel-solana-connection-injected-request";
+  "yona:channel-solana-connection-injected-request";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_RESPONSE =
-  "channel-solana-connection-injected-response";
-export const CHANNEL_ETHEREUM_RPC_REQUEST = "channel-ethereum-rpc-request";
-export const CHANNEL_ETHEREUM_RPC_RESPONSE = "channel-ethereum-rpc-response";
+  "yona:channel-solana-connection-injected-response";
+export const CHANNEL_ETHEREUM_RPC_REQUEST = "yona:channel-ethereum-rpc-request";
+export const CHANNEL_ETHEREUM_RPC_RESPONSE =
+  "yona:channel-ethereum-rpc-response";
 export const CHANNEL_ETHEREUM_NOTIFICATION =
-  "channel-ethereum-rpc-notification";
+  "yona:channel-ethereum-rpc-notification";
 export const CHANNEL_ETHEREUM_CONNECTION_RPC_UI =
-  "channel-ethereum-connection-rpc-ui";
+  "yona:channel-ethereum-connection-rpc-ui";
 export const CHANNEL_ETHEREUM_CONNECTION_INJECTED_REQUEST =
-  "channel-ethereum-connection-injected-request";
+  "yona:channel-ethereum-connection-injected-request";
 export const CHANNEL_ETHEREUM_CONNECTION_INJECTED_RESPONSE =
-  "channel-ethereum-connection-injected-response";
+  "yona:channel-ethereum-connection-injected-response";
 
 //
-// Mobile specific webview messaging subsystem channels.
+// Mobile specific webview messaging subsystem yona:channels.
 //
 export const MOBILE_CHANNEL_HOST_RPC_REQUEST = "mobile-host-rpc-request";
 export const MOBILE_CHANNEL_HOST_RPC_RESPONSE = "mobile-host-rpc-response";
@@ -65,31 +66,31 @@ export const MOBILE_CHANNEL_FE_RESPONSE_INNER = "mobile-fe-response-inner";
 //
 // xNFT notifications sent from the host to the xNFT.
 //
-export const PLUGIN_NOTIFICATION_RENDER = "plugin-notification-render";
-export const PLUGIN_NOTIFICATION_CONNECT = "plugin-notification-connect";
-export const PLUGIN_NOTIFICATION_MOUNT = "plugin-notification-mount";
+export const PLUGIN_NOTIFICATION_RENDER = "yona:plugin-notification-render";
+export const PLUGIN_NOTIFICATION_CONNECT = "yona:plugin-notification-connect";
+export const PLUGIN_NOTIFICATION_MOUNT = "yona:plugin-notification-mount";
 export const PLUGIN_NOTIFICATION_UPDATE_METADATA =
-  "plugin-notification-update-metadata";
-export const PLUGIN_NOTIFICATION_UNMOUNT = "plugin-notification-unmount";
+  "yona:plugin-notification-update-metadata";
+export const PLUGIN_NOTIFICATION_UNMOUNT = "yona:plugin-notification-unmount";
 export const PLUGIN_NOTIFICATION_PUBLIC_KEY_UPDATED =
-  "plugin-notification-public-key-updated";
+  "yona:plugin-notification-public-key-updated";
 export const PLUGIN_NOTIFICATION_CONNECTION_URL_UPDATED =
-  "plugin-notification-connection-url-updated";
+  "yona:plugin-notification-connection-url-updated";
 
 export const PLUGIN_REQUEST_SOLANA_SIGN_TRANSACTION =
-  "plugin-request-solana-sign-tx";
+  "yona:plugin-request-solana-sign-tx";
 export const PLUGIN_REQUEST_SOLANA_SIGN_ALL_TRANSACTIONS =
-  "plugin-request-solana-sign-all-txs";
+  "yona:plugin-request-solana-sign-all-txs";
 export const PLUGIN_REQUEST_SOLANA_SIGN_AND_SEND_TRANSACTION =
-  "plugin-request-solana-sign-and-send-tx";
+  "yona:plugin-request-solana-sign-and-send-tx";
 export const PLUGIN_REQUEST_SOLANA_SIGN_MESSAGE =
-  "plugin-request-solana-sign-message";
+  "yona:plugin-request-solana-sign-message";
 export const PLUGIN_REQUEST_ETHEREUM_SIGN_TRANSACTION =
-  "plugin-request-ethereum-sign-tx";
+  "yona:plugin-request-ethereum-sign-tx";
 export const PLUGIN_REQUEST_ETHEREUM_SIGN_AND_SEND_TRANSACTION =
-  "plugin-request-ethereum-sign-and-send-tx";
+  "yona:plugin-request-ethereum-sign-and-send-tx";
 export const PLUGIN_REQUEST_ETHEREUM_SIGN_MESSAGE =
-  "plugin-request-ethereum-sign-message";
+  "yona:plugin-request-ethereum-sign-message";
 
 //
 // xNFT host API.
@@ -101,196 +102,205 @@ export const PLUGIN_RPC_METHOD_LOCAL_STORAGE_PUT = "store-put";
 // Trusted app API.
 //
 export const UI_RPC_METHOD_APPROVED_ORIGINS_DELETE =
-  "ui-rpc-method-approved-origins-delete";
+  "yona:ui-rpc-method-approved-origins-delete";
 export const UI_RPC_METHOD_APPROVED_ORIGINS_READ =
-  "ui-rpc-method-approved-origins-read";
+  "yona:ui-rpc-method-approved-origins-read";
 export const UI_RPC_METHOD_APPROVED_ORIGINS_UPDATE =
-  "ui-rpc-method-approved-origins-update";
+  "yona:ui-rpc-method-approved-origins-update";
 export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_READ =
-  "ui-rpc-method-blockchains-enabled-read";
+  "yona:ui-rpc-method-blockchains-enabled-read";
 export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_ADD =
-  "ui-rpc-method-blockchains-enabled-add";
+  "yona:ui-rpc-method-blockchains-enabled-add";
 export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_DELETE =
-  "ui-rpc-method-blockchains-enabled-delete";
+  "yona:ui-rpc-method-blockchains-enabled-delete";
 export const UI_RPC_METHOD_KEY_IS_COLD_UPDATE =
-  "ui-rpc-method-key-is-cold-update";
-export const UI_RPC_METHOD_KEYNAME_UPDATE = "ui-rpc-method-keyname-update";
+  "yona:ui-rpc-method-key-is-cold-update";
+export const UI_RPC_METHOD_KEYNAME_UPDATE = "yona:ui-rpc-method-keyname-update";
 export const UI_RPC_METHOD_KEYRING_EXPORT_MNEMONIC =
-  "ui-rpc-method-export-mnemonic";
+  "yona:ui-rpc-method-export-mnemonic";
 export const UI_RPC_METHOD_KEYRING_EXPORT_SECRET_KEY =
-  "ui-rpc-method-export-secret-key";
+  "yona:ui-rpc-method-export-secret-key";
 export const UI_RPC_METHOD_KEYRING_HAS_MNEMONIC =
-  "ui-rpc-method-keyring-has-mnemonic";
-export const UI_RPC_METHOD_KEYRING_RESET = "ui-rpc-method-keyring-reset";
+  "yona:ui-rpc-method-keyring-has-mnemonic";
+export const UI_RPC_METHOD_KEYRING_RESET = "yona:ui-rpc-method-keyring-reset";
 export const UI_RPC_METHOD_KEYRING_STORE_CHECK_PASSWORD =
-  "ui-rpc-method-keyring-store-check-password";
+  "yona:ui-rpc-method-keyring-store-check-password";
 export const UI_RPC_METHOD_KEYRING_STORE_READ_ALL_PUBKEYS =
-  "ui-rpc-method-keyring-read-all-pubkeys";
+  "yona:ui-rpc-method-keyring-read-all-pubkeys";
 export const UI_RPC_METHOD_KEYRING_STORE_STATE =
-  "ui-rpc-method-keyring-store-state";
-export const UI_RPC_METHOD_LEDGER_CONNECT = "ui-rpc-method-ledger-connect";
+  "yona:ui-rpc-method-keyring-store-state";
+export const UI_RPC_METHOD_LEDGER_CONNECT = "yona:ui-rpc-method-ledger-connect";
 export const UI_RPC_METHOD_NAVIGATION_ACTIVE_TAB_UPDATE =
-  "ui-rpc-method-navigation-active-tab-update";
+  "yona:ui-rpc-method-navigation-active-tab-update";
 export const UI_RPC_METHOD_NAVIGATION_CURRENT_URL_UPDATE =
-  "ui-rpc-method-navigation-current-url-update";
-export const UI_RPC_METHOD_NAVIGATION_POP = "ui-rpc-method-navigation-pop";
-export const UI_RPC_METHOD_NAVIGATION_PUSH = "ui-rpc-method-navigation-push";
-export const UI_RPC_METHOD_NAVIGATION_READ = "ui-rpc-method-navigation-read";
+  "yona:ui-rpc-method-navigation-current-url-update";
+export const UI_RPC_METHOD_NAVIGATION_POP = "yona:ui-rpc-method-navigation-pop";
+export const UI_RPC_METHOD_NAVIGATION_PUSH =
+  "yona:ui-rpc-method-navigation-push";
+export const UI_RPC_METHOD_NAVIGATION_READ =
+  "yona:ui-rpc-method-navigation-read";
 export const UI_RPC_METHOD_NAVIGATION_READ_URL =
-  "ui-rpc-method-navigation-read-url";
+  "yona:ui-rpc-method-navigation-read-url";
 export const UI_RPC_METHOD_NAVIGATION_TO_ROOT =
-  "ui-rpc-method-navigation-to-root";
+  "yona:ui-rpc-method-navigation-to-root";
 export const UI_RPC_METHOD_NAVIGATION_TO_DEFAULT =
-  "ui-rpc-method-navigation-to-default";
-export const UI_RPC_METHOD_PASSWORD_UPDATE = "ui-rpc-method-password-update";
+  "yona:ui-rpc-method-navigation-to-default";
+export const UI_RPC_METHOD_PASSWORD_UPDATE =
+  "yona:ui-rpc-method-password-update";
 export const UI_RPC_METHOD_SET_FEATURE_GATES =
-  "ui-rpc-method-set-feature-gates";
+  "yona:ui-rpc-method-set-feature-gates";
 export const UI_RPC_METHOD_GET_FEATURE_GATES =
-  "ui-rpc-method-get-feature-gates";
+  "yona:ui-rpc-method-get-feature-gates";
 export const UI_RPC_METHOD_GET_XNFT_PREFERENCES =
-  "ui-rpc-method-get-xnft-preference";
+  "yona:ui-rpc-method-get-xnft-preference";
 export const UI_RPC_METHOD_SET_XNFT_PREFERENCES =
-  "ui-rpc-method-set-xnft-preference";
+  "yona:ui-rpc-method-set-xnft-preference";
 
 export const UI_RPC_METHOD_SETTINGS_DARK_MODE_READ =
-  "ui-rpc-method-settings-dark-mode-read";
+  "yona:ui-rpc-method-settings-dark-mode-read";
 export const UI_RPC_METHOD_SETTINGS_DARK_MODE_UPDATE =
-  "ui-rpc-method-settings-dark-mode-update";
+  "yona:ui-rpc-method-settings-dark-mode-update";
 export const UI_RPC_METHOD_SETTINGS_LOCK_FULL_SCREEN_UPDATE =
-  "ui-rpc-method-settings-lock-full-screen-update";
+  "yona:ui-rpc-method-settings-lock-full-screen-update";
 export const UI_RPC_METHOD_SETTINGS_DEVELOPER_MODE_READ =
-  "ui-rpc-method-settings-developer-mode-read";
+  "yona:ui-rpc-method-settings-developer-mode-read";
 export const UI_RPC_METHOD_SETTINGS_DEVELOPER_MODE_UPDATE =
-  "ui-rpc-method-settings-developer-mode-update";
+  "yona:ui-rpc-method-settings-developer-mode-update";
 export const UI_RPC_METHOD_SETTINGS_AGGREGATE_WALLETS_UPDATE =
-  "ui-rpc-method-settings-aggregate-wallet-update";
+  "yona:ui-rpc-method-settings-aggregate-wallet-update";
 export const UI_RPC_METHOD_TRY_TO_SIGN_MESSAGE =
-  "ui-rpc-method-try-to-sign-message";
-export const UI_RPC_METHOD_USER_READ = "ui-rpc-method-user-read";
-export const UI_RPC_METHOD_ALL_USERS_READ = "ui-rpc-method-all-users-read";
-export const UI_RPC_METHOD_PREFERENCES_READ = "ui-rpc-method-references-read";
+  "yona:ui-rpc-method-try-to-sign-message";
+export const UI_RPC_METHOD_USER_READ = "yona:ui-rpc-method-user-read";
+export const UI_RPC_METHOD_ALL_USERS_READ = "yona:ui-rpc-method-all-users-read";
+export const UI_RPC_METHOD_PREFERENCES_READ =
+  "yona:ui-rpc-method-references-read";
 // User account methods that interact with the API
 export const UI_RPC_METHOD_USER_ACCOUNT_READ =
-  "ui-rpc-method-user-account-read";
+  "yona:ui-rpc-method-user-account-read";
 
 // Solana
 export const UI_RPC_METHOD_COMMITMENT_UPDATE =
-  "ui-rpc-method-commitment-update";
+  "yona:ui-rpc-method-commitment-update";
 export const UI_RPC_METHOD_CONNECTION_URL_READ =
-  "ui-rpc-method-connection-url-read";
+  "yona:ui-rpc-method-connection-url-read";
 export const UI_RPC_METHOD_CONNECTION_URL_UPDATE =
-  "ui-rpc-method-connection-url-update";
-export const UI_RPC_METHOD_EXPLORER_UPDATE = "ui-rpc-method-explorer-update";
+  "yona:ui-rpc-method-connection-url-update";
+export const UI_RPC_METHOD_EXPLORER_UPDATE =
+  "yona:ui-rpc-method-explorer-update";
 export const UI_RPC_METHOD_HIDDEN_TOKENS_UPDATE =
-  "ui-rpc-method-hidden-tokens-update";
+  "yona:ui-rpc-method-hidden-tokens-update";
 export const UI_RPC_METHOD_TOGGLE_SHOW_ALL_COLLECTIBLES =
-  "ui-rpc-method-toggle-show-all-collectibles";
+  "yona:ui-rpc-method-toggle-show-all-collectibles";
 export const UI_RPC_METHOD_SOLANA_SIGN_ALL_TRANSACTIONS =
-  "ui-rpc-method-solana-sign-all-txs";
+  "yona:ui-rpc-method-solana-sign-all-txs";
 export const UI_RPC_METHOD_SOLANA_SIGN_AND_SEND_TRANSACTION =
-  "ui-rpc-method-solana-sign-and-send-tx";
+  "yona:ui-rpc-method-solana-sign-and-send-tx";
 export const UI_RPC_METHOD_SOLANA_SIGN_MESSAGE =
-  "ui-rpc-method-solana-sign-message";
+  "yona:ui-rpc-method-solana-sign-message";
 export const UI_RPC_METHOD_SOLANA_SIGN_TRANSACTION =
-  "ui-rpc-method-solana-sign-tx";
-export const UI_RPC_METHOD_SOLANA_SIMULATE = "ui-rpc-method-solana-simulate";
+  "yona:ui-rpc-method-solana-sign-tx";
+export const UI_RPC_METHOD_SOLANA_SIMULATE =
+  "yona:ui-rpc-method-solana-simulate";
 // Ethereum
 export const UI_RPC_METHOD_ETHEREUM_CHAIN_ID_READ =
-  "ui-rpc-method-ethereum-chain-id-read";
+  "yona:ui-rpc-method-ethereum-chain-id-read";
 export const UI_RPC_METHOD_ETHEREUM_CHAIN_ID_UPDATE =
-  "ui-rpc-method-ethereum-chain-id-update";
+  "yona:ui-rpc-method-ethereum-chain-id-update";
 export const UI_RPC_METHOD_ETHEREUM_SIGN_AND_SEND_TRANSACTION =
-  "ui-rpc-method-ethereum-sign-and-send-tx";
+  "yona:ui-rpc-method-ethereum-sign-and-send-tx";
 export const UI_RPC_METHOD_ETHEREUM_SIGN_MESSAGE =
-  "ui-rpc-method-ethereum-sign-message";
+  "yona:ui-rpc-method-ethereum-sign-message";
 export const UI_RPC_METHOD_ETHEREUM_SIGN_TRANSACTION =
-  "ui-rpc-method-ethereum-sign-tx";
+  "yona:ui-rpc-method-ethereum-sign-tx";
 
 //
 // Notifications sent from the background script to observers.
 //
 
 export const NOTIFICATION_KEY_IS_COLD_UPDATE =
-  "notification-key-is-cold-update";
+  "yona:notification-key-is-cold-update";
 export const NOTIFICATION_APPROVED_ORIGINS_UPDATE =
-  "notification-approved-origins-update";
+  "yona:notification-approved-origins-update";
 export const NOTIFICATION_AUTO_LOCK_SETTINGS_UPDATED =
-  "notification-auto-lock-settings-updated";
+  "yona:notification-auto-lock-settings-updated";
 export const NOTIFICATION_BLOCKCHAIN_KEYRING_CREATED =
-  "notification-blockchain-keyring-created";
+  "yona:notification-blockchain-keyring-created";
 export const NOTIFICATION_BLOCKCHAIN_KEYRING_DELETED =
-  "notification-blockchain-keyring-deleted";
+  "yona:notification-blockchain-keyring-deleted";
 export const NOTIFICATION_AGGREGATE_WALLETS_UPDATED =
-  "notification-aggregate-wallets-updated";
-export const NOTIFICATION_DARK_MODE_UPDATED = "notification-dark-mode-updated";
+  "yona:notification-aggregate-wallets-updated";
+export const NOTIFICATION_DARK_MODE_UPDATED =
+  "yona:notification-dark-mode-updated";
 export const NOTIFICATION_LOCK_FULL_SCREEN_UPDATED =
-  "notification-lock-full-screen-updated";
+  "yona:notification-lock-full-screen-updated";
 export const NOTIFICATION_DEVELOPER_MODE_UPDATED =
-  "notification-developer-mode-updated";
+  "yona:notification-developer-mode-updated";
 export const NOTIFICATION_FEATURE_GATES_UPDATED =
-  "notification-feature-gates-updated";
-export const NOTIFICATION_KEYNAME_UPDATE = "notification-keyname-update";
+  "yona:notification-feature-gates-updated";
+export const NOTIFICATION_KEYNAME_UPDATE = "yona:notification-keyname-update";
 export const NOTIFICATION_KEYRING_ACTIVE_BLOCKCHAIN_UPDATED =
-  "notification-keyring-active-blockchain-updated";
-export const NOTIFICATION_KEYRING_CREATED = "notification-keyring-created";
+  "yona:notification-keyring-active-blockchain-updated";
+export const NOTIFICATION_KEYRING_CREATED = "yona:notification-keyring-created";
 export const NOTIFICATION_KEYRING_IMPORTED_WALLET =
-  "notification-keyring-imported-wallet";
+  "yona:notification-keyring-imported-wallet";
 export const NOTIFICATION_KEYRING_DERIVED_WALLET =
-  "notification-keyring-derived-wallet";
+  "yona:notification-keyring-derived-wallet";
 export const NOTIFICATION_KEYRING_IMPORTED_SECRET_KEY =
-  "notification-keyring-imported-secret-key";
+  "yona:notification-keyring-imported-secret-key";
 export const NOTIFICATION_KEYRING_KEY_DELETE =
-  "notification-keyring-key-delete";
+  "yona:notification-keyring-key-delete";
 export const NOTIFICATION_KEYRING_SET_MNEMONIC =
-  "notification-keyring-set-mnemonic";
+  "yona:notification-keyring-set-mnemonic";
 export const NOTIFICATION_KEYRING_RESET_MNEMONIC =
-  "notification-keyring-reset-mnemonic";
+  "yona:notification-keyring-reset-mnemonic";
 export const NOTIFICATION_KEYRING_STORE_CREATED =
-  "notification-keyring-store-created";
+  "yona:notification-keyring-store-created";
 export const NOTIFICATION_KEYRING_STORE_LOCKED =
   "NOTIFICATION_KEYRING_STORE_LOCKED";
 export const NOTIFICATION_KEYRING_STORE_RESET =
-  "notification-keyring-store-reset";
+  "yona:notification-keyring-store-reset";
 export const NOTIFICATION_KEYRING_STORE_UNLOCKED =
-  "NOTIFICATION_KEYRING_STORE_UNLOCKED";
+  "yona:NOTIFICATION_KEYRING_STORE_UNLOCKED";
 export const NOTIFICATION_NAVIGATION_URL_DID_CHANGE =
-  "notification-navigation-url-did-change";
+  "yona:notification-navigation-url-did-change";
 export const NOTIFICATION_KEYRING_STORE_USERNAME_ACCOUNT_CREATED =
-  "notification-username-account-created";
+  "yona:notification-username-account-created";
 export const NOTIFICATION_KEYRING_STORE_USER_AVATAR_UPDATED =
-  "notification-user-avatar-updated";
+  "yona:notification-user-avatar-updated";
 export const NOTIFICATION_KEYRING_STORE_ACTIVE_USER_UPDATED =
-  "notification-active-user-updated";
+  "yona:notification-active-user-updated";
 export const NOTIFICATION_KEYRING_STORE_REMOVED_USER =
-  "notification-keyring-store-removed-user";
+  "yona:notification-keyring-store-removed-user";
 export const NOTIFICATION_ACTIVE_BLOCKCHAIN_UPDATED =
-  "notification-keyring-active-blockchain-updated";
+  "yona:notification-keyring-active-blockchain-updated";
 export const NOTIFICATION_XNFT_PREFERENCE_UPDATED =
-  "notification-xnft-preference-updated";
-// Ethereum specific notifications
+  "yona:notification-xnft-preference-updated";
+// Ethereum specific yona:notifications
 export const NOTIFICATION_ETHEREUM_CHAIN_ID_UPDATED =
-  "notification-ethereum-chain-id-updated";
+  "yona:notification-ethereum-chain-id-updated";
 export const NOTIFICATION_ETHEREUM_CONNECTED =
-  "notification-ethereum-connected";
+  "yona:notification-ethereum-connected";
 export const NOTIFICATION_ETHEREUM_DISCONNECTED =
-  "notification-ethereum-disconnected";
+  "yona:notification-ethereum-disconnected";
 export const NOTIFICATION_ETHEREUM_FEE_DATA_DID_UPDATE =
-  "notification-ethereum-fee-data-did-update";
+  "yona:notification-ethereum-fee-data-did-update";
 export const NOTIFICATION_ETHEREUM_TOKENS_DID_UPDATE =
-  "notification-ethereum-tokens-did-update";
-// Solana specific notifications
+  "yona:notification-ethereum-tokens-did-update";
+// Solana specific yona:notifications
 export const NOTIFICATION_ACTIVE_WALLET_UPDATED =
-  "notification-keyring-active-wallet-updated";
+  "yona:notification-keyring-active-wallet-updated";
 export const NOTIFICATION_COMMITMENT_UPDATED =
-  "notification-commitment-updated";
-export const NOTIFICATION_SOLANA_CONNECTED = "notification-solana-connected";
+  "yona:notification-commitment-updated";
+export const NOTIFICATION_SOLANA_CONNECTED =
+  "yona:notification-solana-connected";
 export const NOTIFICATION_CONNECTION_URL_UPDATED =
-  "notification-connection-url-updated";
+  "yona:notification-connection-url-updated";
 export const NOTIFICATION_SOLANA_DISCONNECTED =
-  "notification-solana-disconnected";
-export const NOTIFICATION_EXPLORER_UPDATED = "notification-explorer-updated";
+  "yona:notification-solana-disconnected";
+export const NOTIFICATION_EXPLORER_UPDATED =
+  "yona:notification-explorer-updated";
 export const NOTIFICATION_SOLANA_SPL_TOKENS_DID_UPDATE =
-  "notification-solana-spl-tokens-did-update";
+  "yona:notification-solana-spl-tokens-did-update";
 
 //
 // Ethereum web injected provider API.
@@ -368,7 +378,7 @@ export const SOLANA_CONNECTION_RPC_CUSTOM_SPL_METADATA_URI =
 
 // SOLANA UNUSED
 
-export const PLUGIN_RPC_METHOD_PLUGIN_OPEN = "rpc-method-plugin-open";
+export const PLUGIN_RPC_METHOD_PLUGIN_OPEN = "rpc-method-yona:plugin-open";
 export const PLUGIN_RPC_METHOD_POP_OUT = "rpc-method-pop-out";
 
 export const PLUGIN_RPC_METHOD_RESIZE_EXTENSION_WINDOW =

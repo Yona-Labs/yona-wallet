@@ -31,8 +31,8 @@ import useAsyncEffect from "use-async-effect";
 
 import type { CachedTokenBalance } from "./hooks";
 import {
-  GET_SWAP_OUTPUT_TOKENS,
-  GET_SWAP_VALID_INPUT_TOKENS,
+  // GET_SWAP_OUTPUT_TOKENS,
+  // GET_SWAP_VALID_INPUT_TOKENS,
   useFromToken,
   useToToken,
 } from "./hooks";
@@ -417,19 +417,19 @@ function useSwapValidInputTokensSolanaFn(
   const apollo = useApolloClient();
 
   return useCallback(async () => {
-    const { data } = await apollo.query({
-      query: GET_SWAP_VALID_INPUT_TOKENS,
-      fetchPolicy: "cache-first",
-      variables: {
-        tokens: balances.map((b) => b.token),
-      },
-    });
-    const mints = (data?.jupiterSwapValidInputTokens ?? []) as string[];
+    // const { data } = await apollo.query({
+    //   query: GET_SWAP_VALID_INPUT_TOKENS,
+    //   fetchPolicy: "cache-first",
+    //   variables: {
+    //     tokens: balances.map((b) => b.token),
+    //   },
+    // });
+    const mints = [] as string[];
 
     return balances.filter(
       (b) => mints.includes(b.token) || b.token === SOL_NATIVE_MINT
     );
-  }, [apollo, balances]);
+  }, [balances]);
 }
 
 // TODO: remove this function as soon as mobile is migrated over to the
@@ -437,24 +437,22 @@ function useSwapValidInputTokensSolanaFn(
 export function useSwapValidInputTokensSolana(
   balances: CachedTokenBalance[]
 ): [CachedTokenBalance[], boolean] {
-  const { data, loading } = useQuery(GET_SWAP_VALID_INPUT_TOKENS, {
-    fetchPolicy: "cache-and-network",
-    variables: {
-      tokens: balances.map((b) => b.token),
-    },
-  });
+  // const { data, loading } = useQuery(GET_SWAP_VALID_INPUT_TOKENS, {
+  //   fetchPolicy: "cache-and-network",
+  //   variables: {
+  //     tokens: balances.map((b) => b.token),
+  //   },
+  // });
 
   const values = useMemo(() => {
-    const mints = (
-      loading ? [] : data?.jupiterSwapValidInputTokens ?? []
-    ) as string[];
+    const mints = [] as string[];
 
     return balances.filter(
       (b) => mints.includes(b.token) || b.token === SOL_NATIVE_MINT
     );
-  }, [balances, data, loading]);
+  }, [balances]);
 
-  return [values, loading];
+  return [values, true];
 }
 
 function useSwapOutputTokensSolanaFn(
@@ -464,16 +462,16 @@ function useSwapOutputTokensSolanaFn(
   const apollo = useApolloClient();
 
   return useCallback(async () => {
-    const { data } = await apollo.query({
-      query: GET_SWAP_OUTPUT_TOKENS,
-      fetchPolicy: "cache-first",
-      variables: {
-        inputToken: inputToken === SOL_NATIVE_MINT ? WSOL_MINT : inputToken,
-      },
-    });
+    // const { data } = await apollo.query({
+    //   query: GET_SWAP_OUTPUT_TOKENS,
+    //   fetchPolicy: "cache-first",
+    //   variables: {
+    //     inputToken: inputToken === SOL_NATIVE_MINT ? WSOL_MINT : inputToken,
+    //   },
+    // });
 
     const nodes = (() =>
-      data?.jupiterSwapOutputTokens?.map((t) => {
+      ([] as any).map((t) => {
         const b = outputBalances.find(
           (b) =>
             b.token === (t.address === WSOL_MINT ? SOL_NATIVE_MINT : t.address)
@@ -496,7 +494,7 @@ function useSwapOutputTokensSolanaFn(
       }) ?? [])();
 
     return nodes;
-  }, [apollo, inputToken, outputBalances]);
+  }, [inputToken, outputBalances]);
 }
 
 // TODO: remove this function as soon as mobile is migrated over to the
@@ -505,18 +503,18 @@ export function useSwapOutputTokensSolana(
   inputToken: string,
   outputBalances: CachedTokenBalance[]
 ): [CachedTokenBalance[], boolean] {
-  const { data, loading } = useQuery(GET_SWAP_OUTPUT_TOKENS, {
-    fetchPolicy: "cache-and-network",
-    variables: {
-      inputToken: inputToken === SOL_NATIVE_MINT ? WSOL_MINT : inputToken,
-    },
-  });
+  // const { data, loading } = useQuery(GET_SWAP_OUTPUT_TOKENS, {
+  //   fetchPolicy: "cache-and-network",
+  //   variables: {
+  //     inputToken: inputToken === SOL_NATIVE_MINT ? WSOL_MINT : inputToken,
+  //   },
+  // });
 
   const nodes = useMemo<CachedTokenBalance[]>(
     () =>
-      loading
+      true
         ? []
-        : data?.jupiterSwapOutputTokens?.map((t) => {
+        : ([] as any).map((t) => {
             const b = outputBalances.find(
               (b) =>
                 b.token ===
@@ -538,10 +536,10 @@ export function useSwapOutputTokensSolana(
               },
             };
           }) ?? [],
-    [outputBalances, data, loading]
+    [outputBalances]
   );
 
-  return [nodes, loading];
+  return [nodes, true];
 }
 
 enum SwapType {

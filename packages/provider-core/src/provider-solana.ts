@@ -72,7 +72,7 @@ export class ProviderSolanaInjection
 
   #requestManager: InjectedRequestManager | ChainedRequestManager;
 
-  #isBackpack: boolean;
+  #isYona: boolean;
   #isConnected: boolean;
   #isXnft: boolean;
   #publicKey?: PublicKey;
@@ -94,7 +94,7 @@ export class ProviderSolanaInjection
 
     this.#requestManager = this.#backpackRequestManager;
 
-    this.#isBackpack = true;
+    this.#isYona = true;
     this.#isConnected = false;
     this.#publicKey = undefined;
     this.#secureClientSender = secureClientSender;
@@ -483,8 +483,8 @@ export class ProviderSolanaInjection
     return { signature: solanaResponse };
   }
 
-  public get isBackpack() {
-    return this.#isBackpack;
+  public get isYona() {
+    return this.#isYona;
   }
 
   public get isConnected() {

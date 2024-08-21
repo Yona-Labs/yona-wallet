@@ -19,7 +19,7 @@ export default function About() {
             Yona Wallet is brought to you by{" "}
             <a
               className="text-teal-500"
-              href="https://backpack.app"
+              href="https://yona.network"
               target="_blank"
               rel="noreferrer"
             >
@@ -30,7 +30,7 @@ export default function About() {
               className="text-teal-500"
               target="_blank"
               rel="noreferrer"
-              href="https://backpack.app"
+              href="https://yona.network"
             >
               xNFTs.
             </a>

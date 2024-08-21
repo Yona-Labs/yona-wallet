@@ -5,7 +5,7 @@ import {
   useSolanaCtx,
   useSwapContext,
   useSwapOutputTokens,
-  useSwapValidInputTokens,
+  // useSwapValidInputTokens,
 } from "@coral-xyz/recoil";
 import { SOL_NATIVE_MINT } from "@coral-xyz/secure-clients/legacyCommon";
 import { useTheme, XStack, YStack } from "@coral-xyz/tamagui";
@@ -85,20 +85,20 @@ function SwapSelectToken({
   );
 }
 
-function FromTokenTable({ onClickRow }: { onClickRow: any }) {
+function FromTokenTable({ onClickRow: _onClickRow }: { onClickRow: any }) {
   const { from, to } = useSwapContext();
   const { balances: fromBalances } = useCachedTokenBalances(from);
-  const [fromTokens, isLoadingFromTokens] = useSwapValidInputTokens({
-    fromBalances,
-    from,
-    to,
-  });
+  // const [fromTokens, isLoadingFromTokens] = useSwapValidInputTokens({
+  //   fromBalances,
+  //   from,
+  //   to,
+  // });
 
-  if (isLoadingFromTokens) {
-    return <Loading />;
-  }
+  // if (true) {
+  // }
+  return <Loading />;
 
-  return <SearchableTokenTable onClickRow={onClickRow} tokens={fromTokens} />;
+  // return <SearchableTokenTable onClickRow={onClickRow} tokens={fromTokens} />;
 }
 
 function ToTokenTable({ onClickRow }: { onClickRow: any }) {

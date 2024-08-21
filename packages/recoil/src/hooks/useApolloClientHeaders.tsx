@@ -39,7 +39,7 @@ export function useApolloClientHeaders():
     // if (isDevnet) {
     //   return { "x-blockchain-devnet": "true" };
     // }
-    return { "x-blockchain-rpc": url };
+    return { "x-blockchain-rpc": url, "X-Blockchain-Custom-Rpc": true };
   }, [
     // config.RpcConnectionUrls,
     url,

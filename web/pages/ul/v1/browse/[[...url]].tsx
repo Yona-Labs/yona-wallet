@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 declare global {
   interface Window {
-    backpack?: { isBackpack?: boolean };
+    yona?: { isYona?: boolean };
   }
 }
 
@@ -13,13 +13,15 @@ export default function Browse() {
   useEffect(() => {
     let timer;
 
-    if (window.backpack?.isBackpack) {
+    if (window.yona?.isYona) {
       // Backpack is installed, redirect user to the destination URL
       try {
-        const [, , escapedUrl] = router.asPath.match(/\/ul(\/v1)?\/browse\/([^?]+)/);
+        const [, , escapedUrl] = router.asPath.match(
+          /\/ul(\/v1)?\/browse\/([^?]+)/
+        );
         const { protocol, href } = new URL(decodeURIComponent(escapedUrl));
-        if (!['http:', 'https:'].includes(protocol)) {
-          throw new Error('Only http & https protocols supported');
+        if (!["http:", "https:"].includes(protocol)) {
+          throw new Error("Only http & https protocols supported");
         }
         window.location.assign(href);
       } catch (err) {
@@ -29,7 +31,7 @@ export default function Browse() {
 
     // Backpack not installed or invalid URL, redirect to downloads
     timer = setTimeout(() => {
-      router.replace('/downloads');
+      router.replace("/downloads");
     }, 5000);
 
     return () => {
