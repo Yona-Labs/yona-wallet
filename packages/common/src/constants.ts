@@ -455,6 +455,7 @@ export const EXCHANGE_TERMS_OF_SERVICE_URL = "https://yona.network";
 export const EXCHANGE_SUMSUB_DOCS_URL =
   "https://sumsub.com/supported-documents";
 
+export const RPC_API_URL = "https://devnet-rpc.yona.network";
 export const AVATAR_BASE_URL = "https://swr.xnftdata.com/avatars";
 export const BACKEND_API_URL = "https://backpack-api.xnfts.dev";
 export const MESSAGING_COMMUNICATION_PUSH = "MESSAGING_COMMUNICATION_PUSH";

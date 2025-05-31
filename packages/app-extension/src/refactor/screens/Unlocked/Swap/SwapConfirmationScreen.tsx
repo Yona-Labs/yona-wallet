@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useApolloClient } from "@apollo/client";
 import { UNKNOWN_ICON_SRC, wait } from "@coral-xyz/common";
-import {
-  GET_TOKEN_BALANCES_QUERY,
-  type ProviderId,
-} from "@coral-xyz/data-components";
+// import {
+//   GET_TOKEN_BALANCES_QUERY,
+//   type ProviderId,
+// } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import { CheckIcon, CrossIcon, Loading } from "@coral-xyz/react-common";
 import type { SwapQuoteResponse } from "@coral-xyz/recoil";
@@ -77,33 +77,34 @@ function Container({ route, navigation }: SwapConfirmationScreenProps) {
 
       // Allow asynchronous refetch without awaiting to unblock UI interactions
       await wait(2);
-      const promises = [
-        apollo.query({
-          query: GET_TOKEN_BALANCES_QUERY,
-          fetchPolicy: "network-only",
-          variables: {
-            address: from.walletPublicKey,
-            providerId: from.blockchain.toUpperCase() as ProviderId,
-          },
-        }),
-      ];
+      // TODO: add refresh token balances logic
+      // const promises = [
+      //   apollo.query({
+      //     query: GET_TOKEN_BALANCES_QUERY,
+      //     fetchPolicy: "network-only",
+      //     variables: {
+      //       address: from.walletPublicKey,
+      //       providerId: from.blockchain.toUpperCase() as ProviderId,
+      //     },
+      //   }),
+      // ];
 
-      if (
-        from.walletPublicKey !== to.walletPublicKey ||
-        from.blockchain !== to.blockchain
-      ) {
-        promises.push(
-          apollo.query({
-            query: GET_TOKEN_BALANCES_QUERY,
-            fetchPolicy: "network-only",
-            variables: {
-              address: to.walletPublicKey,
-              providerId: to.blockchain.toUpperCase() as ProviderId,
-            },
-          })
-        );
-      }
-      await Promise.all(promises);
+      // if (
+      //   from.walletPublicKey !== to.walletPublicKey ||
+      //   from.blockchain !== to.blockchain
+      // ) {
+      //   promises.push(
+      //     apollo.query({
+      //       query: GET_TOKEN_BALANCES_QUERY,
+      //       fetchPolicy: "network-only",
+      //       variables: {
+      //         address: to.walletPublicKey,
+      //         providerId: to.blockchain.toUpperCase() as ProviderId,
+      //       },
+      //     })
+      //   );
+      // }
+      // await Promise.all(promises);
     } catch (e) {
       const error = e as Error | undefined;
       if (error?.message?.includes("Quote Expired")) {

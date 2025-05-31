@@ -23,10 +23,10 @@ import {
 import { useTransactionsContext } from "./context";
 import { parseTransaction, type ParseTransactionDetails } from "./parsing";
 import type { ResponseTransaction } from "./utils";
-import type { ProviderId } from "../../apollo/graphql";
+import moment from "moment";
 
 export type TransactionListItemProps = {
-  blockchain: ProviderId;
+  blockchain: any;
   transaction: ResponseTransaction;
 };
 
@@ -66,13 +66,14 @@ export function TransactionListItem({
     [connection, details, explorer, onItemClick, transaction]
   );
 
-  const icon = transaction.error ? (
-    <TransactionListItemIconError size={30} containerSize={44} />
-  ) : (
-    details?.card.icon ?? (
-      <TransactionListItemIconDefault size={30} containerSize={44} />
-    )
-  );
+  // const icon = transaction.error ? (
+  //   <TransactionListItemIconError size={30} containerSize={44} />
+  // ) : (
+  //   details?.card.icon ?? (
+  //     <TransactionListItemIconDefault size={30} containerSize={44} />
+  //   )
+  // );
+  const icon = <TransactionListItemIconDefault size={30} containerSize={44} />;
 
   return (
     <ListItemCore
@@ -164,7 +165,9 @@ export function _TransactionListItemBasic({
           </StyledText>
         </XStack>
         <StyledText color="$baseTextMedEmphasis" fontSize="$xs">
-          {new Date(transaction.timestamp).toLocaleTimeString()}
+          {new Date(
+            moment.unix(transaction.timestamp).toDate()
+          ).toLocaleTimeString()}
         </StyledText>
       </YStack>
       <ArrowUpRightIcon color="$baseTextMedEmphasis" />

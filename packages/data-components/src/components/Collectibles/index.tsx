@@ -7,8 +7,6 @@ import {
   getGroupedCollectibles,
   type ResponseCollectible,
 } from "./utils";
-import { gql } from "../../apollo";
-import type { ProviderId } from "../../apollo/graphql";
 import { usePolledSuspenseQuery } from "../../hooks";
 import type { DataComponentScreenProps } from "../common";
 
@@ -23,64 +21,6 @@ export { ShowUnverifiedToggle } from "./ShowUnverifiedToggle";
 
 const DEFAULT_POLLING_INTERVAL_SECONDS = 60;
 
-export const GET_COLLECTIBLES_QUERY = gql(`
-  query GetCollectibles($address: String!, $providerId: ProviderID!) {
-    wallet(address: $address, providerId: $providerId) {
-      id
-      nfts {
-        edges {
-          node {
-            id
-            address
-            attributes {
-              trait
-              value
-            }
-            collection {
-              id
-              address
-              name
-            }
-            compressed,
-            listing {
-              id
-              amount
-              url
-              source
-            }
-            compressionData {
-              id
-              creatorHash
-              dataHash
-              leaf
-              tree
-            }
-            description
-            image
-            name
-            solana {
-              id
-              inscription {
-                id
-                dataAccount
-                order
-              }
-              spl20 {
-                id
-                amount
-                tick
-              }
-            }
-            token
-            type
-            whitelisted
-          }
-        }
-      }
-    }
-  }
-`);
-
 export type CollectiblesProps = Omit<
   DataComponentScreenProps,
   "emptyStateComponent"
@@ -90,7 +30,7 @@ export type CollectiblesProps = Omit<
   onCardClick: CollectiblesContextType["onCardClick"];
   onOpenSendDrawer?: CollectiblesContextType["onOpenSendDrawer"];
   onViewClick: CollectiblesContextType["onViewClick"];
-  providerId: ProviderId;
+  providerId: any;
 };
 
 export const Collectibles = ({
@@ -126,18 +66,18 @@ function _Collectibles({
   | "pollingIntervalSeconds"
   | "providerId"
 >) {
-  const { data } = usePolledSuspenseQuery(
-    pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
-    GET_COLLECTIBLES_QUERY,
-    {
-      fetchPolicy,
-      errorPolicy: "all",
-      variables: {
-        address,
-        providerId,
-      },
-    }
-  );
+  // const { data } = usePolledSuspenseQuery(
+  //   pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
+  //   GET_COLLECTIBLES_QUERY,
+  //   {
+  //     fetchPolicy,
+  //     errorPolicy: "all",
+  //     variables: {
+  //       address,
+  //       providerId,
+  //     },
+  //   }
+  // );
 
   /**
    * Memoized value of the collectible items owned by the wallet that are
@@ -146,9 +86,10 @@ function _Collectibles({
   const groupedCollectibles = useMemo(
     () =>
       getGroupedCollectibles(
-        data?.wallet?.nfts?.edges.map((e) => e.node) ?? []
+        // data?.wallet?.nfts?.edges.map((e) => e.node) ?? [] TODO: maybe rewrite to rpc call
+        []
       ),
-    [data]
+    []
   );
 
   return (

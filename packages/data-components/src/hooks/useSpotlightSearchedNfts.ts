@@ -2,11 +2,11 @@ import { useActiveWallet } from "@coral-xyz/recoil";
 import { useMemo } from "react";
 
 import { usePolledSuspenseQuery } from ".";
-import { gql } from "../apollo";
-import type {
-  // GetNftSpotlightAggregateQuery,
-  ProviderId,
-} from "../apollo/graphql";
+// import { gql } from "../apollo";
+// import type {
+//   GetNftSpotlightAggregateQuery,
+//   ProviderId,
+// } from "../apollo/graphql";
 
 // const QUERY_NFTS_AGGREGATE = gql(`
 //   query GetNftSpotlightAggregate($addresses: [WalletAddressesInput!]!) {

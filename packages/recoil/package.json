@@ -9,7 +9,7 @@
   "react-native": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "build": "yarn gql:generate && tsc -b",
+    "build": "tsc -b",
     "dev": "tsc --watch",
     "start": "tsc --watch",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --cache",

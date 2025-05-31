@@ -70,7 +70,8 @@ export function TransactionList({
         disableBottomRadius={!last}
       >
         <TransactionListItem
-          blockchain={item.provider.providerId}
+          // blockchain={"Bitcoin"} // TODO: maybe bad value
+          blockchain="SOLANA"
           transaction={item}
         />
       </RoundedContainerGroup>

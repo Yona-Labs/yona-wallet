@@ -1,9 +1,10 @@
 import { useMemo } from "react";
 import { useQuery } from "@apollo/client";
-import type { ProviderId } from "@coral-xyz/data-components";
+import type { ProviderId, TokenBalance } from "@coral-xyz/data-components";
 import {
-  GET_TOKEN_BALANCES_QUERY,
+  // GET_TOKEN_BALANCES_QUERY,
   useBitcoinPrice,
+  useTokenBalancesRPC,
 } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import { EmptyState, WarningIcon } from "@coral-xyz/react-common";
@@ -39,39 +40,68 @@ export function SendTokenSelectScreen(props: SendTokenSelectScreenProps) {
 function Container({ navigation }: SendTokenSelectScreenProps) {
   const { blockchain, publicKey } = useActiveWallet();
   const { t } = useTranslation();
-  const { data, error } = useQuery(GET_TOKEN_BALANCES_QUERY, {
-    fetchPolicy: "cache-only",
-    variables: {
-      address: publicKey,
-      providerId: blockchain.toUpperCase() as ProviderId,
-    },
-  });
-
+  // const { data, error } = useQuery(GET_TOKEN_BALANCES_QUERY, {
+  //   fetchPolicy: "cache-only",
+  //   variables: {
+  //     address: publicKey,
+  //     providerId: blockchain.toUpperCase() as ProviderId,
+  //   },
+  // });
+  const { data, error } = useTokenBalancesRPC({ publicKey: publicKey });
   const price = useBitcoinPrice();
 
-  const tokens = useMemo(
-    () =>
-      data?.wallet?.balances?.tokens.edges.map((e) => {
-        if (e.node.token === BTC_TOKEN.token) {
-          const token = JSON.parse(JSON.stringify(e.node));
+  const tokens: TokenBalance[] = useMemo(() => {
+    if (!data || !price) return [];
 
-          const value = Number(token.displayAmount) * Number(price?.lastPrice);
+    if (data.length === 0) return [];
 
-          token.marketData = {
-            id: token.marketData?.id ?? "",
+    return data.map((token) => {
+      if (token.token === BTC_TOKEN.token) {
+        const btcToken: TokenBalance = {
+          ...token,
+          marketData: {
             price: Number(price?.lastPrice),
             percentChange: Number(price?.priceChangePercent),
-            value,
-            valueChange: value * Number(price?.priceChangePercent),
-          };
+            value: Number(token.displayAmount) * Number(price?.lastPrice),
+            valueChange:
+              Number(token.displayAmount) * Number(price?.priceChangePercent),
+            marketId: BTC_TOKEN.marketData.marketId,
+            marketUrl: BTC_TOKEN.marketData.marketUrl,
+          },
+        };
 
-          return token;
-        } else {
-          return e.node;
-        }
-      }) ?? [],
-    [data, price]
-  );
+        return btcToken;
+      }
+
+      return token;
+    });
+  }, [data, price]);
+
+  // const tokens = useMemo(
+  //   () =>
+  //     data?.wallet?.balances?.tokens.edges.map((e) => {
+  //       if (e.node.token === BTC_TOKEN.token) {
+  //         const token = JSON.parse(JSON.stringify(e.node));
+
+  //         const value = Number(token.displayAmount) * Number(price?.lastPrice);
+
+  //         token.marketData = {
+  //           id: token.marketData?.id ?? "",
+  //           price: Number(price?.lastPrice),
+  //           percentChange: Number(price?.priceChangePercent),
+  //           value,
+  //           valueChange: value * Number(price?.priceChangePercent),
+  //         };
+
+  //         return token;
+  //       } else {
+  //         return e.node;
+  //       }
+  //     }) ?? [],
+  //   [data, price]
+  // );
+
+  console.log("send navigator tokens", tokens);
 
   if (error) {
     return (
@@ -96,6 +126,7 @@ function Container({ navigation }: SendTokenSelectScreenProps) {
         });
       }}
       customFilter={(token) => {
+        console.log("Search custom filter", token);
         if (token.token === SOL_NATIVE_MINT) {
           return true;
         }

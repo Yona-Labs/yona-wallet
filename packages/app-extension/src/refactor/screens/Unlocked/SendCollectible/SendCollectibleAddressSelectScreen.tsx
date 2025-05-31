@@ -66,8 +66,8 @@ function Container({
   const [openDrawer, setOpenDrawer] = useState(false);
 
   useEffect(() => {
-    blockchainClient.prefetchAsset(nftId);
-  }, [blockchainClient, nftId]);
+    blockchainClient.prefetchAsset(nftId, publicKey);
+  }, [blockchainClient, nftId, publicKey]);
 
   const handleAddressSelect = async (to: SendData) => {
     if (!data) {

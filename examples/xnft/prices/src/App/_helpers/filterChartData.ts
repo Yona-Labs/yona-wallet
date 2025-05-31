@@ -25,6 +25,7 @@ const dateLabel = (time: number) => {
   const date = new Date(time);
   return `${months[date.getMonth()]} ${date.getDate()}`;
 };
+
 const yearLabel = (time: number) => {
   const date = new Date(time);
   return `${date.getFullYear()}`;

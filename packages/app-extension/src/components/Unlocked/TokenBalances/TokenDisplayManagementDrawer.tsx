@@ -13,9 +13,11 @@ import {
   UNKNOWN_ICON_SRC,
 } from "@coral-xyz/common";
 import {
-  GET_TOKEN_BALANCES_QUERY,
-  type ProviderId,
+  // GET_TOKEN_BALANCES_QUERY,
+  // type ProviderId,
   type ResponseTokenBalance,
+  useBitcoinPrice,
+  useTokenBalancesRPC,
 } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import { hiddenTokenAddresses, useBackgroundClient } from "@coral-xyz/recoil";
@@ -65,49 +67,98 @@ export function TokenDisplayManagement({
 }
 
 const useTokenBalancesQuery = (address: string, blockchain: Blockchain) => {
-  const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
-    fetchPolicy: "cache-only",
-    variables: {
-      address,
-      providerId: blockchain.toUpperCase() as ProviderId,
-    },
-  });
+  console.log(blockchain);
+  // const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
+  //   fetchPolicy: "cache-only",
+  //   variables: {
+  //     address,
+  //     providerId: blockchain.toUpperCase() as ProviderId,
+  //   },
+  // });
+  const { data: dataRPC } = useTokenBalancesRPC({ publicKey: address });
+  const price = useBitcoinPrice();
 
-  if (data?.wallet?.balances?.tokens.edges) {
-    const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
-      (balance) => balance.node.token === BTC_TOKEN.token
-    );
+  if (!dataRPC || !price) return null;
 
-    if (balanceIndex >= 0) {
-      // data.wallet.balances.tokens.edges[balanceIndex] = {
-      //   node: {
-      //     ...BTC_TOKEN,
-      //     id: data.wallet.balances.tokens.edges[balanceIndex].node.id,
-      //     amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
-      //     displayAmount:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
-      //     marketData:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
-      //     __typename:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
-      //   },
-      // };
-      data.wallet.balances.tokens.edges[balanceIndex] = {
-        node: {
-          ...data.wallet.balances.tokens.edges[balanceIndex].node,
-          tokenListEntry: {
-            ...BTC_TOKEN.tokenListEntry,
-            id:
-              data.wallet.balances.tokens.edges[balanceIndex].node
-                .tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
-          },
-          marketData: BTC_TOKEN.marketData,
+  let response = {
+    wallet: {
+      balances: {
+        aggregate: {
+          percentChange: 0,
+          value: 0,
+          valueChange: 0,
         },
-      };
-    }
-  }
+        tokens: {
+          edges: dataRPC.map((token) => {
+            if (token.token === BTC_TOKEN.token) {
+              return {
+                node: {
+                  ...token,
+                  marketData: {
+                    price: Number(price?.lastPrice),
+                    percentChange: Number(price?.priceChangePercent),
+                    value:
+                      Number(token.displayAmount) * Number(price?.lastPrice),
+                    valueChange:
+                      Number(token.displayAmount) *
+                      Number(price?.priceChangePercent),
+                    marketId: BTC_TOKEN.marketData.marketId,
+                    marketUrl: BTC_TOKEN.marketData.marketUrl,
+                  },
+                },
+              };
+            }
 
-  return data;
+            return {
+              node: {
+                ...token,
+                tokenListEntry: null,
+                marketData: null,
+              },
+            };
+          }),
+        },
+      },
+    },
+  };
+
+  return response;
+
+  // if (data?.wallet?.balances?.tokens.edges) {
+  //   const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
+  //     (balance) => balance.node.token === BTC_TOKEN.token
+  //   );
+
+  //   if (balanceIndex >= 0) {
+  //     // data.wallet.balances.tokens.edges[balanceIndex] = {
+  //     //   node: {
+  //     //     ...BTC_TOKEN,
+  //     //     id: data.wallet.balances.tokens.edges[balanceIndex].node.id,
+  //     //     amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
+  //     //     displayAmount:
+  //     //       data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
+  //     //     marketData:
+  //     //       data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
+  //     //     __typename:
+  //     //       data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
+  //     //   },
+  //     // };
+  //     data.wallet.balances.tokens.edges[balanceIndex] = {
+  //       node: {
+  //         ...data.wallet.balances.tokens.edges[balanceIndex].node,
+  //         tokenListEntry: {
+  //           ...BTC_TOKEN.tokenListEntry,
+  //           id:
+  //             data.wallet.balances.tokens.edges[balanceIndex].node
+  //               .tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
+  //         },
+  //         marketData: BTC_TOKEN.marketData,
+  //       },
+  //     };
+  //   }
+  // }
+
+  // return data;
 };
 
 export function HiddenTokensList({
@@ -140,6 +191,7 @@ export function HiddenTokensList({
 
   const renderItem = useCallback<ListRenderItem<_TokenListEntryFragmentType>>(
     ({ item, index }) => {
+      console.log("tokenDisplayManagementDrawer", "renderItem", item);
       const isHidden = hiddenTokens.includes(item.address);
       return (
         <_HiddenTokensListItem

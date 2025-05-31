@@ -4,7 +4,6 @@
  *
  * Note: not completely done.
  */
-import { useApolloClient, useQuery } from "@apollo/client";
 import {
   Blockchain,
   NATIVE_ACCOUNT_RENT_EXEMPTION_LAMPORTS,
@@ -414,8 +413,6 @@ export function useAvailableForSwap({
 function useSwapValidInputTokensSolanaFn(
   balances: CachedTokenBalance[]
 ): () => Promise<CachedTokenBalance[]> {
-  const apollo = useApolloClient();
-
   return useCallback(async () => {
     // const { data } = await apollo.query({
     //   query: GET_SWAP_VALID_INPUT_TOKENS,
@@ -459,8 +456,6 @@ function useSwapOutputTokensSolanaFn(
   inputToken: string,
   outputBalances: CachedTokenBalance[]
 ): () => Promise<CachedTokenBalance[]> {
-  const apollo = useApolloClient();
-
   return useCallback(async () => {
     // const { data } = await apollo.query({
     //   query: GET_SWAP_OUTPUT_TOKENS,

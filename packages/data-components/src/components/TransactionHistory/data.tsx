@@ -1,47 +1,9 @@
-import { type SuspenseQueryHookFetchPolicy, useQuery } from "@apollo/client";
-import { startTransition, useState, useTransition } from "react";
+import { useState } from "react";
 
-import { gql } from "../../apollo";
-import type { GetTransactionsQuery, ProviderId } from "../../apollo/graphql";
-import { usePolledSuspenseQuery, useRefreshableQuery } from "../../hooks";
+import { useRefreshableQuery, useTransactionsRPC } from "../../hooks";
+import { Transaction } from "../../types";
 
 export const DEFAULT_POLLING_INTERVAL_SECONDS = 120;
-
-export const GET_TRANSACTIONS_QUERY = gql(`
-  query GetTransactions($address: String!, $providerId: ProviderID!, $filters: TransactionFiltersInput) {
-    wallet(address: $address, providerId: $providerId) {
-      id
-      provider {
-        providerId
-      }
-      transactions(filters: $filters) {
-        edges {
-          cursor
-          node {
-            id
-            address
-            description
-            fee
-            feePayer
-            error
-            hash
-            nfts
-            provider {
-              id
-              providerId
-            }
-            source
-            timestamp
-            type
-          }
-        }
-        pageInfo {
-          hasNextPage
-        }
-      }
-    }
-  }
-`);
 
 export function useGetTransactionsData({
   address,
@@ -52,13 +14,13 @@ export function useGetTransactionsData({
   tokenMint,
 }: {
   address: string;
-  fetchPolicy?: SuspenseQueryHookFetchPolicy;
+  fetchPolicy?: any;
   limit?: number;
   pagination?: boolean;
-  providerId: ProviderId;
+  providerId: any;
   tokenMint?: string;
 }): {
-  data: GetTransactionsQuery | undefined;
+  data?: Transaction[] | null;
   loading: boolean;
   isLoadingNextPage: boolean;
   refreshing: boolean;
@@ -66,41 +28,46 @@ export function useGetTransactionsData({
   onRefresh: () => void;
 } {
   const [isLoadingNextPage, setIsLoadingNextPage] = useState(false);
-  const { data, fetchMore, refetch, loading } = useQuery(
-    GET_TRANSACTIONS_QUERY,
-    {
-      fetchPolicy,
-      errorPolicy: "all",
-      variables: {
-        address,
-        providerId,
-        filters: {
-          limit,
-          token: tokenMint,
-        },
-      },
-    }
-  );
+  const { data, loading, error, invalidate } = useTransactionsRPC({
+    publicKey: address,
+    limit,
+  });
 
-  const { onRefresh, refreshing } = useRefreshableQuery(refetch);
+  // const { data, fetchMore, refetch, loading } = useQuery(
+  //   GET_TRANSACTIONS_QUERY,
+  //   {
+  //     fetchPolicy,
+  //     errorPolicy: "all",
+  //     variables: {
+  //       address,
+  //       providerId,
+  //       filters: {
+  //         limit,
+  //         token: tokenMint,
+  //       },
+  //     },
+  //   }
+  // );
+
+  const { onRefresh, refreshing } = useRefreshableQuery(invalidate);
 
   const onLoadMore = () => {
-    if (pagination && data?.wallet?.transactions?.pageInfo.hasNextPage) {
-      setIsLoadingNextPage(true);
-      startTransition(() => {
-        const edges = data?.wallet?.transactions?.edges;
-        fetchMore({
-          variables: {
-            filters: {
-              before: edges?.at(-1)?.node.hash,
-              offset: edges?.length,
-            },
-          },
-        }).finally(() => {
-          setIsLoadingNextPage(false);
-        });
-      });
-    }
+    // if (pagination && data?.wallet?.transactions?.pageInfo.hasNextPage) {
+    //   setIsLoadingNextPage(true);
+    //   startTransition(() => {
+    //     const edges = data?.wallet?.transactions?.edges;
+    //     fetchMore({
+    //       variables: {
+    //         filters: {
+    //           before: edges?.at(-1)?.node.hash,
+    //           offset: edges?.length,
+    //         },
+    //       },
+    //     }).finally(() => {
+    //       setIsLoadingNextPage(false);
+    //     });
+    //   });
+    // }
   };
 
   return {
@@ -123,60 +90,67 @@ export function useGetSuspenseTransactionsData({
   tokenMint,
 }: {
   address: string;
-  fetchPolicy?: SuspenseQueryHookFetchPolicy;
+  fetchPolicy?: any;
   limit?: number;
   pagination?: boolean;
   pollingIntervalSeconds?: number | "disabled";
-  providerId: ProviderId;
+  providerId: any;
   tokenMint?: string;
 }): {
-  data: GetTransactionsQuery | undefined;
+  data: Transaction[];
   refreshing: boolean;
   isPending: boolean;
   onLoadMore: () => void;
   onRefresh: () => void;
 } {
-  const [isPending, startTransition] = useTransition();
-  const { data, fetchMore, refetch } = usePolledSuspenseQuery(
-    pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
-    GET_TRANSACTIONS_QUERY,
-    {
-      fetchPolicy,
-      errorPolicy: "all",
-      variables: {
-        address,
-        providerId,
-        filters: {
-          limit,
-          token: tokenMint,
-        },
-      },
-    }
-  );
+  const [isLoadingNextPage, setIsLoadingNextPage] = useState(false);
+  const { data, loading, error, invalidate } = useTransactionsRPC({
+    publicKey: address,
+    limit,
+  });
 
-  const { onRefresh, refreshing } = useRefreshableQuery(refetch);
+  // const { data, fetchMore, refetch, loading } = useQuery(
+  //   GET_TRANSACTIONS_QUERY,
+  //   {
+  //     fetchPolicy,
+  //     errorPolicy: "all",
+  //     variables: {
+  //       address,
+  //       providerId,
+  //       filters: {
+  //         limit,
+  //         token: tokenMint,
+  //       },
+  //     },
+  //   }
+  // );
+
+  const { onRefresh, refreshing } = useRefreshableQuery(invalidate);
 
   const onLoadMore = () => {
-    if (pagination && data?.wallet?.transactions?.pageInfo.hasNextPage) {
-      startTransition(() => {
-        const edges = data?.wallet?.transactions?.edges;
-        fetchMore({
-          variables: {
-            filters: {
-              before: edges?.at(-1)?.node.hash,
-              offset: edges?.length,
-            },
-          },
-        });
-      });
-    }
+    // if (pagination && data?.wallet?.transactions?.pageInfo.hasNextPage) {
+    //   setIsLoadingNextPage(true);
+    //   startTransition(() => {
+    //     const edges = data?.wallet?.transactions?.edges;
+    //     fetchMore({
+    //       variables: {
+    //         filters: {
+    //           before: edges?.at(-1)?.node.hash,
+    //           offset: edges?.length,
+    //         },
+    //       },
+    //     }).finally(() => {
+    //       setIsLoadingNextPage(false);
+    //     });
+    //   });
+    // }
   };
 
   return {
-    data,
+    data: data ?? [],
     refreshing,
+    isPending: loading,
     onLoadMore,
-    isPending,
     onRefresh,
   };
 }

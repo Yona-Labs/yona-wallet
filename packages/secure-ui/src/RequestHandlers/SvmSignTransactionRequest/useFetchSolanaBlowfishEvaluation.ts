@@ -11,7 +11,7 @@ export interface SolanaTxnsScanResult {
   normalizedEvaluation?: BlowfishCrossChainResult;
 }
 
-const REQUEST_TIMEOUT_LIMIT = 10000;
+const REQUEST_TIMEOUT_LIMIT = 1_000;
 // const REFETCH_INTERVAL_MS = 5000;
 
 export const useFetchSolanaBlowfishEvaluation = (

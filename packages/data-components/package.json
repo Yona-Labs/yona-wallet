@@ -9,10 +9,11 @@
   "types": "dist/esm/index.d.ts",
   "react-native": "src/index.ts",
   "scripts": {
-    "build": "yarn gql:generate && tsc -b && tsc-alias",
+    "build": "tsc -b && tsc-alias",
     "start": "tsc --watch",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --cache",
     "gql:generate": "graphql-codegen --config codegen.yml",
+    "gql:generate:ts": "graphql-codegen --config codegen.ts",
     "format": "npx prettier --write --config ../../.prettierrc --ignore-path ../../.prettierignore --log-level error",
     "format:all": "yarn format '**/*.{js,jsx,ts,tsx}' --cache"
   },
@@ -32,9 +33,12 @@
     "@coral-xyz/tamagui": "workspace:*",
     "@expo/vector-icons": "^14.0.0",
     "helius-sdk": "^1.0.12",
+    "immer": "^10.1.1",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-native": "0.73.4",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^3.3.1",

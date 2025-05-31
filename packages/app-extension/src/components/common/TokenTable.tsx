@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as WindowedList } from "react-window";
 import { type Blockchain, UNKNOWN_ICON_SRC } from "@coral-xyz/common";
-import { type GetTokenBalancesQuery } from "@coral-xyz/data-components";
+// import { type GetTokenBalancesQuery } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import type { CachedTokenBalance, TokenDataWithPrice } from "@coral-xyz/recoil";
 import { useActiveWallet } from "@coral-xyz/recoil";
@@ -28,9 +28,11 @@ const useStyles = temporarilyMakeStylesForBrowserExtension((theme) => ({
   },
 }));
 
-export type TokenTableBalance = NonNullable<
-  NonNullable<GetTokenBalancesQuery["wallet"]>["balances"]
->["tokens"]["edges"][number]["node"];
+// export type TokenTableBalance = NonNullable<
+//   NonNullable<GetTokenBalancesQuery["wallet"]>["balances"]
+// >["tokens"]["edges"][number]["node"];
+// TODO: fix type
+export type TokenTableBalance = any;
 
 export function SearchableTokenTable({
   customFilter = () => true,
@@ -93,12 +95,15 @@ function WalletTokenTable({
 
   const tokenAccountsFiltered = useMemo<any[]>(() => {
     const searchLower = search.toLowerCase();
-    let results = tokens.filter(
-      (t) =>
-        t.tokenListEntry &&
-        (t.tokenListEntry.name.toLowerCase().startsWith(searchLower) ||
-          t.tokenListEntry.symbol.toLowerCase().startsWith(searchLower))
-    );
+    let results = tokens.filter((t) => {
+      if (!t.tokenListEntry)
+        return t.token.toLowerCase().startsWith(searchLower);
+
+      return (
+        t.tokenListEntry.name.toLowerCase().startsWith(searchLower) ||
+        t.tokenListEntry.symbol.toLowerCase().startsWith(searchLower)
+      );
+    });
 
     if (customFilter) results = results.filter(customFilter);
     return results;

@@ -1,19 +1,14 @@
-import { useQuery } from "@apollo/client";
 import { formatDate, UNKNOWN_ICON_SRC } from "@coral-xyz/common";
 import { useActiveWallet } from "@coral-xyz/recoil";
+import moment from "moment";
 import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
-import { useMemo } from "react";
+import { Transaction } from "../../types";
 
-import type { GetTransactionsQuery, ProviderId } from "../../apollo/graphql";
-import { GET_TOKEN_BALANCES_QUERY } from "../Balances";
-
-export type ResponseTransaction = NonNullable<
-  NonNullable<GetTransactionsQuery["wallet"]>["transactions"]
->["edges"][number]["node"];
+export type ResponseTransaction = Transaction;
 
 export type TransactionGroup = {
   date: string;
-  data: ResponseTransaction[];
+  data: Transaction[];
 };
 
 /**
@@ -23,13 +18,13 @@ export type TransactionGroup = {
  * @returns {TransactionGroup[]}
  */
 export function getGroupedTransactions(
-  transactions: ResponseTransaction[]
+  transactions: Transaction[]
 ): TransactionGroup[] {
   const groupedTxs: TransactionGroup[] = [];
-  const filteredTxs = transactions.filter((t) => t.timestamp);
+  const filteredTxs = transactions.filter((t) => t.blockTime);
 
   for (let i = 0; i < filteredTxs.length; i++) {
-    const date = formatDate(new Date(transactions[i].timestamp!));
+    const date = formatDate(moment.unix(filteredTxs[i].blockTime!).toDate());
 
     if (
       groupedTxs.length === 0 ||
@@ -53,29 +48,26 @@ export function useTokenLogo({
   name?: string;
   symbol?: string;
 }): string {
-  const wallet = useActiveWallet();
-  const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
-    returnPartialData: true,
-    fetchPolicy: "cache-only",
-    variables: {
-      address: wallet.publicKey,
-      providerId: wallet.blockchain.toUpperCase() as ProviderId,
-    },
-  });
+  // const wallet = useActiveWallet();
+  // const { data } = useQuery(GET_TOKEN_BALANCES_QUERY, {
+  //   returnPartialData: true,
+  //   fetchPolicy: "cache-only",
+  //   variables: {
+  //     address: wallet.publicKey,
+  //     providerId: wallet.blockchain.toUpperCase() as ProviderId,
+  //   },
+  // });
 
-  const item = useMemo(() => {
-    const edges = data?.wallet?.balances?.tokens?.edges ?? [];
-    return edges.find((e) => {
-      if (name) return e.node.tokenListEntry?.name === name;
-      return e.node.tokenListEntry?.symbol === symbol;
-    });
-  }, [data, name, symbol]);
+  // const item = useMemo(() => {
+  //   const edges = data?.wallet?.balances?.tokens?.edges ?? [];
+  //   return edges.find((e) => {
+  //     if (name) return e.node.tokenListEntry?.name === name;
+  //     return e.node.tokenListEntry?.symbol === symbol;
+  //   });
+  // }, [data, name, symbol]);
 
-  if (
-    item?.node.tokenListEntry?.name === "Solana" ||
-    item?.node.tokenListEntry?.symbol === "SOL"
-  )
+  if (name === "Solana" || symbol === "SOL")
     return BTC_TOKEN.tokenListEntry.logo;
 
-  return item?.node?.tokenListEntry?.logo ?? UNKNOWN_ICON_SRC;
+  return UNKNOWN_ICON_SRC;
 }

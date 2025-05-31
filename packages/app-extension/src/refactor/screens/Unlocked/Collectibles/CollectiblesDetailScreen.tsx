@@ -11,7 +11,7 @@ import {
 } from "@coral-xyz/common";
 import {
   CollectibleInscriptionTable,
-  GET_COLLECTIBLES_QUERY,
+  // GET_COLLECTIBLES_QUERY,
   LockCollectionToggle,
 } from "@coral-xyz/data-components";
 import type { CollectibleDetailsProps } from "@coral-xyz/data-components/src/components/Collectibles/CollectibleDetails";
@@ -25,7 +25,7 @@ import {
   useOpenPlugin,
   useTensorMintData,
 } from "@coral-xyz/recoil";
-import type { ProviderId } from "@coral-xyz/recoil/src/apollo/graphql";
+// import type { ProviderId } from "@coral-xyz/recoil/src/apollo/graphql";
 import type { TensorMintDataType } from "@coral-xyz/secure-clients/types";
 import {
   Button,
@@ -141,14 +141,15 @@ function CollectibleDetails({
         onDone: async () => {
           refreshTensorMintData();
           await wait(2);
-          await apollo.query({
-            query: GET_COLLECTIBLES_QUERY,
-            fetchPolicy: "network-only",
-            variables: {
-              address: publicKey,
-              providerId: blockchain.toUpperCase() as ProviderId,
-            },
-          });
+          // TODO: add a query to get the collectibles
+          // await apollo.query({
+          //   query: GET_COLLECTIBLES_QUERY,
+          //   fetchPolicy: "network-only",
+          //   variables: {
+          //     address: publicKey,
+          //     providerId: blockchain.toUpperCase() as ProviderId,
+          //   },
+          // });
         },
       });
 
@@ -193,14 +194,15 @@ function CollectibleDetails({
       onDone: async () => {
         refreshTensorMintData();
         await wait(2);
-        await apollo.query({
-          query: GET_COLLECTIBLES_QUERY,
-          fetchPolicy: "network-only",
-          variables: {
-            address: publicKey,
-            providerId: blockchain.toUpperCase() as ProviderId,
-          },
-        });
+        // TODO: add a query to get the collectibles
+        // await apollo.query({
+        //   query: GET_COLLECTIBLES_QUERY,
+        //   fetchPolicy: "network-only",
+        //   variables: {
+        //     address: publicKey,
+        //     providerId: blockchain.toUpperCase() as ProviderId,
+        //   },
+        // });
       },
     });
 
@@ -341,17 +343,17 @@ function CollectibleDetails({
           {tensorMintData.data &&
           (tensorMintData.data?.activeListing === null ||
             tensorMintData.data?.activeListing?.type === "tlisting") ? (
-              <YStack
-                position="relative"
-                flex={1}
-                flexBasis={1}
-                overflow="hidden"
+            <YStack
+              position="relative"
+              flex={1}
+              flexBasis={1}
+              overflow="hidden"
             >
-                <PrimaryButton
-                  label={edit ? t("list_nft_edit") : t("list_nft")}
-                  onPress={() => openListFlow(activeListingPrice)}
+              <PrimaryButton
+                label={edit ? t("list_nft_edit") : t("list_nft")}
+                onPress={() => openListFlow(activeListingPrice)}
               />
-              </YStack>
+            </YStack>
           ) : null}
         </XStack>
       ) : null}

@@ -51,8 +51,14 @@ export function parseTransaction(
   t: (str: string) => string
 ): ParseTransactionDetails | null {
   try {
-    const desc = transaction.description?.replace(/\.$/, "") ?? "";
-    switch (transaction.type) {
+    const desc =
+      transaction.transaction.message.instructions[0].parsed.type?.replace(
+        /\.$/,
+        ""
+      ) ?? "";
+    const type = transaction.transaction.message.instructions[0].parsed.type;
+
+    switch (type) {
       case TransactionType.BURN:
       case TransactionType.BURN_NFT: {
         return _parseNftBurn(transaction, desc, t);
@@ -241,7 +247,8 @@ function _parseNftAuctionCreated(
 ): ParseTransactionDetails {
   const base = description.split("auction for ")[1];
   const [item, source] = base.split(" on ");
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   return {
     card: {
       tl: item,
@@ -272,7 +279,8 @@ function _parseNftBid(
 ): ParseTransactionDetails {
   const base = description.split("bid ")[1];
   const [amount, item, source] = base.split(" on ").map((x) => x.trim());
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   return {
     card: {
       tl: item,
@@ -305,7 +313,8 @@ function _parseNftBidCancelled(
   const base = description.split("cancelled ")[1];
   const [amount, itemOther] = base.split(" bid for ");
   const [item, source] = itemOther.split(" on ");
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   return {
     card: {
       tl: item,
@@ -350,7 +359,8 @@ function _parseNftBurn(
       ),
       icon: <TransactionListItemIconBurn size={100} />,
       item: name.join(" "),
-      nft: transaction.nfts?.[0] ?? undefined,
+      // nft: transaction.nfts?.[0] ?? undefined,
+      nft: undefined,
       title: `${t("burned")} NFT`,
     },
   };
@@ -372,7 +382,8 @@ function _parseNftListingCanceled(
   const base = description.split("cancelled ")[1];
   const [amount, itemOther] = base.split(" listing for ");
   const [item, source] = itemOther.split(" on ");
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   return {
     card: {
       tl: item,
@@ -405,7 +416,8 @@ function _parseNftListing(
   const base = description.split("listed ")[1];
   const [item, other] = base.split(" for ");
   const [amount, source] = other.split(" on ");
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   return {
     card: {
       tl: item,
@@ -438,7 +450,8 @@ function _parseNftMint(
   const base = description.split("minted ")[1];
   const [item, amountOther] = base.split(" for ");
   const [amount, source] = amountOther.split(" on ");
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   return {
     card: {
       tl: item,
@@ -473,9 +486,11 @@ function _parseNftSale(
   const [item, recipientOther] = base.split(" to ");
   const [_, amountOther] = recipientOther.split(" for ");
   const [amount, source] = amountOther.split(" on ");
-  const mint = transaction.nfts?.[0] ?? undefined;
+  // const mint = transaction.nfts?.[0] ?? undefined;
+  const mint = undefined;
   const actionOn =
-    transaction.address === seller
+    transaction?.transaction?.message?.instructions[0]?.parsed?.info
+      ?.destination === seller
       ? t("sold_on_marketplace", {
           marketplace: formatSnakeToTitleCase(source),
         })
@@ -483,7 +498,10 @@ function _parseNftSale(
           marketplace: formatSnakeToTitleCase(source),
         });
   const actionTitle =
-    transaction.address === seller ? t("sold_nft") : t("bought_nft");
+    transaction?.transaction?.message?.instructions[0]?.parsed?.info
+      ?.destination === seller
+      ? t("sold_nft")
+      : t("bought_nft");
   return {
     card: {
       tl: item,
@@ -642,7 +660,11 @@ function _parseTransfer(
     isMultipleAccounts ? " transferred a total " : " transferred "
   );
   const [amount, to] = base.split(" to ");
-  const isSend = sender === transaction.address;
+  const isSend =
+    sender ===
+    transaction?.transaction?.message?.instructions[0]?.parsed?.info
+      ?.destination;
+
   const action = isSend ? t("sent") : t("received");
   const amt = `${isSend ? "-" : "+"}${_truncateAmount(amount)}`;
   return {
@@ -651,20 +673,31 @@ function _parseTransfer(
       tr: amt,
       bl: isSend
         ? `${t("to")}: ${formatWalletAddress(
-            isMultipleAccounts ? transaction.address : to
+            isMultipleAccounts
+              ? transaction?.transaction?.message?.instructions[0]?.parsed?.info
+                  ?.destination
+              : to
           )}`
         : `${t("from")}: ${formatWalletAddress(sender)}`,
-      icon:
-        transaction.nfts && transaction.nfts.length > 0 ? (
-          <TransactionListItemIconNft size={44} mint={transaction.nfts[0]} />
-        ) : (
-          <Suspense>
-            <TransactionListItemIconTransfer
-              size={44}
-              symbol={amount.split(" ")[1]}
-            />
-          </Suspense>
-        ),
+      icon: (
+        <Suspense>
+          <TransactionListItemIconTransfer
+            size={44}
+            symbol={amount.split(" ")[1]}
+          />
+        </Suspense>
+      ),
+      // icon:
+      //   transaction.nfts && transaction.nfts.length > 0 ? (
+      //     <TransactionListItemIconNft size={44} mint={transaction.nfts[0]} />
+      //   ) : (
+      //     <Suspense>
+      //       <TransactionListItemIconTransfer
+      //         size={44}
+      //         symbol={amount.split(" ")[1]}
+      //       />
+      //     </Suspense>
+      //   ),
     },
     details: {
       amount,
@@ -685,13 +718,15 @@ function _parseTransfer(
           />
         </Suspense>
       ),
-      nft: transaction.nfts?.[0],
+      // nft: transaction.nfts?.[0],
+      nft: undefined,
       title: action,
       transferInfo: {
         directionLabel: isSend ? t("to") : t("from"),
         otherWallet: isSend
           ? isMultipleAccounts
-            ? transaction.address
+            ? transaction?.transaction?.message?.instructions[0]?.parsed?.info
+                ?.destination
             : to
           : sender,
       },
@@ -713,9 +748,10 @@ function _parseUpgradeProgram(
     card: {
       tl: t("program_upgrade"),
       tr: "",
-      bl: transaction.source
-        ? formatSnakeToTitleCase(transaction.source)
-        : undefined,
+      bl: undefined,
+      // bl: transaction.source
+      //   ? formatSnakeToTitleCase(transaction.source)
+      //   : undefined,
     },
     details: {
       // FIXME:

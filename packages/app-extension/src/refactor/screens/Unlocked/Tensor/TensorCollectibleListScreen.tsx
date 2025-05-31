@@ -3,7 +3,7 @@ import React, { useCallback, useRef, useState } from "react";
 import { Pressable } from "react-native";
 import { useApolloClient } from "@apollo/client";
 import { wait } from "@coral-xyz/common";
-import { GET_COLLECTIBLES_QUERY } from "@coral-xyz/data-components";
+// import { GET_COLLECTIBLES_QUERY } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import type { TensorProgressAtomType } from "@coral-xyz/recoil";
 import {
@@ -13,7 +13,7 @@ import {
   useCreateTensorAction,
   useTensorMintData,
 } from "@coral-xyz/recoil";
-import type { ProviderId } from "@coral-xyz/recoil/src/apollo/graphql";
+// import type { ProviderId } from "@coral-xyz/recoil/src/apollo/graphql";
 import type { SolanaClient } from "@coral-xyz/secure-clients";
 import { TensorClient } from "@coral-xyz/secure-clients";
 import type {
@@ -100,15 +100,16 @@ function Container({
       tensorMintData: tensorMintData!.data!,
       onDone: async () => {
         refreshTensorMintData();
-        await wait(2);
-        await apollo.query({
-          query: GET_COLLECTIBLES_QUERY,
-          fetchPolicy: "network-only",
-          variables: {
-            address: publicKey,
-            providerId: blockchain.toUpperCase() as ProviderId,
-          },
-        });
+        // TODO: add refresh collectibles logic
+        // await wait(2);
+        // await apollo.query({
+        //   query: GET_COLLECTIBLES_QUERY,
+        //   fetchPolicy: "network-only",
+        //   variables: {
+        //     address: publicKey,
+        //     providerId: blockchain.toUpperCase() as ProviderId,
+        //   },
+        // });
       },
     });
 

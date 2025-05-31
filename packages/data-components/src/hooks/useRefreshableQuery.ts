@@ -1,15 +1,12 @@
-import type { useSuspenseQuery } from "@apollo/client";
 import { useCallback, useState } from "react";
 
 /**
  * Custom hook to made an Apollo query refreshable with a `SectionList`.
  * @export
- * @param {ReturnType<typeof useSuspenseQuery>["refetch"]} refetch
+ * @param {() => Promise<void>} refetch
  * @returns {{ onRefresh: () => Promise<void>, refreshing: boolean }}
  */
-export function useRefreshableQuery(
-  refetch: ReturnType<typeof useSuspenseQuery>["refetch"]
-): {
+export function useRefreshableQuery(refetch: () => Promise<void>): {
   onRefresh: () => Promise<void>;
   refreshing: boolean;
 } {

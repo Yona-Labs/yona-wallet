@@ -9,7 +9,7 @@ import {
   useBlockchainConnectionUrl,
   useBlockchainExplorer,
 } from "@coral-xyz/recoil";
-import type { ProviderId } from "@coral-xyz/recoil/src/apollo/graphql";
+// import type { ProviderId } from "@coral-xyz/recoil/src/apollo/graphql";
 import { explorerUrl } from "@coral-xyz/secure-background/legacyCommon";
 import { SOL_NATIVE_MINT } from "@coral-xyz/secure-clients/legacyCommon";
 import { sleep } from "@coral-xyz/staking/src/shared";
@@ -18,10 +18,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
 import useAsyncEffect from "use-async-effect";
 
-import {
-  GET_TOKEN_BALANCES_QUERY,
-  GET_TRANSACTIONS_QUERY,
-} from "../../../../../../data-components/src";
+// import {
+//   GET_TOKEN_BALANCES_QUERY,
+//   GET_TRANSACTIONS_QUERY,
+// } from "../../../../../../data-components/src";
 import { ScreenContainer } from "../../../components/ScreenContainer";
 import {
   Routes,
@@ -65,30 +65,32 @@ const Container = ({
         await solanaClient.confirmTransaction(signature);
 
         // After 2s, update graphql cache, no need to await it
-        setTimeout(() => {
-          const providerId = blockchain.toUpperCase() as ProviderId;
-          // Refresh wallet balances
-          void apollo.query({
-            query: GET_TOKEN_BALANCES_QUERY,
-            fetchPolicy: "network-only",
-            variables: {
-              address: publicKey,
-              providerId,
-            },
-          });
-          // Refresh BTC transactions
-          void apollo.query({
-            query: GET_TRANSACTIONS_QUERY,
-            fetchPolicy: "network-only",
-            variables: {
-              address: publicKey,
-              providerId,
-              filters: {
-                token: SOL_NATIVE_MINT,
-              },
-            },
-          });
-        }, 2000);
+        // setTimeout(() => {
+        // const providerId = blockchain.toUpperCase() as ProviderId;
+        // Refresh wallet balances
+        // TODO: add refresh token balances logic
+        // void apollo.query({
+        //   query: GET_TOKEN_BALANCES_QUERY,
+        //   fetchPolicy: "network-only",
+        //   variables: {
+        //     address: publicKey,
+        //     providerId,
+        //   },
+        // });
+        // Refresh BTC transactions
+        // TODO: add refresh BTC transactions logic
+        // void apollo.query({
+        //   query: GET_TRANSACTIONS_QUERY,
+        //   fetchPolicy: "network-only",
+        //   variables: {
+        //     address: publicKey,
+        //     providerId,
+        //     filters: {
+        //       token: SOL_NATIVE_MINT,
+        //     },
+        //   },
+        // });
+        // }, 2000);
 
         await Promise.allSettled([
           // Give enough time for UI to update

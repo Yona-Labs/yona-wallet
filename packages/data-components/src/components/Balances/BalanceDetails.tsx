@@ -34,69 +34,12 @@ import { type ReactNode, useMemo, useEffect } from "react";
 
 import { type BalanceSummaryProps, PercentChange } from "./BalanceSummary";
 import { ErrorMessage } from "./ErrorMessage";
-import { gql } from "../../apollo";
-import type {
-  GetTokensForWalletDetailsQuery,
-  ProviderId,
-} from "../../apollo/graphql";
-import { useBitcoinPrice } from "../../hooks";
+import { useBitcoinPrice, useTokenBalancesRPC } from "../../hooks";
 import {
   TransactionHistory,
   type TransactionHistoryProps,
 } from "../TransactionHistory";
 import { _TransactionListItemBasic } from "../TransactionHistory/TransactionListItem";
-
-const GET_TOKENS_FOR_WALLET_DETAILS = gql(`
-  query GetTokensForWalletDetails($address: String!, $providerId: ProviderID!) {
-    wallet(address: $address, providerId: $providerId) {
-      id
-      provider {
-        providerId
-      }
-      balances {
-        tokens {
-          edges {
-            node {
-              id
-              address
-              displayAmount
-              marketData {
-                id
-                marketId
-                marketUrl
-                percentChange
-                price
-                value
-                valueChange
-              }
-              solana {
-                id
-                extensions {
-                  id
-                  currentInterestRate
-                  transferFeePercentage
-                  transferHook
-                }
-              }
-              token
-              tokenListEntry {
-                id
-                address
-                logo
-                name
-                symbol
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`);
-
-type _ResponseToken = NonNullable<
-  NonNullable<GetTokensForWalletDetailsQuery["wallet"]>["balances"]
->["tokens"]["edges"][number]["node"];
 
 export type BalanceDetailsProps = {
   loaderComponent?: ReactNode;
@@ -105,73 +48,6 @@ export type BalanceDetailsProps = {
   symbol: string;
   token: string;
   widgets?: ReactNode;
-};
-
-const useTokensForWalletDetails = (payload: any) => {
-  const { data } = useSuspenseQuery(GET_TOKENS_FOR_WALLET_DETAILS, {
-    fetchPolicy: "cache-and-network",
-    errorPolicy: "all",
-    variables: {
-      address: payload.publicKey,
-      transactionFilters: {
-        token: payload.tokenMint,
-      },
-      providerId: payload.providerId,
-    },
-  });
-
-  if (data?.wallet?.balances?.tokens.edges) {
-    const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
-      (balance) => balance.node.token === BTC_TOKEN.token
-    );
-
-    if (balanceIndex >= 0) {
-      // data.wallet.balances.tokens.edges[balanceIndex] = {
-      //   node: {
-      //     ...BTC_TOKEN,
-      //     displayAmount:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
-      //     marketData:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
-      //     __typename:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
-      //   },
-      // };
-      data.wallet.balances.tokens.edges[balanceIndex] = {
-        node: {
-          ...data.wallet.balances.tokens.edges[balanceIndex].node,
-          tokenListEntry: {
-            ...BTC_TOKEN.tokenListEntry,
-            id:
-              data.wallet.balances.tokens.edges[balanceIndex].node
-                .tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
-          },
-          marketData: {
-            // id:
-            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
-            //     ?.id ?? "",
-            // percentChange:
-            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
-            //     ?.percentChange ?? 0,
-            // price:
-            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
-            //     ?.price ?? 0,
-            // value:
-            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
-            //     ?.value ?? 0,
-            // valueChange:
-            //   data.wallet.balances.tokens.edges[balanceIndex].node.marketData
-            //     ?.value ?? 0,
-            ...BTC_TOKEN.marketData,
-            marketUrl: "https://www.coingecko.com/en/coins/bitcoin",
-            marketId: "bitcoin",
-          },
-        },
-      };
-    }
-  }
-
-  return data;
 };
 
 export function BalanceDetails({
@@ -183,54 +59,37 @@ export function BalanceDetails({
 }: BalanceDetailsProps) {
   const { t } = useTranslation();
   const activeWallet = useActiveWallet();
-  const providerId = activeWallet.blockchain.toUpperCase() as ProviderId;
-  // const { data } = useSuspenseQuery(GET_TOKENS_FOR_WALLET_DETAILS, {
-  //   fetchPolicy: "cache-and-network",
-  //   errorPolicy: "all",
-  //   variables: {
-  //     address: activeWallet.publicKey,
-  //     transactionFilters: {
-  //       token: tokenMint,
-  //     },
-  //     providerId,
-  //   },
-  // });
+  const price = useBitcoinPrice();
+  const providerId = activeWallet.blockchain.toUpperCase();
 
-  const data = useTokensForWalletDetails({
+  const { data: dataRPC } = useTokenBalancesRPC({
     publicKey: activeWallet.publicKey,
-    tokenMint,
-    providerId,
+    // tokenMint,
   });
 
-  const price = useBitcoinPrice();
+  const token = useMemo(() => {
+    if (!dataRPC) return null;
 
-  const token: _ResponseToken | undefined = useMemo(() => {
-    const token = JSON.parse(
-      JSON.stringify(
-        data?.wallet?.balances?.tokens?.edges.find(
-          (e) => e.node.token === tokenMint
-        )?.node
-      )
-    );
+    const token = dataRPC.find((token) => token.token === tokenMint);
 
-    if (price && token && token.token === BTC_TOKEN.token) {
-      if (token.marketData) {
-        const value = Number(token.displayAmount) * Number(price?.lastPrice);
-
-        token.marketData = {
-          id: token.marketData?.id ?? "",
+    if (token?.token === BTC_TOKEN.token) {
+      return {
+        ...token,
+        marketData: {
+          ...token.marketData,
+          marketId: BTC_TOKEN.marketData.marketId,
+          marketUrl: BTC_TOKEN.marketData.marketUrl,
           price: Number(price?.lastPrice),
           percentChange: Number(price?.priceChangePercent),
-          value,
-          valueChange: value * Number(price?.priceChangePercent),
-          marketId: token.marketData.marketId,
-          marketUrl: token.marketData.marketUrl,
-        };
-      }
+          value: Number(token.displayAmount) * Number(price?.lastPrice),
+          valueChange:
+            Number(token.displayAmount) * Number(price?.priceChangePercent),
+        },
+      };
     }
 
     return token;
-  }, [data?.wallet, tokenMint, price]);
+  }, [dataRPC, price, tokenMint]);
 
   if (!token) {
     return (
@@ -263,16 +122,17 @@ export function BalanceDetails({
       {widgets}
       {token.marketData && token.tokenListEntry ? (
         <TokenMarketInfoTable
-          extensions={token.solana?.extensions}
+          // extensions={token.solana?.extensions} TODO: put something here
+          extensions={null}
           market={{
             id: token.marketData.marketId,
             link: token.marketData.marketUrl,
             price: token.marketData.price,
           }}
+          symbol={token.tokenListEntry.symbol}
           name={token.tokenListEntry.name}
           onLinkClick={onLinkClick}
           style={{ marginHorizontal: 16 }}
-          symbol={token.tokenListEntry.symbol}
         />
       ) : null}
       <TransactionHistory
@@ -317,7 +177,7 @@ function TokenBalanceSummary({
 }
 
 type TokenMarketInfoTableProps = {
-  extensions?: NonNullable<_ResponseToken["solana"]>["extensions"];
+  extensions?: any;
   market: {
     id?: string;
     link: string;

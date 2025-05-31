@@ -1,4 +1,3 @@
-import { SuspenseQueryHookFetchPolicy } from "@apollo/client";
 import type { Blockchain } from "@coral-xyz/common";
 import { hiddenTokenAddresses } from "@coral-xyz/recoil";
 import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
@@ -13,9 +12,7 @@ import {
 } from "./BalanceSummary";
 import { BalancesTable } from "./BalancesTable";
 import type { ResponseBalanceSummary, ResponseTokenBalance } from "./utils";
-import { gql } from "../../apollo";
-import type { ProviderId } from "../../apollo/graphql";
-import { useBitcoinPrice, usePolledSuspenseQuery } from "../../hooks";
+import { useBitcoinPrice, useTokenBalancesRPC } from "../../hooks";
 import type { DataComponentScreenProps } from "../common";
 
 export {
@@ -26,52 +23,6 @@ export {
 export { BalancesTable } from "./BalancesTable";
 export type { ResponseBalanceSummary, ResponseTokenBalance };
 
-const DEFAULT_POLLING_INTERVAL_SECONDS = 60;
-
-export const GET_TOKEN_BALANCES_QUERY = gql(`
-  query GetTokenBalances($address: String!, $providerId: ProviderID!) {
-    wallet(address: $address, providerId: $providerId) {
-      id
-      balances {
-        id
-        aggregate {
-          id
-          percentChange
-          value
-          valueChange
-        }
-        tokens {
-          edges {
-            node {
-              id
-              address
-              amount
-              decimals
-              displayAmount
-              marketData {
-                id
-                percentChange
-                price
-                value
-                valueChange
-              }
-              token
-              tokenListEntry {
-                id
-                address
-                decimals
-                logo
-                name
-                symbol
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`);
-
 export type TokenBalancesProps = DataComponentScreenProps & {
   address: string;
   onItemClick?: (args: {
@@ -81,7 +32,7 @@ export type TokenBalancesProps = DataComponentScreenProps & {
     token: string;
     tokenAccount: string;
   }) => void | Promise<void>;
-  providerId: ProviderId;
+  providerId: any;
   summaryStyle?: BalanceSummaryProps["style"];
   tableFooterComponent?: ReactElement;
   tableLoaderComponent: ReactNode;
@@ -109,63 +60,6 @@ export const TokenBalances = ({
   </Suspense>
 );
 
-const useTokenBalancesQuery = (
-  address: string,
-  providerId: ProviderId,
-  pollingIntervalSeconds?: any,
-  fetchPolicy?: SuspenseQueryHookFetchPolicy
-) => {
-  const { data } = usePolledSuspenseQuery(
-    pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
-    GET_TOKEN_BALANCES_QUERY,
-    {
-      fetchPolicy,
-      errorPolicy: "all",
-      variables: {
-        address,
-        providerId,
-      },
-    }
-  );
-
-  if (data?.wallet?.balances?.tokens.edges) {
-    const balanceIndex = data?.wallet?.balances?.tokens.edges.findIndex(
-      (balance) => balance.node.token === BTC_TOKEN.token
-    );
-
-    if (balanceIndex >= 0) {
-      // data.wallet.balances.tokens.edges[balanceIndex] = {
-      //   node: {
-      //     ...BTC_TOKEN,
-      //     amount: data.wallet.balances.tokens.edges[balanceIndex].node.amount,
-      //     displayAmount:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.displayAmount,
-      //     marketData:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.marketData,
-      //     __typename:
-      //       data.wallet.balances.tokens.edges[balanceIndex].node.__typename,
-      //   },
-      // };
-      data.wallet.balances.tokens.edges[balanceIndex] = {
-        node: {
-          ...data.wallet.balances.tokens.edges[balanceIndex].node,
-          tokenListEntry: {
-            ...BTC_TOKEN.tokenListEntry,
-            id:
-              data.wallet.balances.tokens.edges[balanceIndex].node
-                .tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
-          },
-          marketData: BTC_TOKEN.marketData,
-        },
-      };
-
-      (data.wallet.balances.aggregate as any) = null;
-    }
-  }
-
-  return data;
-};
-
 function _TokenBalances({
   address,
   fetchPolicy,
@@ -180,26 +74,9 @@ function _TokenBalances({
     hiddenTokenAddresses(providerId.toLowerCase() as Blockchain)
   );
 
-  // const { data } = usePolledSuspenseQuery(
-  //   pollingIntervalSeconds ?? DEFAULT_POLLING_INTERVAL_SECONDS,
-  //   GET_TOKEN_BALANCES_QUERY,
-  //   {
-  //     fetchPolicy,
-  //     errorPolicy: "all",
-  //     variables: {
-  //       address,
-  //       providerId,
-  //     },
-  //   }
-  // );
-
-  const data = useTokenBalancesQuery(
-    address,
-    providerId,
-    pollingIntervalSeconds,
-    fetchPolicy
-  );
-
+  const { data } = useTokenBalancesRPC({
+    publicKey: address,
+  });
   const price = useBitcoinPrice();
 
   /**
@@ -209,26 +86,30 @@ function _TokenBalances({
    * aggregation based on the user's hidden token settings.
    */
   const { balances, omissions } = useMemo<{
-    balances: ResponseTokenBalance[];
+    balances: any[];
     omissions: { value: number; valueChange: number };
   }>(() => {
-    let balances =
-      data?.wallet?.balances?.tokens?.edges.map((e) => {
-        if (e.node.token === BTC_TOKEN.token) {
-          const value = Number(e.node.displayAmount) * Number(price?.lastPrice);
-          e.node.marketData = {
-            id: e.node.marketData?.id ?? "",
+    if (!data || !price) {
+      return { balances: [], omissions: { value: 0, valueChange: 0 } };
+    }
+
+    let balances = data.map((token) => {
+      if (token.token === BTC_TOKEN.token) {
+        return {
+          ...token,
+          marketData: {
+            ...token.marketData,
             price: Number(price?.lastPrice),
             percentChange: Number(price?.priceChangePercent),
-            value,
-            valueChange: value * Number(price?.priceChangePercent),
-          };
+            value: Number(token.displayAmount) * Number(price?.lastPrice),
+            valueChange:
+              Number(token.displayAmount) * Number(price?.priceChangePercent),
+          },
+        };
+      }
 
-          return e.node;
-        } else {
-          return e.node;
-        }
-      }) ?? [];
+      return token;
+    });
 
     const omissions = { value: 0, valueChange: 0 };
     if (hidden && hidden.length > 0) {

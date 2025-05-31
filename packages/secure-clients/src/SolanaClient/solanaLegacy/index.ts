@@ -364,7 +364,6 @@ export class Solana {
         commitment
       );
 
-    //
     // Require the account to either be a system program account or a brand new
     // account.
     //
@@ -375,15 +374,24 @@ export class Solana {
       throw new Error("invalid account");
     }
 
+    console.log("programId", programId.toBase58());
+    console.log("destination", destination.toBase58());
+    console.log("destinationAta", destinationAta.toBase58());
+    console.log("walletPublicKey", walletPublicKey.toBase58());
     // Instructions to execute prior to the transfer.
     const preInstructions: Array<TransactionInstruction> = [];
-    if (!destinationAtaAccount) {
-      preInstructions.push(
-        assertOwner.assertOwnerInstruction({
-          account: destination,
-          owner: SystemProgram.programId,
-        })
-      );
+
+    const ataInfo = await connection.getAccountInfo(destinationAta);
+
+    console.log("ataInfo", ataInfo);
+
+    if (!ataInfo) {
+      // preInstructions.push(
+      //   assertOwner.assertOwnerInstruction({
+      //     account: destination,
+      //     owner: SystemProgram.programId,
+      //   })
+      // );
       preInstructions.push(
         createAssociatedTokenAccountInstruction(
           walletPublicKey,
@@ -394,6 +402,8 @@ export class Solana {
         )
       );
     }
+
+    console.log(preInstructions.map((ix) => ix.programId.toString()));
 
     const tx = await tokenInterface
       .withProgramId(programId)

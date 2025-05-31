@@ -5,11 +5,7 @@ import {
   UI_RPC_METHOD_NAVIGATION_TO_ROOT,
   wait,
 } from "@coral-xyz/common";
-import {
-  GET_COLLECTIBLES_QUERY,
-  type ProviderId,
-  type ResponseCollectible,
-} from "@coral-xyz/data-components";
+import { type ResponseCollectible } from "@coral-xyz/data-components";
 import { useTranslation } from "@coral-xyz/i18n";
 import {
   blockchainClientAtom,
@@ -138,14 +134,15 @@ export function CollectibleOptionsButton({
           }}
           onComplete={async () => {
             await wait(2);
-            await apollo.query({
-              query: GET_COLLECTIBLES_QUERY,
-              fetchPolicy: "network-only",
-              variables: {
-                address: activeWallet.publicKey,
-                providerId: activeWallet.blockchain.toUpperCase() as ProviderId,
-              },
-            });
+            // TODO: rewrite to rpc call
+            // await apollo.query({
+            //   query: GET_COLLECTIBLES_QUERY,
+            //   fetchPolicy: "network-only",
+            //   variables: {
+            //     address: activeWallet.publicKey,
+            //     providerId: activeWallet.blockchain.toUpperCase() as ProviderId,
+            //   },
+            // });
             setBurnt(true);
           }}
         />
@@ -167,6 +164,7 @@ function BurnConfirmationCard({
   const blockchainClient = useRecoilValue(blockchainClientAtom(blockchain));
   const user = useRecoilValue(secureUserAtom);
   const avatar = useAvatarUrl(120, user.user.username);
+  const activeWallet = useActiveWallet();
   const [state, setState] = useState<
     "confirm" | "sending" | "confirming" | "confirmed" | "error"
   >("confirm");
@@ -183,8 +181,8 @@ function BurnConfirmationCard({
   const nftId = nft.id as string;
 
   useEffect(() => {
-    blockchainClient.prefetchAsset(nftId);
-  }, [blockchainClient, nftId]);
+    blockchainClient.prefetchAsset(nftId, activeWallet.publicKey);
+  }, [blockchainClient, nftId, activeWallet.publicKey]);
 
   const onConfirm = async () => {
     try {

@@ -15,23 +15,11 @@ import {
   useSwapOutputTokens,
   // useSwapValidInputTokens,
 } from "./blockchain-hooks";
-import { gql } from "../../apollo";
-import type {
-  GetCachedTokenBalancesQuery,
-  ProviderId,
-} from "../../apollo/graphql";
 
 export * from "./blockchain-hooks";
 
 const { Zero } = ethers.constants;
 const ROUTE_POLL_INTERVAL = 10000;
-
-const TokenMintForAssetIdFragment = gql(`
-  fragment TokenMintForAssetIdFragment on TokenBalance {
-    id
-    token
-  }
-`);
 
 // export const GET_SWAP_VALID_INPUT_TOKENS = gql(`
 //     query GetSwapValidInputTokens($tokens: [String!]!) {
@@ -39,36 +27,36 @@ const TokenMintForAssetIdFragment = gql(`
 //     }
 // `);
 
-const GET_TOKEN_BALANCES = gql(`
-  query GetCachedTokenBalances($providerId: ProviderID!, $address: String!) {
-    wallet(providerId: $providerId, address: $address) {
-      balances {
-        tokens {
-          edges {
-            node {
-              id
-              amount
-              displayAmount
-              token
-              marketData {
-                value
-                valueChange
-              }
-              tokenListEntry {
-                id
-                address
-                decimals
-                logo
-                name
-                symbol
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`);
+// const GET_TOKEN_BALANCES = gql(`
+//   query GetCachedTokenBalances($providerId: ProviderID!, $address: String!) {
+//     wallet(providerId: $providerId, address: $address) {
+//       balances {
+//         tokens {
+//           edges {
+//             node {
+//               id
+//               amount
+//               displayAmount
+//               token
+//               marketData {
+//                 value
+//                 valueChange
+//               }
+//               tokenListEntry {
+//                 id
+//                 address
+//                 decimals
+//                 logo
+//                 name
+//                 symbol
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `);
 
 // export const GET_SWAP_OUTPUT_TOKENS = gql(`
 //   query GetSwapOutputTokens($inputToken: String!) {
@@ -85,24 +73,27 @@ const GET_TOKEN_BALANCES = gql(`
 
 // TODO: need to test if this works for asset ids for other chains.
 export function useMintForAssetId(id?: string): string | null {
-  const { data } = useFragment({
-    fragment: TokenMintForAssetIdFragment,
-    from: {
-      __typename: "TokenBalance",
-      id,
-    },
-  });
+  // const { data } = useFragment({
+  //   fragment: TokenMintForAssetIdFragment,
+  //   from: {
+  //     __typename: "TokenBalance",
+  //     id,
+  //   },
+  // });
 
   if (!id) {
     return SOL_NATIVE_MINT;
   }
 
-  return data?.token ?? null;
+  // return data?.token ?? null;
+  return null; //TODO: mayber rewrite to rpc call
 }
 
-export type CachedTokenBalance = NonNullable<
-  NonNullable<GetCachedTokenBalancesQuery["wallet"]>["balances"]
->["tokens"]["edges"][number]["node"];
+// export type CachedTokenBalance = NonNullable<
+//   NonNullable<GetCachedTokenBalancesQuery["wallet"]>["balances"]
+// >["tokens"]["edges"][number]["node"];
+
+export type CachedTokenBalance = any;
 
 export function useCachedTokenBalances({
   walletPublicKey,
@@ -111,27 +102,27 @@ export function useCachedTokenBalances({
   walletPublicKey: string;
   blockchain: Blockchain;
 }): {
-  balances: CachedTokenBalance[];
+  balances: any[];
   isLoading: boolean;
 } {
-  const { data, loading } = useQuery(GET_TOKEN_BALANCES, {
-    fetchPolicy: "cache-only",
-    returnPartialData: true,
-    variables: {
-      address: walletPublicKey,
-      providerId: blockchain.toUpperCase() as ProviderId,
-    },
-  });
+  // const { data, loading } = useQuery(GET_TOKEN_BALANCES, {
+  //   fetchPolicy: "cache-only",
+  //   returnPartialData: true,
+  //   variables: {
+  //     address: walletPublicKey,
+  //     providerId: blockchain.toUpperCase() as ProviderId,
+  //   },
+  // });
 
-  const nodes = useMemo(
-    () =>
-      loading
-        ? []
-        : data?.wallet?.balances?.tokens.edges.map((e) => e.node) ?? [],
-    [data, loading]
-  );
-
-  return { balances: nodes, isLoading: loading };
+  // const nodes = useMemo(
+  //   () =>
+  //     loading
+  //       ? []
+  //       : data?.wallet?.balances?.tokens.edges.map((e) => e.node) ?? [],
+  //   [data, loading]
+  // );
+  // TODO: mayber rewrite to rpc call
+  return { balances: [], isLoading: false };
 }
 
 export function useQuote({
@@ -297,7 +288,7 @@ export function useToToken({
     blockchain: Blockchain;
   } | null;
 }): {
-  toToken: CachedTokenBalance | null;
+  toToken: any | null;
   isLoading: boolean;
 } {
   const { balances: outputBalances, isLoading: isLoadingTokenBalances } =
@@ -360,7 +351,7 @@ export function useFromToken({
     blockchain: Blockchain;
   } | null;
 }): {
-  fromToken: CachedTokenBalance | null;
+  fromToken: any | null;
   isLoading: boolean;
 } {
   const { balances: fromBalances, isLoading: isLoadingTokenBalances } =

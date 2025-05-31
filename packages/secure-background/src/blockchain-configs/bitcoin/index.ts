@@ -10,6 +10,8 @@ export const BTC_TOKEN = {
     price: 0,
     value: 0,
     valueChange: 0,
+    marketId: "bitcoin",
+    marketUrl: "https://www.coingecko.com/en/coins/bitcoin",
   },
   token: "11111111111111111111111111111111",
   tokenListEntry: {

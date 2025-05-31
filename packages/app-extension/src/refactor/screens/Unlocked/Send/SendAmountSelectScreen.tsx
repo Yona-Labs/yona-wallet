@@ -37,6 +37,7 @@ import {
   Routes,
   type SendAmountSelectScreenProps,
 } from "../../../navigation/SendNavigator";
+import { useTokenBalancesRPC } from "@coral-xyz/data-components";
 
 export function SendAmountSelectScreen(props: SendAmountSelectScreenProps) {
   return (
@@ -56,56 +57,63 @@ function Container(props: SendAmountSelectScreenProps) {
 }
 
 const useTokenBalanceFragment = (assetId: string) => {
-  const apollo = useApolloClient();
+  const active = useActiveWallet();
 
-  let data = apollo.readFragment<TokenTableBalance>({
-    id: `TokenBalance:${assetId}`,
-    fragment: gql`
-      fragment SelectorTokenBalanceFragment on TokenBalance {
-        id
-        address
-        amount
-        decimals
-        displayAmount
-        marketData {
-          id
-          percentChange
-          value
-          valueChange
-        }
-        token
-        tokenListEntry {
-          id
-          address
-          logo
-          name
-          symbol
-        }
-      }
-    `,
+  // const data = useTokenBalancesRPC()
+  const { store } = useTokenBalancesRPC({
+    publicKey: active.publicKey,
   });
+
+  let data = store[assetId];
+
+  // let data = apollo.readFragment<TokenTableBalance>({
+  //   id: `TokenBalance:${assetId}`,
+  //   fragment: gql`
+  //     fragment SelectorTokenBalanceFragment on TokenBalance {
+  //       id
+  //       address
+  //       amount
+  //       decimals
+  //       displayAmount
+  //       marketData {
+  //         id
+  //         percentChange
+  //         value
+  //         valueChange
+  //       }
+  //       token
+  //       tokenListEntry {
+  //         id
+  //         address
+  //         logo
+  //         name
+  //         symbol
+  //       }
+  //     }
+  //   `,
+  // });
   console.log(assetId, "assetId");
   console.log(JSON.stringify(data), "PRE DATA");
 
   if (!data) return null;
 
-  if (data.token === BTC_TOKEN.token) {
-    // data = {
-    //   ...data,
-    //   ...BTC_TOKEN,
-    //   marketData: data.marketData,
-    //   displayAmount: data.displayAmount,
-    //   amount: data.amount,
-    // };
-    data = {
-      ...data,
-      tokenListEntry: {
-        ...BTC_TOKEN.tokenListEntry,
-        id: data.tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
-      },
-      marketData: BTC_TOKEN.marketData,
-    };
-  }
+  // if (data.token === BTC_TOKEN.token) {
+  //   // data = {
+  //   //   ...data,
+  //   //   ...BTC_TOKEN,
+  //   //   marketData: data.marketData,
+  //   //   displayAmount: data.displayAmount,
+  //   //   amount: data.amount,
+  //   // };
+  //   data = {
+  //     ...data,
+  //     tokenListEntry: {
+  //       ...BTC_TOKEN.tokenListEntry,
+  //       id: data.tokenListEntry?.id ?? BTC_TOKEN.tokenListEntry.id,
+  //     },
+  //     marketData: BTC_TOKEN.marketData,
+  //   };
+  // }
   console.log(JSON.stringify(data), "POST DATA");
 
   return data;
@@ -206,7 +214,8 @@ function _SendInner({
   }
 
   useEffect(() => {
-    blockchainClient.prefetchAsset(nftId);
+    console.log("prefetchAsset", nftId);
+    blockchainClient.prefetchAsset(nftId, active.publicKey);
   }, [blockchainClient, nftId]);
 
   const onPressNext = async () => {

@@ -37,16 +37,16 @@ export function SvmSignAllTransactionsRequest({
   );
   const mutableLockedNfts = mutableLockedNftsLoadable.getValue() ?? [];
   const mutatedTransactions = solanaAllMutatedTransactionLoadable.getValue();
-  const blowfishEvaluation = useFetchSolanaBlowfishEvaluation(
-    SolanaClient.config.blowfishUrl,
-    currentRequest.request.txs,
-    currentRequest.event.origin.address,
-    currentRequest.request.publicKey,
-    (error) => {
-      setBlowfishError(true);
-      console.error(error);
-    }
-  );
+  // const blowfishEvaluation = useFetchSolanaBlowfishEvaluation(
+  //   SolanaClient.config.blowfishUrl,
+  //   currentRequest.request.txs,
+  //   currentRequest.event.origin.address,
+  //   currentRequest.request.publicKey,
+  //   (error) => {
+  //     setBlowfishError(true);
+  //     console.error(error);
+  //   }
+  // );
 
   const [showSimulationFailed, setShowSimulationFailed] = useState(true);
 
@@ -118,8 +118,7 @@ export function SvmSignAllTransactionsRequest({
     <RequireUserUnlocked
       onReset={() => currentRequest.error(new Error("Login Failed"))}
     >
-      {blowfishEvaluation.isLoading ||
-      mutableLockedNftsLoadable.state === "loading" ? (
+      {false || mutableLockedNftsLoadable.state === "loading" ? (
         <Loading />
       ) : (
         //  : (blowfishError ||
@@ -143,7 +142,8 @@ export function SvmSignAllTransactionsRequest({
           signerPublicKey={currentRequest.request.publicKey}
           onDeny={onDeny}
           onApprove={onApprove}
-          evaluation={blowfishEvaluation.normalizedEvaluation}
+          // evaluation={blowfishEvaluation.normalizedEvaluation}
+          evaluation={undefined}
           customWarnings={customWarnings}
         />
       )}

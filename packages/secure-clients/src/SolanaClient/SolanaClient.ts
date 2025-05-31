@@ -131,14 +131,17 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
   }
 
   private prefetchedAssets: {
-    [assetId: string]: Promise<PrefetchedAsset>;
+    [key: string]: Promise<PrefetchedAsset>;
   } = {};
 
-  public prefetchAsset(assetId: string) {
+  public prefetchAsset(assetId: string, address: string) {
     void this.getBlockhash();
-    this.prefetchedAssets[assetId] = Promise.resolve().then(
+    this.prefetchedAssets[`${assetId}-${address}`] = Promise.resolve().then(
       async (): Promise<PrefetchedAsset> => {
-        const asset: PrefetchedAsset = await getSolanaAssetById(assetId);
+        const asset: PrefetchedAsset = await getSolanaAssetById(
+          assetId,
+          address
+        );
         if (!asset.mint || asset.mint === SOL_NATIVE_MINT.toString()) {
           return asset;
         }
@@ -242,7 +245,7 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
 
         return {
           ...asset,
-          ...(asset.__typename === "Nft" ? { proofData } : {}),
+          // ...(asset.__typename === "Nft" ? { proofData } : {}),
           parsedAta,
           parsedMint,
           merkleTree,
@@ -255,11 +258,14 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
     );
   }
 
-  private getAssetById(assetId: string): Promise<PrefetchedAsset> {
+  private getAssetById(
+    assetId: string,
+    address: string
+  ): Promise<PrefetchedAsset> {
     if (!this.prefetchedAssets[assetId]) {
-      this.prefetchAsset(assetId);
+      this.prefetchAsset(assetId, address);
     }
-    return this.prefetchedAssets[assetId];
+    return this.prefetchedAssets[`${assetId}-${address}`];
   }
 
   public async transferAsset(req: {
@@ -269,11 +275,11 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
     amount: string;
   }): Promise<string> {
     const { from, to, amount, assetId } = req;
-    const asset = await this.getAssetById(assetId);
+    const asset = await this.getAssetById(assetId, from.publicKey);
     const solanaCtx = await this.buildCtx(from.publicKey);
 
     let txSig: string;
-
+    console.log("ASSET", asset);
     try {
       if (!asset.mint || asset.__typename === "TokenBalance") {
         if (!asset.mint || asset.mint === SOL_NATIVE_MINT.toString()) {
@@ -290,6 +296,10 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
           if (!asset.parsedAta || !asset.parsedMint) {
             throw new Error("Account data not available");
           }
+          console.log(
+            "PROGRAM ID",
+            new PublicKey(asset.parsedAta.programId).toString()
+          );
           txSig = await Solana.transferToken(
             solanaCtx,
             {
@@ -427,7 +437,7 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
     const solanaCtx = await this.buildCtx(from.publicKey);
 
     const gqlAssetId = assetId;
-    const nft = await this.getAssetById(gqlAssetId);
+    const nft = await this.getAssetById(gqlAssetId, from.publicKey);
 
     if (nft.__typename !== "Nft") {
       throw new Error("Can't burn Fungible token");

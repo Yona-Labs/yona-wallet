@@ -8,28 +8,28 @@ export type BlockchainClient<B extends Blockchain = Blockchain> =
   B extends Blockchain.ETHEREUM
     ? EthereumClient
     : B extends Blockchain.SOLANA
-    ? SolanaClient
-    : B extends Blockchain.ECLIPSE
-    ? SolanaClient
-    : never;
+      ? SolanaClient
+      : B extends Blockchain.ECLIPSE
+        ? SolanaClient
+        : never;
 
 export type BlockchainReceipt<B extends Blockchain = Blockchain> =
   B extends Blockchain.ETHEREUM
     ? string
     : B extends Blockchain.SOLANA
-    ? string
-    : B extends Blockchain.ECLIPSE
-    ? string
-    : never;
+      ? string
+      : B extends Blockchain.ECLIPSE
+        ? string
+        : never;
 
 export type BlockchainConfirmation<B extends Blockchain = Blockchain> =
   B extends Blockchain.ETHEREUM
     ? true
     : B extends Blockchain.SOLANA
-    ? true
-    : B extends Blockchain.ECLIPSE
-    ? true
-    : never;
+      ? true
+      : B extends Blockchain.ECLIPSE
+        ? true
+        : never;
 
 export type BackpackAssetId = string;
 export type BackpackEntity = {
@@ -43,7 +43,10 @@ export abstract class BlockchainClientBase<B extends Blockchain = Blockchain> {
   // @ts-ignore strictPropertyInitialization -> not applicable to abstract class
   public config: BlockchainConfig<B>;
 
-  public abstract prefetchAsset(assetId: BackpackAssetId): void;
+  public abstract prefetchAsset(
+    assetId: BackpackAssetId,
+    address: string
+  ): void;
 
   public abstract transferAsset(req: {
     assetId: BackpackAssetId;

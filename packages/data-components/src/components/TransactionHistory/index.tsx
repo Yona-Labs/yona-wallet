@@ -4,13 +4,11 @@ import { Platform } from "react-native";
 
 import { TransactionList } from "./TransactionList";
 import { TransactionsProvider } from "./context";
-import { GET_TRANSACTIONS_QUERY, useGetSuspenseTransactionsData } from "./data";
+import { useGetSuspenseTransactionsData } from "./data";
 import type { ParseTransactionDetails } from "./parsing";
 import { getGroupedTransactions, type ResponseTransaction } from "./utils";
-import type { ProviderId } from "../../apollo/graphql";
 import type { DataComponentScreenProps } from "../common";
 
-export { GET_TRANSACTIONS_QUERY };
 export type { ParseTransactionDetails, ResponseTransaction };
 export { parseTransaction } from "./parsing";
 export * from "./TransactionDetails";
@@ -25,7 +23,7 @@ export type TransactionHistoryProps = DataComponentScreenProps & {
     parsedDetails: ParseTransactionDetails | null
   ) => void;
   pagination?: boolean;
-  providerId: ProviderId;
+  providerId: any;
   style?: SectionListProps<ResponseTransaction>["style"];
   tokenMint?: string;
   ListComponent?: typeof SectionList | any;
@@ -78,10 +76,7 @@ function _TransactionHistory({
    * Memoized value for the transactions list that is grouped by date.
    */
   const groupedTransactions = useMemo(
-    () =>
-      getGroupedTransactions(
-        data?.wallet?.transactions?.edges.map((e) => e.node) ?? []
-      ),
+    () => getGroupedTransactions(data),
     [data]
   );
 

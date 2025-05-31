@@ -1,8 +1,10 @@
-import type { GetCollectiblesQuery } from "../../apollo/graphql";
+// import type { GetCollectiblesQuery } from "../../apollo/graphql";
 
-export type ResponseCollectible = NonNullable<
-  NonNullable<GetCollectiblesQuery["wallet"]>["nfts"]
->["edges"][number]["node"];
+// export type ResponseCollectible = NonNullable<
+//   NonNullable<GetCollectiblesQuery["wallet"]>["nfts"]
+// >["edges"][number]["node"];
+
+export type ResponseCollectible = any; // TODO: maybe rewrite to rpc call
 
 export type CollectibleGroup = {
   collection: string;

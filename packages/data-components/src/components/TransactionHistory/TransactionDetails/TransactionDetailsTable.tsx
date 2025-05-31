@@ -22,6 +22,7 @@ import {
 
 import type { ParseTransactionDetails } from "../parsing";
 import type { ResponseTransaction } from "../utils";
+import moment from "moment";
 
 export type TransactionDetailsTableProps = {
   details: ParseTransactionDetails;
@@ -41,10 +42,10 @@ export function TransactionDetailsTable({
 
   return (
     <TableCore style={{ width: "100%", ...style }}>
-      {transaction.timestamp ? (
+      {transaction.blockTime ? (
         <TableRowCore
           label={t("activity_table_labels.date")}
-          value={formatDate(new Date(transaction.timestamp), true)}
+          value={formatDate(moment.unix(transaction.blockTime).toDate(), true)}
         />
       ) : null}
       {details.details.item ? (
@@ -64,18 +65,19 @@ export function TransactionDetailsTable({
       ) : null}
       <TableRowCore
         label={t("activity_table_labels.source")}
-        value={formatSnakeToTitleCase(transaction.source ?? t("unknown"))}
+        // value={formatSnakeToTitleCase(transaction.source ?? t("unknown"))} TODO: maybe rewrite to rpc call
+        value={t("unknown")}
       />
-      {transaction.fee ? (
-        <TableRowCore label={t("network_fee")} value={transaction.fee} />
-      ) : null}
-      {transaction.feePayer && transaction.feePayer !== active.publicKey ? (
+      {/* {transaction.fee ? (
+        <TableRowCore label={t("network_fee")} value={transaction.fee} /> // TODO: rewrite types
+      ) : null} */}
+      {/* {transaction.feePayer && transaction.feePayer !== active.publicKey ? (
         <TableRowCore
           label={t("network_fee_payer")}
           value={formatWalletAddress(transaction.feePayer!)}
         />
-      ) : null}
-      <TableRowCore
+      ) : null} */}
+      {/* <TableRowCore
         label={t("activity_table_labels.status")}
         value={<_TransactionStatusRowValue error={!!transaction.error} />}
       />
@@ -85,7 +87,7 @@ export function TransactionDetailsTable({
         onPress={() =>
           openUrl(explorerUrl(explorer, transaction.hash, connection))
         }
-      />
+      /> */}
     </TableCore>
   );
 }

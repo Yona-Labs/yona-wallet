@@ -53,16 +53,16 @@ export function AnyTransaction({
   );
   const hasGas = hasGasLoadable.valueMaybe() ?? true;
   const mutableLockedNfts = mutableLockedNftsLoadable.valueMaybe() ?? [];
-  const blowfishEvaluation = useFetchSolanaBlowfishEvaluation(
-    SolanaClient.config.blowfishUrl,
-    [currentRequest.request.tx],
-    currentRequest.event.origin.address,
-    currentRequest.request.publicKey,
-    (error) => {
-      setBlowfishError(true);
-      console.error(error);
-    }
-  );
+  // const blowfishEvaluation = useFetchSolanaBlowfishEvaluation(
+  //   SolanaClient.config.blowfishUrl,
+  //   [currentRequest.request.tx],
+  //   currentRequest.event.origin.address,
+  //   currentRequest.request.publicKey,
+  //   (error) => {
+  //     setBlowfishError(true);
+  //     console.error(error);
+  //   }
+  // );
 
   const [transactionOverridesLoadable, setTransactionOverrides] =
     useRecoilStateLoadable(solanaTxOverridesAtom(currentRequest.request));
@@ -120,7 +120,7 @@ export function AnyTransaction({
     <RequireUserUnlocked
       onReset={() => currentRequest.error(new Error("Login Failed"))}
     >
-      {blowfishEvaluation.isLoading ? (
+      {false ? (
         <Loading />
       ) : (
         //  : (blowfishError ||
@@ -145,7 +145,8 @@ export function AnyTransaction({
           isApproveLoading={!mutatedTransaction}
           onDeny={onDeny}
           onApprove={onApprove}
-          evaluation={blowfishEvaluation.normalizedEvaluation}
+          // evaluation={blowfishEvaluation.normalizedEvaluation}
+          evaluation={undefined}
           customWarnings={customWarnings}
           prepend={
             isTxMutable && transactionOverrides
