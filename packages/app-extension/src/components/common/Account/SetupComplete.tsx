@@ -45,7 +45,7 @@ export function SetupComplete({ onClose }: { onClose: () => void }) {
             />
           </StyledText>
         </YStack>
-        <XStack gap={12}>
+        {/* <XStack gap={12}>
           <_CallToAction
             icon={
               <RedBackpackIcon
@@ -61,7 +61,7 @@ export function SetupComplete({ onClose }: { onClose: () => void }) {
           />
           <_CallToAction
             icon={<XTwitterIcon style={{ height: 24 }} />}
-            title="@Yona"
+            title="@Hyper"
             onClick={() => window.open(TWITTER_LINK, "_blank")}
           />
           <_CallToAction
@@ -74,7 +74,7 @@ export function SetupComplete({ onClose }: { onClose: () => void }) {
             title={t("discord")}
             onClick={() => window.open(DISCORD_INVITE_LINK, "_blank")}
           />
-        </XStack>
+        </XStack> */}
         <BpPrimaryButton
           label={`${t("open_backpack")}`}
           labelProps={{ fontWeight: "$semiBold" }}

@@ -34,7 +34,7 @@ function BlockchainSelect({ onChange, value }: BlockchainSelectProps) {
       selectedValue={value}
       onValueChange={onChange}
     >
-      <Picker.Item label="Yona" value="solana" />
+      <Picker.Item label="Hyper" value="solana" />
       <Picker.Item label="Ethereum" value="ethereum" />
     </Picker>
   );

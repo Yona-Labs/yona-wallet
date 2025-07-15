@@ -35,7 +35,7 @@ function Nav() {
                   <Link href="/">
                     <div className="flex">
                       <Image
-                        alt="Yona"
+                        alt="Hyper"
                         src="/yona.png"
                         width={150}
                         height={50}

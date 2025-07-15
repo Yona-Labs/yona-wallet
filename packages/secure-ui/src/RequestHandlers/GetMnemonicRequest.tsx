@@ -141,7 +141,7 @@ function WarningPasswordGate({
                   <AlertTriangleIcon color="$redIcon" size="$1xl" />
                 </Stack>
                 <Text flexGrow={1} fontSize="$base" fontWeight="$medium">
-                  Yona Wallet support will never ask for your secret phrase.
+                  Hyper Wallet support will never ask for your secret phrase.
                 </Text>
               </XStack>
               <XStack
@@ -244,10 +244,10 @@ function ShowMnemonic({
           <EyeIcon size="$5xl" />
         </XStack>
         <StyledText textAlign="center" fontSize="$2xl">
-          Your Yona Wallet Backup
+          Your Hyper Wallet Backup
         </StyledText>
         <StyledText textAlign="center">
-          Contains all your mnemonics and private keys currently stored in Yona
+          Contains all your mnemonics and private keys currently stored in Hyper
           Wallet.
         </StyledText>
       </YStack>

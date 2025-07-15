@@ -107,7 +107,7 @@ export function ForgotPasswordDrawer({
               }}
               onPress={handleReset}
             >
-              Reset Yona Wallet
+              Reset Hyper Wallet
             </Button>
           </Stack>
         </Stack>

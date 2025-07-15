@@ -38,7 +38,7 @@ const windowId = requestWindowId ?? v4();
 const extensionTransportSender =
   new FromExtensionTransportSender<SECURE_EVENTS>({
     origin: {
-      name: "Yona Extension",
+      name: "Hyper Extension",
       address: "https://yona.network",
       context: "extension",
     },
@@ -52,7 +52,7 @@ const secureUITransportReceiver = new ToSecureUITransportReceiver<
 const secureUITransportSender = new FromExtensionTransportSender<SECURE_EVENTS>(
   {
     origin: {
-      name: "Yona Extension",
+      name: "Hyper Extension",
       address: "https://yona.network",
       context: "secureUI",
     },

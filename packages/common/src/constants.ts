@@ -449,7 +449,7 @@ export const XNFT_GG_LINK = "https://xnft.gg";
 export const BACKPACK_LINK = "https://yona.network";
 export const BACKPACK_TERMS_OF_SERVICE = "https://yona.network";
 export const BACKPACK_HELP_AND_SUPPORT = "https://discord.gg/QtYPJ9KZ";
-export const BACKPACK_GITHUB_LINK = "https://github.com/Yona-Network";
+export const BACKPACK_GITHUB_LINK = "https://github.com/Hyper-Network";
 
 export const EXCHANGE_TERMS_OF_SERVICE_URL = "https://yona.network";
 export const EXCHANGE_SUMSUB_DOCS_URL =

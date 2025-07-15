@@ -37,7 +37,7 @@ export function LockedMenuDrawer({
 
   const links = [
     {
-      label: "Yona.network",
+      label: "Hyper.network",
       icon: <ShoppingBagIcon color="$baseIcon" size="$1xl" />,
       url: BACKPACK_LINK,
     },
@@ -107,7 +107,7 @@ export function LockedMenuDrawer({
                   <UserCircleIcon color="$baseIcon" size="$1xl" />
                 </Stack>
                 <StyledText flexGrow={1} fontSize={16} fontWeight="500">
-                  Reset Yona Wallet
+                  Reset Hyper Wallet
                 </StyledText>
                 <Stack
                   height="$2"

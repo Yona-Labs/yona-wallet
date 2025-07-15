@@ -20,7 +20,7 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
 
   Enabled: true,
   Blockchain: Blockchain.SOLANA,
-  Name: "Yona",
+  Name: "Hyper",
   GasTokenName: "BTC",
   GasTokenDecimals: 9,
   AppTokenName: "SPL",
@@ -81,7 +81,7 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
   },
   logoUri: remoteLogoUri,
   bip44CoinType: bip44CoinType,
-  localLogoUri: "./yona.svg",
+  localLogoUri: "./yona.png",
   requiresChainId: false,
   RpcConnectionUrls: {
     // MAINNET: {

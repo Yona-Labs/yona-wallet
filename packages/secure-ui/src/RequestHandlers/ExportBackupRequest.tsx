@@ -61,11 +61,11 @@ function ShowBackup({
           <EyeIcon size="$5xl" />
         </XStack>
         <StyledText textAlign="center" fontSize="$2xl">
-          Your Yona Wallet Backup
+          Your Hyper Wallet Backup
         </StyledText>
         <StyledText textAlign="center">
           contains your encrypted private keys. Do not share it. Reach out to
-          Yona Wallet support for help.
+          Hyper Wallet support for help.
         </StyledText>
       </YStack>
       <YStack marginLeft="$4" marginRight="$4" marginBottom="$4">

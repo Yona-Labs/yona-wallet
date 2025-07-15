@@ -78,7 +78,7 @@ function initSolana(secureClientSender: TransportSender) {
     Object.defineProperty(window, "yona", { value: solana });
   } catch (e) {
     console.warn(
-      "Yona couldn't override `window.yona`. Disable other Solana wallets to use Yona Wallet."
+      "Hyper couldn't override `window.yona`. Disable other Solana wallets to use Hyper Wallet."
     );
   }
 
@@ -100,7 +100,7 @@ function initSolana(secureClientSender: TransportSender) {
     });
   } catch (e) {
     console.warn(
-      "Yona couldn't override `window.yonaXnft`. Disable other xNFT wallets to use Yona Wallet."
+      "Hyper couldn't override `window.yonaXnft`. Disable other xNFT wallets to use Hyper Wallet."
     );
   }
 
@@ -213,7 +213,7 @@ function initEthereum(secureClientSender: TransportSender) {
   // EIP-6963: https://eips.ethereum.org/EIPS/eip-6963
   const info = {
     uuid: uuidV4(),
-    name: "Yona Wallet",
+    name: "Hyper Wallet",
     icon: "",
     rdns: "app.yona",
   };

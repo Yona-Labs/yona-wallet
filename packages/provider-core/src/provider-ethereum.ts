@@ -68,13 +68,13 @@ export interface EIP1193Provider {
 const messages = {
   errors: {
     disconnected: () =>
-      "Yona Wallet: Disconnected from chain. Attempting to connect.",
+      "Hyper Wallet: Disconnected from chain. Attempting to connect.",
     invalidRequestArgs: () =>
-      `Yona Wallet: Expected a single, non-array, object argument.`,
+      `Hyper Wallet: Expected a single, non-array, object argument.`,
     invalidRequestMethod: () =>
-      `Yona Wallet: 'args.method' must be a non-empty string.`,
+      `Hyper Wallet: 'args.method' must be a non-empty string.`,
     invalidRequestParams: () =>
-      `Yona Wallet: 'args.params' must be an object or array if provided.`,
+      `Hyper Wallet: 'args.params' must be an object or array if provided.`,
   },
 };
 

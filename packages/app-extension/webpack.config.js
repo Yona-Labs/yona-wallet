@@ -16,7 +16,7 @@ const { browserslist, description, version } = require("./package.json");
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const EXTENSION_NAME =
-  NODE_ENV === "development" ? "(DEV) Yona" : "Yona Wallet";
+  NODE_ENV === "development" ? "(DEV) Hyper" : "Hyper Wallet";
 
 const isDevelopment = NODE_ENV === "development";
 const appDirectory = path.resolve(__dirname);

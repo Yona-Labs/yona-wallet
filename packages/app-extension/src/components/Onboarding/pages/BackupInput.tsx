@@ -39,9 +39,9 @@ export const BackupInput = ({ onNext }: { onNext: () => void }) => {
     >
       <Box sx={{ margin: "24px 0" }}>
         <Box sx={{ margin: "0 24px" }}>
-          <Header text="Recover with Yona Backup" />
+          <Header text="Recover with Hyper Backup" />
           <SubtextParagraph style={{ marginBottom: "32px" }}>
-            Enter your backup. It will be used to restore your Yona wallet.
+            Enter your backup. It will be used to restore your Hyper Wallet.
           </SubtextParagraph>
         </Box>
         <Box sx={{ margin: "0 16px" }}>

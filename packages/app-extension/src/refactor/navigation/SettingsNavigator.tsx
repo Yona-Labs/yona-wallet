@@ -473,7 +473,7 @@ export function SettingsNavigator({
           return {
             title:
               blockchain === "solana"
-                ? "Yona"
+                ? "Hyper"
                 : blockchain.slice(0, 1).toUpperCase() + blockchain.slice(1),
             ...maybeCloseButton(false, navigation),
           };

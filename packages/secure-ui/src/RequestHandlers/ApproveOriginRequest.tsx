@@ -77,7 +77,7 @@ export function ApproveOriginRequest({
   //           severity: "CRITICAL",
   //           kind: "OriginBlockedWarning",
   //           message:
-  //             "Yona Wallet has blocked this origin from wallet connections due to malicious or suspicious activity.",
+  //             "Hyper Wallet has blocked this origin from wallet connections due to malicious or suspicious activity.",
   //         }}
   //       />
   //     </Stack>

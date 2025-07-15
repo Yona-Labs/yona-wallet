@@ -11,12 +11,12 @@ export default function About() {
           className="mt-4 text-4xl font-extrabold tracking-tight
                   text-zinc-50 sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
         >
-          Welcome to Yona Wallet
+          Welcome to Hyper Wallet
         </h1>
 
         <div className="flex max-w-lg flex-col gap-4 text-center text-zinc-400">
           <p className="text-zinc-400">
-            Yona Wallet is brought to you by{" "}
+            Hyper Wallet is brought to you by{" "}
             <a
               className="text-teal-500"
               href="https://yona.network"
@@ -50,7 +50,7 @@ export default function About() {
               rel="noreferrer"
               href="https://twitter.com/yona_network"
             >
-              Follow Yona on Twitter.
+              Follow Hyper on Twitter.
             </a>
           </p>
         </div>

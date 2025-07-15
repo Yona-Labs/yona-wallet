@@ -50,7 +50,7 @@ export const LedgerPermissions = () => {
         <YStack>
           {isDone ? (
             <PrimaryButton
-              label="Open Yona Wallet"
+              label="Open Hyper Wallet"
               onPress={() => {
                 void openPopupWindow("popup.html");
               }}

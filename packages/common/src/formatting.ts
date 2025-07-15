@@ -176,7 +176,7 @@ export function formatWalletAddress(
 }
 
 export function formatTitleCase(str: string) {
-  if (str === "solana") return "Yona";
+  if (str === "solana") return "Hyper";
 
   return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }

@@ -127,8 +127,8 @@ export function NetworkListItem({
             height="24"
             width="24"
             imgStyle={{
-              width: "100%",
-              height: "100%",
+              width: "24px",
+              height: "24px",
             }}
           />
         </YStack>

@@ -56,7 +56,7 @@ export class BackpackWallet implements Wallet {
     [E in StandardEventsNames]?: StandardEventsListeners[E][];
   } = {};
   readonly #version = "1.0.0" as const;
-  readonly #name = "Yona" as const;
+  readonly #name = "Hyper" as const;
   readonly #icon = icon;
   #account: BackpackWalletAccount | null = null;
   readonly #yona: Backpack;
