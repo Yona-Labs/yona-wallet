@@ -39,9 +39,9 @@ export const BackupInput = ({ onNext }: { onNext: () => void }) => {
     >
       <Box sx={{ margin: "24px 0" }}>
         <Box sx={{ margin: "0 24px" }}>
-          <Header text="Recover with Hyper Backup" />
+          <Header text="Recover with Solaxy Backup" />
           <SubtextParagraph style={{ marginBottom: "32px" }}>
-            Enter your backup. It will be used to restore your Hyper Wallet.
+            Enter your backup. It will be used to restore your Solaxy Wallet.
           </SubtextParagraph>
         </Box>
         <Box sx={{ margin: "0 16px" }}>

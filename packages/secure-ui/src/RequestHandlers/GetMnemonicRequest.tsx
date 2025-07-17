@@ -141,7 +141,7 @@ function WarningPasswordGate({
                   <AlertTriangleIcon color="$redIcon" size="$1xl" />
                 </Stack>
                 <Text flexGrow={1} fontSize="$base" fontWeight="$medium">
-                  Hyper Wallet support will never ask for your secret phrase.
+                  Solaxy Wallet support will never ask for your secret phrase.
                 </Text>
               </XStack>
               <XStack
@@ -244,10 +244,10 @@ function ShowMnemonic({
           <EyeIcon size="$5xl" />
         </XStack>
         <StyledText textAlign="center" fontSize="$2xl">
-          Your Hyper Wallet Backup
+          Your Solaxy Wallet Backup
         </StyledText>
         <StyledText textAlign="center">
-          Contains all your mnemonics and private keys currently stored in Hyper
+          Contains all your mnemonics and private keys currently stored in Solaxy
           Wallet.
         </StyledText>
       </YStack>

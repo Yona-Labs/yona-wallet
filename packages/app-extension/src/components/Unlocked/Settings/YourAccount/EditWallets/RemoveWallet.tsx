@@ -93,24 +93,24 @@ export const RemoveWallet: React.FC<{
         >
           {type === "derived" ? (
             <>
-              Removing from Hyper Wallet will not delete the wallet’s contents.
+              Removing from Solaxy Wallet will not delete the wallet’s contents.
               It will still be available by importing your secret recovery
-              phrase in a new Hyper Wallet.
+              phrase in a new Solaxy Wallet.
             </>
           ) : type === "ledger" ? (
             <>
-              Removing from Hyper Wallet will not delete the wallet’s contents.
+              Removing from Solaxy Wallet will not delete the wallet’s contents.
               It will still be available by connecting your ledger.
             </>
           ) : type === "dehydrated" ? (
             <>
-              Removing from Hyper Wallet will remove the connection between your
+              Removing from Solaxy Wallet will remove the connection between your
               username and this public key. You can always add it back later by
-              adding the wallet to Hyper Wallet.
+              adding the wallet to Solaxy Wallet.
             </>
           ) : (
             <>
-              Removing from Hyper Wallet will delete the wallet’s keypair. Make
+              Removing from Solaxy Wallet will delete the wallet’s keypair. Make
               sure you have exported and saved the private key before removing.
             </>
           )}

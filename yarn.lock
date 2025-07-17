@@ -15335,14 +15335,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wallet-standard/base@npm:^1.0.0, @wallet-standard/base@npm:^1.0.1":
+"@wallet-standard/base@npm:^1.0.0, @wallet-standard/base@npm:^1.0.1, @yona-wallet-standard/base@npm:@wallet-standard/base@^1.0.1":
   version: 1.0.1
   resolution: "@wallet-standard/base@npm:1.0.1"
   checksum: cd0b58a77e91d7a0df05c1998ab6b6020461e149f019dedfae7c79f79ff5907165e6840fbea166c856ea324a58d6215f1fe6671d7649b61f7ccb3dd75a2def31
   languageName: node
   linkType: hard
 
-"@wallet-standard/features@npm:^1.0.3":
+"@wallet-standard/features@npm:^1.0.3, @yona-wallet-standard/features@npm:@wallet-standard/features@^1.0.3":
   version: 1.0.3
   resolution: "@wallet-standard/features@npm:1.0.3"
   dependencies:
@@ -16081,22 +16081,6 @@ __metadata:
   version: 1.1.0
   resolution: "@yarnpkg/lockfile@npm:1.1.0"
   checksum: cd19e1114aaf10a05126aeea8833ef4ca8af8a46e88e12884f8359d19333fd19711036dbc2698dbe937f81f037070cf9a8da45c2e8c6ca19cafd7d15659094ed
-  languageName: node
-  linkType: hard
-
-"@yona-wallet-standard/base@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@yona-wallet-standard/base@npm:1.0.1"
-  checksum: bd8df39c3552996881b85a6162f550cbaa813e876fc0f26e86aeb8d59a3003439f2aafd5148e4fe03547ff7b4ae7d1e6a067780e03728fcdc83027bb99172050
-  languageName: node
-  linkType: hard
-
-"@yona-wallet-standard/features@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@yona-wallet-standard/features@npm:1.0.3"
-  dependencies:
-    "@yona-wallet-standard/base": "npm:^1.0.1"
-  checksum: 4eff79a17a538f77f99c5db9e6d6f079e7209975d90db9af83b9ba261f2d3e5f856c8940e6aa77fc3fafde8cf4cab7b7e20931cb30b1ce21ce173373ce7e5e48
   languageName: node
   linkType: hard
 

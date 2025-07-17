@@ -77,7 +77,7 @@ function isWebInjectedProvider(): boolean {
     return false;
   }
 
-  if (!globalThis._yona_injected_provider) {
+  if (!globalThis._solaxy_injected_provider) {
     return false;
   }
 

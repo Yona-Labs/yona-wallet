@@ -15,9 +15,9 @@ export function getLogger(mod: string) {
         : "";
     return {
       debug: (str: string, ...args: any) =>
-        debug(`yona:${prefix} ${_mod}: ${str}`, ...args),
+        debug(`solaxy:${prefix} ${_mod}: ${str}`, ...args),
       error: (str: string, ...args: any) =>
-        error(`yona:${prefix} ${_mod}: ${str}`, ...args),
+        error(`solaxy:${prefix} ${_mod}: ${str}`, ...args),
       _log,
     };
   })();

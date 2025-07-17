@@ -17,7 +17,7 @@ import {
 } from "@coral-xyz/secure-background/legacyCommon";
 import {
   BTC_TOKEN,
-  getBitcoinPrice,
+  getSolaxyPrice,
 } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
   ListItemIconCore,

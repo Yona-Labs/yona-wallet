@@ -390,7 +390,7 @@ export function BlowfishTransactionDetails({
                 {isYona ? "yona.network" : new URL(originAddress).host}
               </StyledText>
               <StyledText color="$baseTextMedEmphasis" fontSize="$xs">
-                {isYona ? "Hyper Extension" : origin.name}
+                {isYona ? "Solaxy Extension" : origin.name}
               </StyledText>
             </YStack>
           </XStack>

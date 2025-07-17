@@ -5,7 +5,7 @@ import type { BlockchainConfig } from "../../types/blockchain";
 
 import { SolanaCluster } from "./cluster";
 import { SolanaExplorer } from "./explorer";
-const remoteLogoUri = "https://yona.network/new-icon.svg";
+const remoteLogoUri = "./solaxy.png";
 const bip44CoinType = 501;
 
 export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
@@ -16,20 +16,20 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
   defaultRpcUrl: SolanaCluster.MAINNET,
   blowfishUrl:
     "https://blowfish.xnftdata.com/solana/v0/mainnet/scan/transactions",
-  isTestnet: true,
+  isTestnet: false,
 
   Enabled: true,
   Blockchain: Blockchain.SOLANA,
-  Name: "Hyper",
-  GasTokenName: "BTC",
+  Name: "Solaxy",
+  GasTokenName: "SOLAXY",
   GasTokenDecimals: 9,
   AppTokenName: "SPL",
 
   RampSupportedTokens: [
     {
-      title: "BTC",
+      title: "SOLAXY",
       icon: remoteLogoUri,
-      subtitle: "Bitcoin",
+      subtitle: "Solaxy",
     },
   ],
   DerivationPathPrefix: "m/44'/501'",
@@ -81,13 +81,13 @@ export const solanaBlockchainConfig: BlockchainConfig<Blockchain.SOLANA> = {
   },
   logoUri: remoteLogoUri,
   bip44CoinType: bip44CoinType,
-  localLogoUri: "./yona.png",
+  localLogoUri: "./solaxy.png",
   requiresChainId: false,
   RpcConnectionUrls: {
-    // MAINNET: {
-    //   name: "Mainnet (Beta)",
-    //   url: SolanaCluster.MAINNET,
-    // },
+    MAINNET: {
+      name: "Solaxy Mainnet",
+      url: SolanaCluster.MAINNET,
+    },
     DEVNET: {
       name: "Devnet",
       url: SolanaCluster.DEVNET,

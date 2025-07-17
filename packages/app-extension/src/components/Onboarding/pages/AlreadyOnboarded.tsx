@@ -8,7 +8,7 @@ export const AlreadyOnboarded = () => {
       <EmptyState
         icon={(props: any) => <ErrorOutlineIcon {...props} />}
         title="Already setup"
-        subtitle="Your Hyper Wallet has already been setup. If you want to set it up again, reset it first."
+        subtitle="Your Solaxy Wallet has already been setup. If you want to set it up again, reset it first."
         buttonText="Close"
         onClick={window.close}
       />

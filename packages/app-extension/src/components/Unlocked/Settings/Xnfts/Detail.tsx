@@ -196,7 +196,7 @@ export const XnftDetail: React.FC<{ xnft: any }> = ({ xnft }) => {
           }}
         >
           {isBaked
-            ? "This xNFT was developed by the Hyper team and cannot be uninstalled."
+            ? "This xNFT was developed by the Solaxy team and cannot be uninstalled."
             : "Uninstalling will remove this xNFT from your account."}
         </Typography>
         {!isBaked ? (

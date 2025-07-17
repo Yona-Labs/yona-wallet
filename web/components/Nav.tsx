@@ -35,8 +35,8 @@ function Nav() {
                   <Link href="/">
                     <div className="flex">
                       <Image
-                        alt="Hyper"
-                        src="/yona.png"
+                        alt="Solaxy"
+                        src="/solaxy.png"
                         width={150}
                         height={50}
                       />

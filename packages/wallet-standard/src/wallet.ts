@@ -43,11 +43,11 @@ import {
 import { bytesEqual } from "./util.js";
 import type { Backpack } from "./window.js";
 
-export const BackpackNamespace = "yona:";
+export const BackpackNamespace = "solaxy:";
 
 export type BackpackFeature = {
   [BackpackNamespace]: {
-    yona: Backpack;
+    solaxy: Backpack;
   };
 };
 
@@ -56,10 +56,10 @@ export class BackpackWallet implements Wallet {
     [E in StandardEventsNames]?: StandardEventsListeners[E][];
   } = {};
   readonly #version = "1.0.0" as const;
-  readonly #name = "Hyper" as const;
+  readonly #name = "Solaxy" as const;
   readonly #icon = icon;
   #account: BackpackWalletAccount | null = null;
-  readonly #yona: Backpack;
+  readonly #solaxy: Backpack;
 
   get version() {
     return this.#version;
@@ -117,7 +117,7 @@ export class BackpackWallet implements Wallet {
         signIn: this.#signIn,
       },
       [BackpackNamespace]: {
-        yona: this.#yona,
+        solaxy: this.#solaxy,
       },
     };
   }
@@ -126,16 +126,16 @@ export class BackpackWallet implements Wallet {
     return this.#account ? [this.#account] : [];
   }
 
-  constructor(yona: Backpack) {
+  constructor(solaxy: Backpack) {
     if (new.target === BackpackWallet) {
       Object.freeze(this);
     }
 
-    this.#yona = yona;
+    this.#solaxy = solaxy;
 
-    yona.on("connect", this.#connected, this);
-    yona.on("disconnect", this.#disconnected, this);
-    yona.on("accountChanged", this.#reconnected, this);
+    solaxy.on("connect", this.#connected, this);
+    solaxy.on("disconnect", this.#disconnected, this);
+    solaxy.on("accountChanged", this.#reconnected, this);
 
     this.#connected();
   }
@@ -164,10 +164,10 @@ export class BackpackWallet implements Wallet {
   }
 
   #connected = () => {
-    const address = this.#yona.publicKey?.toBase58();
+    const address = this.#solaxy.publicKey?.toBase58();
     if (address) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const publicKey = this.#yona.publicKey!.toBytes();
+      const publicKey = this.#solaxy.publicKey!.toBytes();
 
       const account = this.#account;
       if (
@@ -189,7 +189,7 @@ export class BackpackWallet implements Wallet {
   };
 
   #reconnected = () => {
-    if (this.#yona.publicKey) {
+    if (this.#solaxy.publicKey) {
       this.#connected();
     } else {
       this.#disconnected();
@@ -198,7 +198,7 @@ export class BackpackWallet implements Wallet {
 
   #connect: StandardConnectMethod = async ({ silent } = {}) => {
     if (!this.#account) {
-      await this.#yona.connect(silent ? { onlyIfTrusted: true } : undefined);
+      await this.#solaxy.connect(silent ? { onlyIfTrusted: true } : undefined);
     }
 
     this.#connected();
@@ -207,7 +207,7 @@ export class BackpackWallet implements Wallet {
   };
 
   #disconnect: StandardDisconnectMethod = async () => {
-    await this.#yona.disconnect();
+    await this.#solaxy.disconnect();
   };
 
   #signAndSendTransaction: SolanaSignAndSendTransactionMethod = async (
@@ -225,7 +225,7 @@ export class BackpackWallet implements Wallet {
       if (account !== this.#account) throw new Error("invalid account");
       if (!isSolanaChain(chain)) throw new Error("invalid chain");
 
-      const { signature } = await this.#yona.signAndSendTransaction(
+      const { signature } = await this.#solaxy.signAndSendTransaction(
         VersionedTransaction.deserialize(transaction),
         {
           preflightCommitment,
@@ -256,7 +256,7 @@ export class BackpackWallet implements Wallet {
       if (account !== this.#account) throw new Error("invalid account");
       if (chain && !isSolanaChain(chain)) throw new Error("invalid chain");
 
-      const signedTransaction = await this.#yona.signTransaction(
+      const signedTransaction = await this.#solaxy.signTransaction(
         VersionedTransaction.deserialize(transaction)
       );
 
@@ -289,7 +289,7 @@ export class BackpackWallet implements Wallet {
       );
 
       const signedTransactions =
-        await this.#yona.signAllTransactions(transactions);
+        await this.#solaxy.signAllTransactions(transactions);
 
       outputs.push(
         ...signedTransactions.map((signedTransaction) => {
@@ -322,7 +322,7 @@ export class BackpackWallet implements Wallet {
       const { message, account } = inputs[0]!;
       if (account !== this.#account) throw new Error("invalid account");
 
-      const { signature } = await this.#yona.signMessage(message);
+      const { signature } = await this.#solaxy.signMessage(message);
 
       outputs.push({ signedMessage: message, signature });
     } else if (inputs.length > 1) {
@@ -339,10 +339,10 @@ export class BackpackWallet implements Wallet {
 
     if (inputs.length > 1) {
       for (const input of inputs) {
-        outputs.push(await this.#yona.signIn(input));
+        outputs.push(await this.#solaxy.signIn(input));
       }
     } else {
-      return [await this.#yona.signIn(inputs[0])];
+      return [await this.#solaxy.signIn(inputs[0])];
     }
 
     return outputs;

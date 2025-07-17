@@ -56,21 +56,21 @@ export function withContextPort<Backend>(
  * Message to be signed for authenticating a user.
  */
 export function getAuthMessage(uuid: string) {
-  return `Hyper Wallet login ${uuid}`;
+  return `Solaxy Wallet login ${uuid}`;
 }
 
 /**
  * Message to be signed for creating a Backpack account.
  */
 export function getCreateMessage(publicKey: string) {
-  return `Hyper Wallet create ${publicKey}`;
+  return `Solaxy Wallet create ${publicKey}`;
 }
 
 /**
  * Message to be signed when adding public keys to an existing Backpack account.
  */
 export function getAddMessage(publicKey: string) {
-  return `Hyper Wallet add ${publicKey}`;
+  return `Solaxy Wallet add ${publicKey}`;
 }
 
 //

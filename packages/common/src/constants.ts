@@ -1,58 +1,58 @@
 //
-// Secure-background /client communication yona:channels
+// Secure-background /client communication solaxy:channels
 //
 export const CHANNEL_SECURE_BACKGROUND_REQUEST =
-  "yona:channel-secure-background-request";
+  "solaxy:channel-secure-background-request";
 export const CHANNEL_SECURE_BACKGROUND_RESPONSE =
-  "yona:channel-secure-background-response";
-export const CHANNEL_SECURE_UI_REQUEST = "yona:channel-secure-ui-request";
-export const CHANNEL_SECURE_UI_RESPONSE = "yona:channel-secure-ui-response";
+  "solaxy:channel-secure-background-response";
+export const CHANNEL_SECURE_UI_REQUEST = "solaxy:channel-secure-ui-request";
+export const CHANNEL_SECURE_UI_RESPONSE = "solaxy:channel-secure-ui-response";
 export const CHANNEL_SECURE_BACKGROUND_EXTENSION_REQUEST =
-  "yona:channel-secure-ui-background-request";
+  "solaxy:channel-secure-ui-background-request";
 export const CHANNEL_SECURE_BACKGROUND_EXTENSION_RESPONSE =
-  "yona:channel-secure-ui-background-response";
+  "solaxy:channel-secure-ui-background-response";
 export const CHANNEL_SECURE_BACKGROUND_NOTIFICATION =
-  "yona:channel-secure-background-notification";
+  "solaxy:channel-secure-background-notification";
 
 //
-// Messaging communication yona:channel topics.
+// Messaging communication solaxy:channel topics.
 //
-export const CHANNEL_PLUGIN_RPC_REQUEST = "yona:channel-plugin-request";
-export const CHANNEL_PLUGIN_RPC_RESPONSE = "yona:channel-plugin-response";
+export const CHANNEL_PLUGIN_RPC_REQUEST = "solaxy:channel-plugin-request";
+export const CHANNEL_PLUGIN_RPC_RESPONSE = "solaxy:channel-plugin-response";
 export const CHANNEL_PLUGIN_RENDER_REQUEST =
-  "yona:channel-channel-plugin-render-request";
+  "solaxy:channel-channel-plugin-render-request";
 export const CHANNEL_PLUGIN_LAUNCH_REQUEST =
-  "yona:channel-channel-plugin-launch-request";
+  "solaxy:channel-channel-plugin-launch-request";
 export const CHANNEL_PLUGIN_NOTIFICATION =
-  "yona:channel-channel-plugin-notification";
+  "solaxy:channel-channel-plugin-notification";
 export const CHANNEL_PLUGIN_CONNECTION_BRIDGE =
-  "yona:channel-channel-plugin-connection-bridge";
-export const CHANNEL_POPUP_RPC = "yona:channel-popup-rpc";
-export const CHANNEL_POPUP_RESPONSE = "yona:channel-popup-response";
-export const CHANNEL_POPUP_NOTIFICATIONS = "yona:channel-popup-notifications";
-export const CHANNEL_SOLANA_RPC_REQUEST = "yona:channel-solana-rpc-request";
-export const CHANNEL_SOLANA_RPC_RESPONSE = "yona:channel-solana-rpc-response";
-export const CHANNEL_SOLANA_NOTIFICATION = "yona:channel-solana-notification";
+  "solaxy:channel-channel-plugin-connection-bridge";
+export const CHANNEL_POPUP_RPC = "solaxy:channel-popup-rpc";
+export const CHANNEL_POPUP_RESPONSE = "solaxy:channel-popup-response";
+export const CHANNEL_POPUP_NOTIFICATIONS = "solaxy:channel-popup-notifications";
+export const CHANNEL_SOLANA_RPC_REQUEST = "solaxy:channel-solana-rpc-request";
+export const CHANNEL_SOLANA_RPC_RESPONSE = "solaxy:channel-solana-rpc-response";
+export const CHANNEL_SOLANA_NOTIFICATION = "solaxy:channel-solana-notification";
 export const CHANNEL_SOLANA_CONNECTION_RPC_UI =
-  "yona:channel-solana-connection-rpc-ui";
+  "solaxy:channel-solana-connection-rpc-ui";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_REQUEST =
-  "yona:channel-solana-connection-injected-request";
+  "solaxy:channel-solana-connection-injected-request";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_RESPONSE =
-  "yona:channel-solana-connection-injected-response";
-export const CHANNEL_ETHEREUM_RPC_REQUEST = "yona:channel-ethereum-rpc-request";
+  "solaxy:channel-solana-connection-injected-response";
+export const CHANNEL_ETHEREUM_RPC_REQUEST = "solaxy:channel-ethereum-rpc-request";
 export const CHANNEL_ETHEREUM_RPC_RESPONSE =
-  "yona:channel-ethereum-rpc-response";
+  "solaxy:channel-ethereum-rpc-response";
 export const CHANNEL_ETHEREUM_NOTIFICATION =
-  "yona:channel-ethereum-rpc-notification";
+  "solaxy:channel-ethereum-rpc-notification";
 export const CHANNEL_ETHEREUM_CONNECTION_RPC_UI =
-  "yona:channel-ethereum-connection-rpc-ui";
+  "solaxy:channel-ethereum-connection-rpc-ui";
 export const CHANNEL_ETHEREUM_CONNECTION_INJECTED_REQUEST =
-  "yona:channel-ethereum-connection-injected-request";
+  "solaxy:channel-ethereum-connection-injected-request";
 export const CHANNEL_ETHEREUM_CONNECTION_INJECTED_RESPONSE =
-  "yona:channel-ethereum-connection-injected-response";
+  "solaxy:channel-ethereum-connection-injected-response";
 
 //
-// Mobile specific webview messaging subsystem yona:channels.
+// Mobile specific webview messaging subsystem solaxy:channels.
 //
 export const MOBILE_CHANNEL_HOST_RPC_REQUEST = "mobile-host-rpc-request";
 export const MOBILE_CHANNEL_HOST_RPC_RESPONSE = "mobile-host-rpc-response";
@@ -66,31 +66,31 @@ export const MOBILE_CHANNEL_FE_RESPONSE_INNER = "mobile-fe-response-inner";
 //
 // xNFT notifications sent from the host to the xNFT.
 //
-export const PLUGIN_NOTIFICATION_RENDER = "yona:plugin-notification-render";
-export const PLUGIN_NOTIFICATION_CONNECT = "yona:plugin-notification-connect";
-export const PLUGIN_NOTIFICATION_MOUNT = "yona:plugin-notification-mount";
+export const PLUGIN_NOTIFICATION_RENDER = "solaxy:plugin-notification-render";
+export const PLUGIN_NOTIFICATION_CONNECT = "solaxy:plugin-notification-connect";
+export const PLUGIN_NOTIFICATION_MOUNT = "solaxy:plugin-notification-mount";
 export const PLUGIN_NOTIFICATION_UPDATE_METADATA =
-  "yona:plugin-notification-update-metadata";
-export const PLUGIN_NOTIFICATION_UNMOUNT = "yona:plugin-notification-unmount";
+  "solaxy:plugin-notification-update-metadata";
+export const PLUGIN_NOTIFICATION_UNMOUNT = "solaxy:plugin-notification-unmount";
 export const PLUGIN_NOTIFICATION_PUBLIC_KEY_UPDATED =
-  "yona:plugin-notification-public-key-updated";
+  "solaxy:plugin-notification-public-key-updated";
 export const PLUGIN_NOTIFICATION_CONNECTION_URL_UPDATED =
-  "yona:plugin-notification-connection-url-updated";
+  "solaxy:plugin-notification-connection-url-updated";
 
 export const PLUGIN_REQUEST_SOLANA_SIGN_TRANSACTION =
-  "yona:plugin-request-solana-sign-tx";
+  "solaxy:plugin-request-solana-sign-tx";
 export const PLUGIN_REQUEST_SOLANA_SIGN_ALL_TRANSACTIONS =
-  "yona:plugin-request-solana-sign-all-txs";
+  "solaxy:plugin-request-solana-sign-all-txs";
 export const PLUGIN_REQUEST_SOLANA_SIGN_AND_SEND_TRANSACTION =
-  "yona:plugin-request-solana-sign-and-send-tx";
+  "solaxy:plugin-request-solana-sign-and-send-tx";
 export const PLUGIN_REQUEST_SOLANA_SIGN_MESSAGE =
-  "yona:plugin-request-solana-sign-message";
+  "solaxy:plugin-request-solana-sign-message";
 export const PLUGIN_REQUEST_ETHEREUM_SIGN_TRANSACTION =
-  "yona:plugin-request-ethereum-sign-tx";
+  "solaxy:plugin-request-ethereum-sign-tx";
 export const PLUGIN_REQUEST_ETHEREUM_SIGN_AND_SEND_TRANSACTION =
-  "yona:plugin-request-ethereum-sign-and-send-tx";
+  "solaxy:plugin-request-ethereum-sign-and-send-tx";
 export const PLUGIN_REQUEST_ETHEREUM_SIGN_MESSAGE =
-  "yona:plugin-request-ethereum-sign-message";
+  "solaxy:plugin-request-ethereum-sign-message";
 
 //
 // xNFT host API.
@@ -102,205 +102,205 @@ export const PLUGIN_RPC_METHOD_LOCAL_STORAGE_PUT = "store-put";
 // Trusted app API.
 //
 export const UI_RPC_METHOD_APPROVED_ORIGINS_DELETE =
-  "yona:ui-rpc-method-approved-origins-delete";
+  "solaxy:ui-rpc-method-approved-origins-delete";
 export const UI_RPC_METHOD_APPROVED_ORIGINS_READ =
-  "yona:ui-rpc-method-approved-origins-read";
+  "solaxy:ui-rpc-method-approved-origins-read";
 export const UI_RPC_METHOD_APPROVED_ORIGINS_UPDATE =
-  "yona:ui-rpc-method-approved-origins-update";
+  "solaxy:ui-rpc-method-approved-origins-update";
 export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_READ =
-  "yona:ui-rpc-method-blockchains-enabled-read";
+  "solaxy:ui-rpc-method-blockchains-enabled-read";
 export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_ADD =
-  "yona:ui-rpc-method-blockchains-enabled-add";
+  "solaxy:ui-rpc-method-blockchains-enabled-add";
 export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_DELETE =
-  "yona:ui-rpc-method-blockchains-enabled-delete";
+  "solaxy:ui-rpc-method-blockchains-enabled-delete";
 export const UI_RPC_METHOD_KEY_IS_COLD_UPDATE =
-  "yona:ui-rpc-method-key-is-cold-update";
-export const UI_RPC_METHOD_KEYNAME_UPDATE = "yona:ui-rpc-method-keyname-update";
+  "solaxy:ui-rpc-method-key-is-cold-update";
+export const UI_RPC_METHOD_KEYNAME_UPDATE = "solaxy:ui-rpc-method-keyname-update";
 export const UI_RPC_METHOD_KEYRING_EXPORT_MNEMONIC =
-  "yona:ui-rpc-method-export-mnemonic";
+  "solaxy:ui-rpc-method-export-mnemonic";
 export const UI_RPC_METHOD_KEYRING_EXPORT_SECRET_KEY =
-  "yona:ui-rpc-method-export-secret-key";
+  "solaxy:ui-rpc-method-export-secret-key";
 export const UI_RPC_METHOD_KEYRING_HAS_MNEMONIC =
-  "yona:ui-rpc-method-keyring-has-mnemonic";
-export const UI_RPC_METHOD_KEYRING_RESET = "yona:ui-rpc-method-keyring-reset";
+  "solaxy:ui-rpc-method-keyring-has-mnemonic";
+export const UI_RPC_METHOD_KEYRING_RESET = "solaxy:ui-rpc-method-keyring-reset";
 export const UI_RPC_METHOD_KEYRING_STORE_CHECK_PASSWORD =
-  "yona:ui-rpc-method-keyring-store-check-password";
+  "solaxy:ui-rpc-method-keyring-store-check-password";
 export const UI_RPC_METHOD_KEYRING_STORE_READ_ALL_PUBKEYS =
-  "yona:ui-rpc-method-keyring-read-all-pubkeys";
+  "solaxy:ui-rpc-method-keyring-read-all-pubkeys";
 export const UI_RPC_METHOD_KEYRING_STORE_STATE =
-  "yona:ui-rpc-method-keyring-store-state";
-export const UI_RPC_METHOD_LEDGER_CONNECT = "yona:ui-rpc-method-ledger-connect";
+  "solaxy:ui-rpc-method-keyring-store-state";
+export const UI_RPC_METHOD_LEDGER_CONNECT = "solaxy:ui-rpc-method-ledger-connect";
 export const UI_RPC_METHOD_NAVIGATION_ACTIVE_TAB_UPDATE =
-  "yona:ui-rpc-method-navigation-active-tab-update";
+  "solaxy:ui-rpc-method-navigation-active-tab-update";
 export const UI_RPC_METHOD_NAVIGATION_CURRENT_URL_UPDATE =
-  "yona:ui-rpc-method-navigation-current-url-update";
-export const UI_RPC_METHOD_NAVIGATION_POP = "yona:ui-rpc-method-navigation-pop";
+  "solaxy:ui-rpc-method-navigation-current-url-update";
+export const UI_RPC_METHOD_NAVIGATION_POP = "solaxy:ui-rpc-method-navigation-pop";
 export const UI_RPC_METHOD_NAVIGATION_PUSH =
-  "yona:ui-rpc-method-navigation-push";
+  "solaxy:ui-rpc-method-navigation-push";
 export const UI_RPC_METHOD_NAVIGATION_READ =
-  "yona:ui-rpc-method-navigation-read";
+  "solaxy:ui-rpc-method-navigation-read";
 export const UI_RPC_METHOD_NAVIGATION_READ_URL =
-  "yona:ui-rpc-method-navigation-read-url";
+  "solaxy:ui-rpc-method-navigation-read-url";
 export const UI_RPC_METHOD_NAVIGATION_TO_ROOT =
-  "yona:ui-rpc-method-navigation-to-root";
+  "solaxy:ui-rpc-method-navigation-to-root";
 export const UI_RPC_METHOD_NAVIGATION_TO_DEFAULT =
-  "yona:ui-rpc-method-navigation-to-default";
+  "solaxy:ui-rpc-method-navigation-to-default";
 export const UI_RPC_METHOD_PASSWORD_UPDATE =
-  "yona:ui-rpc-method-password-update";
+  "solaxy:ui-rpc-method-password-update";
 export const UI_RPC_METHOD_SET_FEATURE_GATES =
-  "yona:ui-rpc-method-set-feature-gates";
+  "solaxy:ui-rpc-method-set-feature-gates";
 export const UI_RPC_METHOD_GET_FEATURE_GATES =
-  "yona:ui-rpc-method-get-feature-gates";
+  "solaxy:ui-rpc-method-get-feature-gates";
 export const UI_RPC_METHOD_GET_XNFT_PREFERENCES =
-  "yona:ui-rpc-method-get-xnft-preference";
+  "solaxy:ui-rpc-method-get-xnft-preference";
 export const UI_RPC_METHOD_SET_XNFT_PREFERENCES =
-  "yona:ui-rpc-method-set-xnft-preference";
+  "solaxy:ui-rpc-method-set-xnft-preference";
 
 export const UI_RPC_METHOD_SETTINGS_DARK_MODE_READ =
-  "yona:ui-rpc-method-settings-dark-mode-read";
+  "solaxy:ui-rpc-method-settings-dark-mode-read";
 export const UI_RPC_METHOD_SETTINGS_DARK_MODE_UPDATE =
-  "yona:ui-rpc-method-settings-dark-mode-update";
+  "solaxy:ui-rpc-method-settings-dark-mode-update";
 export const UI_RPC_METHOD_SETTINGS_LOCK_FULL_SCREEN_UPDATE =
-  "yona:ui-rpc-method-settings-lock-full-screen-update";
+  "solaxy:ui-rpc-method-settings-lock-full-screen-update";
 export const UI_RPC_METHOD_SETTINGS_DEVELOPER_MODE_READ =
-  "yona:ui-rpc-method-settings-developer-mode-read";
+  "solaxy:ui-rpc-method-settings-developer-mode-read";
 export const UI_RPC_METHOD_SETTINGS_DEVELOPER_MODE_UPDATE =
-  "yona:ui-rpc-method-settings-developer-mode-update";
+  "solaxy:ui-rpc-method-settings-developer-mode-update";
 export const UI_RPC_METHOD_SETTINGS_AGGREGATE_WALLETS_UPDATE =
-  "yona:ui-rpc-method-settings-aggregate-wallet-update";
+  "solaxy:ui-rpc-method-settings-aggregate-wallet-update";
 export const UI_RPC_METHOD_TRY_TO_SIGN_MESSAGE =
-  "yona:ui-rpc-method-try-to-sign-message";
-export const UI_RPC_METHOD_USER_READ = "yona:ui-rpc-method-user-read";
-export const UI_RPC_METHOD_ALL_USERS_READ = "yona:ui-rpc-method-all-users-read";
+  "solaxy:ui-rpc-method-try-to-sign-message";
+export const UI_RPC_METHOD_USER_READ = "solaxy:ui-rpc-method-user-read";
+export const UI_RPC_METHOD_ALL_USERS_READ = "solaxy:ui-rpc-method-all-users-read";
 export const UI_RPC_METHOD_PREFERENCES_READ =
-  "yona:ui-rpc-method-references-read";
+  "solaxy:ui-rpc-method-references-read";
 // User account methods that interact with the API
 export const UI_RPC_METHOD_USER_ACCOUNT_READ =
-  "yona:ui-rpc-method-user-account-read";
+  "solaxy:ui-rpc-method-user-account-read";
 
 // Solana
 export const UI_RPC_METHOD_COMMITMENT_UPDATE =
-  "yona:ui-rpc-method-commitment-update";
+  "solaxy:ui-rpc-method-commitment-update";
 export const UI_RPC_METHOD_CONNECTION_URL_READ =
-  "yona:ui-rpc-method-connection-url-read";
+  "solaxy:ui-rpc-method-connection-url-read";
 export const UI_RPC_METHOD_CONNECTION_URL_UPDATE =
-  "yona:ui-rpc-method-connection-url-update";
+  "solaxy:ui-rpc-method-connection-url-update";
 export const UI_RPC_METHOD_EXPLORER_UPDATE =
-  "yona:ui-rpc-method-explorer-update";
+  "solaxy:ui-rpc-method-explorer-update";
 export const UI_RPC_METHOD_HIDDEN_TOKENS_UPDATE =
-  "yona:ui-rpc-method-hidden-tokens-update";
+  "solaxy:ui-rpc-method-hidden-tokens-update";
 export const UI_RPC_METHOD_TOGGLE_SHOW_ALL_COLLECTIBLES =
-  "yona:ui-rpc-method-toggle-show-all-collectibles";
+  "solaxy:ui-rpc-method-toggle-show-all-collectibles";
 export const UI_RPC_METHOD_SOLANA_SIGN_ALL_TRANSACTIONS =
-  "yona:ui-rpc-method-solana-sign-all-txs";
+  "solaxy:ui-rpc-method-solana-sign-all-txs";
 export const UI_RPC_METHOD_SOLANA_SIGN_AND_SEND_TRANSACTION =
-  "yona:ui-rpc-method-solana-sign-and-send-tx";
+  "solaxy:ui-rpc-method-solana-sign-and-send-tx";
 export const UI_RPC_METHOD_SOLANA_SIGN_MESSAGE =
-  "yona:ui-rpc-method-solana-sign-message";
+  "solaxy:ui-rpc-method-solana-sign-message";
 export const UI_RPC_METHOD_SOLANA_SIGN_TRANSACTION =
-  "yona:ui-rpc-method-solana-sign-tx";
+  "solaxy:ui-rpc-method-solana-sign-tx";
 export const UI_RPC_METHOD_SOLANA_SIMULATE =
-  "yona:ui-rpc-method-solana-simulate";
+  "solaxy:ui-rpc-method-solana-simulate";
 // Ethereum
 export const UI_RPC_METHOD_ETHEREUM_CHAIN_ID_READ =
-  "yona:ui-rpc-method-ethereum-chain-id-read";
+  "solaxy:ui-rpc-method-ethereum-chain-id-read";
 export const UI_RPC_METHOD_ETHEREUM_CHAIN_ID_UPDATE =
-  "yona:ui-rpc-method-ethereum-chain-id-update";
+  "solaxy:ui-rpc-method-ethereum-chain-id-update";
 export const UI_RPC_METHOD_ETHEREUM_SIGN_AND_SEND_TRANSACTION =
-  "yona:ui-rpc-method-ethereum-sign-and-send-tx";
+  "solaxy:ui-rpc-method-ethereum-sign-and-send-tx";
 export const UI_RPC_METHOD_ETHEREUM_SIGN_MESSAGE =
-  "yona:ui-rpc-method-ethereum-sign-message";
+  "solaxy:ui-rpc-method-ethereum-sign-message";
 export const UI_RPC_METHOD_ETHEREUM_SIGN_TRANSACTION =
-  "yona:ui-rpc-method-ethereum-sign-tx";
+  "solaxy:ui-rpc-method-ethereum-sign-tx";
 
 //
 // Notifications sent from the background script to observers.
 //
 
 export const NOTIFICATION_KEY_IS_COLD_UPDATE =
-  "yona:notification-key-is-cold-update";
+  "solaxy:notification-key-is-cold-update";
 export const NOTIFICATION_APPROVED_ORIGINS_UPDATE =
-  "yona:notification-approved-origins-update";
+  "solaxy:notification-approved-origins-update";
 export const NOTIFICATION_AUTO_LOCK_SETTINGS_UPDATED =
-  "yona:notification-auto-lock-settings-updated";
+  "solaxy:notification-auto-lock-settings-updated";
 export const NOTIFICATION_BLOCKCHAIN_KEYRING_CREATED =
-  "yona:notification-blockchain-keyring-created";
+  "solaxy:notification-blockchain-keyring-created";
 export const NOTIFICATION_BLOCKCHAIN_KEYRING_DELETED =
-  "yona:notification-blockchain-keyring-deleted";
+  "solaxy:notification-blockchain-keyring-deleted";
 export const NOTIFICATION_AGGREGATE_WALLETS_UPDATED =
-  "yona:notification-aggregate-wallets-updated";
+  "solaxy:notification-aggregate-wallets-updated";
 export const NOTIFICATION_DARK_MODE_UPDATED =
-  "yona:notification-dark-mode-updated";
+  "solaxy:notification-dark-mode-updated";
 export const NOTIFICATION_LOCK_FULL_SCREEN_UPDATED =
-  "yona:notification-lock-full-screen-updated";
+  "solaxy:notification-lock-full-screen-updated";
 export const NOTIFICATION_DEVELOPER_MODE_UPDATED =
-  "yona:notification-developer-mode-updated";
+  "solaxy:notification-developer-mode-updated";
 export const NOTIFICATION_FEATURE_GATES_UPDATED =
-  "yona:notification-feature-gates-updated";
-export const NOTIFICATION_KEYNAME_UPDATE = "yona:notification-keyname-update";
+  "solaxy:notification-feature-gates-updated";
+export const NOTIFICATION_KEYNAME_UPDATE = "solaxy:notification-keyname-update";
 export const NOTIFICATION_KEYRING_ACTIVE_BLOCKCHAIN_UPDATED =
-  "yona:notification-keyring-active-blockchain-updated";
-export const NOTIFICATION_KEYRING_CREATED = "yona:notification-keyring-created";
+  "solaxy:notification-keyring-active-blockchain-updated";
+export const NOTIFICATION_KEYRING_CREATED = "solaxy:notification-keyring-created";
 export const NOTIFICATION_KEYRING_IMPORTED_WALLET =
-  "yona:notification-keyring-imported-wallet";
+  "solaxy:notification-keyring-imported-wallet";
 export const NOTIFICATION_KEYRING_DERIVED_WALLET =
-  "yona:notification-keyring-derived-wallet";
+  "solaxy:notification-keyring-derived-wallet";
 export const NOTIFICATION_KEYRING_IMPORTED_SECRET_KEY =
-  "yona:notification-keyring-imported-secret-key";
+  "solaxy:notification-keyring-imported-secret-key";
 export const NOTIFICATION_KEYRING_KEY_DELETE =
-  "yona:notification-keyring-key-delete";
+  "solaxy:notification-keyring-key-delete";
 export const NOTIFICATION_KEYRING_SET_MNEMONIC =
-  "yona:notification-keyring-set-mnemonic";
+  "solaxy:notification-keyring-set-mnemonic";
 export const NOTIFICATION_KEYRING_RESET_MNEMONIC =
-  "yona:notification-keyring-reset-mnemonic";
+  "solaxy:notification-keyring-reset-mnemonic";
 export const NOTIFICATION_KEYRING_STORE_CREATED =
-  "yona:notification-keyring-store-created";
+  "solaxy:notification-keyring-store-created";
 export const NOTIFICATION_KEYRING_STORE_LOCKED =
   "NOTIFICATION_KEYRING_STORE_LOCKED";
 export const NOTIFICATION_KEYRING_STORE_RESET =
-  "yona:notification-keyring-store-reset";
+  "solaxy:notification-keyring-store-reset";
 export const NOTIFICATION_KEYRING_STORE_UNLOCKED =
-  "yona:NOTIFICATION_KEYRING_STORE_UNLOCKED";
+  "solaxy:NOTIFICATION_KEYRING_STORE_UNLOCKED";
 export const NOTIFICATION_NAVIGATION_URL_DID_CHANGE =
-  "yona:notification-navigation-url-did-change";
+  "solaxy:notification-navigation-url-did-change";
 export const NOTIFICATION_KEYRING_STORE_USERNAME_ACCOUNT_CREATED =
-  "yona:notification-username-account-created";
+  "solaxy:notification-username-account-created";
 export const NOTIFICATION_KEYRING_STORE_USER_AVATAR_UPDATED =
-  "yona:notification-user-avatar-updated";
+  "solaxy:notification-user-avatar-updated";
 export const NOTIFICATION_KEYRING_STORE_ACTIVE_USER_UPDATED =
-  "yona:notification-active-user-updated";
+  "solaxy:notification-active-user-updated";
 export const NOTIFICATION_KEYRING_STORE_REMOVED_USER =
-  "yona:notification-keyring-store-removed-user";
+  "solaxy:notification-keyring-store-removed-user";
 export const NOTIFICATION_ACTIVE_BLOCKCHAIN_UPDATED =
-  "yona:notification-keyring-active-blockchain-updated";
+  "solaxy:notification-keyring-active-blockchain-updated";
 export const NOTIFICATION_XNFT_PREFERENCE_UPDATED =
-  "yona:notification-xnft-preference-updated";
-// Ethereum specific yona:notifications
+  "solaxy:notification-xnft-preference-updated";
+// Ethereum specific solaxy:notifications
 export const NOTIFICATION_ETHEREUM_CHAIN_ID_UPDATED =
-  "yona:notification-ethereum-chain-id-updated";
+  "solaxy:notification-ethereum-chain-id-updated";
 export const NOTIFICATION_ETHEREUM_CONNECTED =
-  "yona:notification-ethereum-connected";
+  "solaxy:notification-ethereum-connected";
 export const NOTIFICATION_ETHEREUM_DISCONNECTED =
-  "yona:notification-ethereum-disconnected";
+  "solaxy:notification-ethereum-disconnected";
 export const NOTIFICATION_ETHEREUM_FEE_DATA_DID_UPDATE =
-  "yona:notification-ethereum-fee-data-did-update";
+  "solaxy:notification-ethereum-fee-data-did-update";
 export const NOTIFICATION_ETHEREUM_TOKENS_DID_UPDATE =
-  "yona:notification-ethereum-tokens-did-update";
-// Solana specific yona:notifications
+  "solaxy:notification-ethereum-tokens-did-update";
+// Solana specific solaxy:notifications
 export const NOTIFICATION_ACTIVE_WALLET_UPDATED =
-  "yona:notification-keyring-active-wallet-updated";
+  "solaxy:notification-keyring-active-wallet-updated";
 export const NOTIFICATION_COMMITMENT_UPDATED =
-  "yona:notification-commitment-updated";
+  "solaxy:notification-commitment-updated";
 export const NOTIFICATION_SOLANA_CONNECTED =
-  "yona:notification-solana-connected";
+  "solaxy:notification-solana-connected";
 export const NOTIFICATION_CONNECTION_URL_UPDATED =
-  "yona:notification-connection-url-updated";
+  "solaxy:notification-connection-url-updated";
 export const NOTIFICATION_SOLANA_DISCONNECTED =
-  "yona:notification-solana-disconnected";
+  "solaxy:notification-solana-disconnected";
 export const NOTIFICATION_EXPLORER_UPDATED =
-  "yona:notification-explorer-updated";
+  "solaxy:notification-explorer-updated";
 export const NOTIFICATION_SOLANA_SPL_TOKENS_DID_UPDATE =
-  "yona:notification-solana-spl-tokens-did-update";
+  "solaxy:notification-solana-spl-tokens-did-update";
 
 //
 // Ethereum web injected provider API.
@@ -378,7 +378,7 @@ export const SOLANA_CONNECTION_RPC_CUSTOM_SPL_METADATA_URI =
 
 // SOLANA UNUSED
 
-export const PLUGIN_RPC_METHOD_PLUGIN_OPEN = "rpc-method-yona:plugin-open";
+export const PLUGIN_RPC_METHOD_PLUGIN_OPEN = "rpc-method-solaxy:plugin-open";
 export const PLUGIN_RPC_METHOD_POP_OUT = "rpc-method-pop-out";
 
 export const PLUGIN_RPC_METHOD_RESIZE_EXTENSION_WINDOW =
@@ -449,13 +449,13 @@ export const XNFT_GG_LINK = "https://xnft.gg";
 export const BACKPACK_LINK = "https://yona.network";
 export const BACKPACK_TERMS_OF_SERVICE = "https://yona.network";
 export const BACKPACK_HELP_AND_SUPPORT = "https://discord.gg/QtYPJ9KZ";
-export const BACKPACK_GITHUB_LINK = "https://github.com/Hyper-Network";
+export const BACKPACK_GITHUB_LINK = "https://github.com/Solaxy-Network";
 
 export const EXCHANGE_TERMS_OF_SERVICE_URL = "https://yona.network";
 export const EXCHANGE_SUMSUB_DOCS_URL =
   "https://sumsub.com/supported-documents";
 
-export const RPC_API_URL = "https://devnet-rpc.yona.network";
+export const RPC_API_URL = "https://mainnet.rpc.solaxy.io";
 export const AVATAR_BASE_URL = "https://swr.xnftdata.com/avatars";
 export const BACKEND_API_URL = "https://backpack-api.xnfts.dev";
 export const MESSAGING_COMMUNICATION_PUSH = "MESSAGING_COMMUNICATION_PUSH";

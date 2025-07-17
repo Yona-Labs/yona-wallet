@@ -11,15 +11,15 @@ export default function About() {
           className="mt-4 text-4xl font-extrabold tracking-tight
                   text-zinc-50 sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
         >
-          Welcome to Hyper Wallet
+          Welcome to Solaxy Wallet
         </h1>
 
         <div className="flex max-w-lg flex-col gap-4 text-center text-zinc-400">
           <p className="text-zinc-400">
-            Hyper Wallet is brought to you by{" "}
+            Solaxy Wallet is brought to you by{" "}
             <a
               className="text-teal-500"
-              href="https://yona.network"
+              href="https://solaxy.io"
               target="_blank"
               rel="noreferrer"
             >
@@ -30,7 +30,7 @@ export default function About() {
               className="text-teal-500"
               target="_blank"
               rel="noreferrer"
-              href="https://yona.network"
+              href="https://solaxy.io"
             >
               xNFTs.
             </a>
@@ -48,9 +48,9 @@ export default function About() {
               className="text-teal-500"
               target="_blank"
               rel="noreferrer"
-              href="https://twitter.com/yona_network"
+              href="https://twitter.com/solaxy_official"
             >
-              Follow Hyper on Twitter.
+              Follow Solaxy on Twitter.
             </a>
           </p>
         </div>

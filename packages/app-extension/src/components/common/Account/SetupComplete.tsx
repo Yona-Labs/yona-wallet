@@ -56,12 +56,12 @@ export function SetupComplete({ onClose }: { onClose: () => void }) {
             }
             title={t("support")}
             onClick={() => {
-              window.open("https://yona.network", "_blank");
+              window.open("https://solaxy.io", "_blank");
             }}
           />
           <_CallToAction
             icon={<XTwitterIcon style={{ height: 24 }} />}
-            title="@Hyper"
+            title="@Solaxy"
             onClick={() => window.open(TWITTER_LINK, "_blank")}
           />
           <_CallToAction

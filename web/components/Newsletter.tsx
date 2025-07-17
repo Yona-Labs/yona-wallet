@@ -29,7 +29,7 @@ function Newsletter() {
         >
           <div className="xl:w-0 xl:flex-1">
             <h2 className="text-2xl font-extrabold tracking-tight text-zinc-50 sm:text-3xl">
-              Want Hyper news and updates?
+              Want Solaxy news and updates?
             </h2>
             <p className="mt-3 max-w-3xl text-lg leading-6 text-teal-200">
               Sign up for our Substack to stay up to date.

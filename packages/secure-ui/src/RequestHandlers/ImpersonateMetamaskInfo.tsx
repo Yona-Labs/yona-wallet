@@ -45,7 +45,7 @@ export function ImpersonateMetamaskInfo() {
             lineHeight="$md"
             color="$baseTextMedEmphasis"
           >
-            We are simulating MetaMask to enable you to use Hyper Wallet in more
+            We are simulating MetaMask to enable you to use Solaxy Wallet in more
             places.
           </StyledText>
           <XStack

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta
           name="twitter:title"
-          content="Hyper Wallet - A home for your xNFT apps"
+          content="Solaxy Wallet - A home for your xNFT apps"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="https://www.backpack.app/_next/image?url=%2Fbrands%2Fbackpack-twitter.png&w=3840&q=75"
         />
         <meta name="apple-itunes-app" content="app-id=6445964121" />
-        <title>Hyper Wallet</title>
+        <title>Solaxy Wallet</title>
       </Head>
 
       <PlausibleProvider domain="yona.network" trackOutboundLinks={true}>

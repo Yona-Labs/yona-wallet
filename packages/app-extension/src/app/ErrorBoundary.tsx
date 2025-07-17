@@ -125,7 +125,7 @@ class ErrorBoundaryWithHooks extends React.Component<Props, State> {
                 }
               }}
             >
-              Reset Hyper Wallet
+              Reset Solaxy Wallet
             </Typography>
           </Box>
         </div>

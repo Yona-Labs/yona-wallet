@@ -13,6 +13,7 @@ export const brandPixelLavender = "#c061f7";
 export const brandPixelOcean = "#28dbd1";
 export const brandPixelCoral = "#fe6f5c";
 export const brandPixelLemon = "#feed5c";
+export const brandCustomGreen = "#0B352E";
 
 // Purple
 export const lightAccentPurple = "#9b34ef";
@@ -132,8 +133,8 @@ export const lightBlueSecondaryButtonBackground = color(blue700)
 export const lightBlueSecondaryButtonTextColor = blue700;
 
 // Light Mode Blue
-export const lightAccentBlue = blue700; // used for text and icons
-export const lightAccentBlueBackground = color(blue700).alpha(0.15).string();
+export const lightAccentBlue = "#01E0B9"; // used for text and icons
+export const lightAccentBlueBackground = "#0B352E";
 
 // Light Mode Success
 export const lightGreenText = green700;
@@ -209,8 +210,8 @@ export const darkBlueSecondaryButtonBackground = color(blue700)
 export const darkBlueSecondaryButtonTextColor = blue500;
 
 // Dark Mode Blue
-export const darkAccentBlue = blue500; // used for text and icons
-export const darkAccentBlueBackground = color(blue700).alpha(1).string();
+export const darkAccentBlue = "#01E0B9"; // used for text and icons
+export const darkAccentBlueBackground = "#0B352E";
 
 // Dark Mode Success
 export const darkGreenText = green500;

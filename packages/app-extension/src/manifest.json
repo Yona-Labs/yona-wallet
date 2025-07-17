@@ -30,9 +30,9 @@
     }
   ],
   "icons": {
-    "16": "anchor.png",
-    "192": "anchor.png",
-    "512": "anchor.png"
+    "16": "solaxy.png",
+    "192": "solaxy.png",
+    "512": "solaxy.png"
   },
   "permissions": ["storage", "background"]
 }

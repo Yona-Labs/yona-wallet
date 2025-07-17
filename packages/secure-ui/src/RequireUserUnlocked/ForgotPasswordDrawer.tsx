@@ -107,7 +107,7 @@ export function ForgotPasswordDrawer({
               }}
               onPress={handleReset}
             >
-              Reset Hyper Wallet
+              Reset Solaxy Wallet
             </Button>
           </Stack>
         </Stack>

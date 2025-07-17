@@ -37,7 +37,7 @@ export function LockedMenuDrawer({
 
   const links = [
     {
-      label: "Hyper.network",
+              label: "Solaxy.io",
       icon: <ShoppingBagIcon color="$baseIcon" size="$1xl" />,
       url: BACKPACK_LINK,
     },
@@ -107,7 +107,7 @@ export function LockedMenuDrawer({
                   <UserCircleIcon color="$baseIcon" size="$1xl" />
                 </Stack>
                 <StyledText flexGrow={1} fontSize={16} fontWeight="500">
-                  Reset Hyper Wallet
+                  Reset Solaxy Wallet
                 </StyledText>
                 <Stack
                   height="$2"

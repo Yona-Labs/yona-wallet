@@ -68,7 +68,9 @@
     "prettier": "^3.2.4",
     "react-dom": "18.2.0",
     "react": "18.2.0",
-    "wrangler": "^2.10.0"
+    "wrangler": "^2.10.0",
+    "@yona-wallet-standard/base": "npm:@wallet-standard/base@^1.0.1",
+    "@yona-wallet-standard/features": "npm:@wallet-standard/features@^1.0.3"
   },
   "engines": {
     "node": "20.10.0",

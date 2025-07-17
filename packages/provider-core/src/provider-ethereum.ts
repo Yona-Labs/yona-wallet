@@ -68,13 +68,13 @@ export interface EIP1193Provider {
 const messages = {
   errors: {
     disconnected: () =>
-      "Hyper Wallet: Disconnected from chain. Attempting to connect.",
+      "Solaxy Wallet: Disconnected from chain. Attempting to connect.",
     invalidRequestArgs: () =>
-      `Hyper Wallet: Expected a single, non-array, object argument.`,
+      `Solaxy Wallet: Expected a single, non-array, object argument.`,
     invalidRequestMethod: () =>
-      `Hyper Wallet: 'args.method' must be a non-empty string.`,
+      `Solaxy Wallet: 'args.method' must be a non-empty string.`,
     invalidRequestParams: () =>
-      `Hyper Wallet: 'args.params' must be an object or array if provided.`,
+      `Solaxy Wallet: 'args.params' must be an object or array if provided.`,
   },
 };
 
@@ -111,11 +111,11 @@ export class ProviderEthereumInjection
    * Boolean indicating that the provider is Backpack.
    * And Flag if backpack was recognized so we dont have to impersonate Metamask.
    */
-  yonaRecognized: boolean = false;
+  solaxyRecognized: boolean = false;
 
-  public get isYona(): true {
+  public get isSolaxy(): true {
     try {
-      this.yonaRecognized = true;
+      this.solaxyRecognized = true;
     } catch {
       null;
     }
@@ -128,7 +128,7 @@ export class ProviderEthereumInjection
   #shouldBeMetaMask: boolean = true;
   public get isMetaMask(): boolean {
     this.#metaMaskRecognized = true;
-    return this.#shouldBeMetaMask && !this.yonaRecognized;
+    return this.#shouldBeMetaMask && !this.solaxyRecognized;
   }
 
   /**
@@ -405,7 +405,7 @@ export class ProviderEthereumInjection
     }
 
     const impersonatingMetaMask =
-      !this.yonaRecognized &&
+      !this.solaxyRecognized &&
       this.#metaMaskRecognized &&
       this.#shouldBeMetaMask;
 

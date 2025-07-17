@@ -24,7 +24,7 @@ export function CreateOrImportMnemonic({
     <YStack gap={32} paddingHorizontal={16}>
       <YStack gap={16}>
         <StyledText fontSize={24} textAlign="center">
-          Setup your Hyper Secret Recovery Phrase
+          Setup your Solaxy Secret Recovery Phrase
         </StyledText>
         <StyledText color="$baseTextMedEmphasis" textAlign="center">
           Create or import a secret recovery phrase. This will be used to create

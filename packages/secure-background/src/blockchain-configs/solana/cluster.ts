@@ -1,4 +1,4 @@
-export const DEFAULT_SOLANA_CLUSTER = "https://devnet-rpc.yona.network";
+export const DEFAULT_SOLANA_CLUSTER = "https://mainnet.rpc.solaxy.io";
 export const SolanaCluster = {
   MAINNET: DEFAULT_SOLANA_CLUSTER,
   DEVNET: DEFAULT_SOLANA_CLUSTER,

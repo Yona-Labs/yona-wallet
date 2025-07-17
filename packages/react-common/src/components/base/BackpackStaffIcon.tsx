@@ -23,7 +23,7 @@ export const BackpackStaffIcon = () => {
       }}
     >
       {" "}
-      <Tooltip title="Hyper Wallet staff">
+      <Tooltip title="Solaxy Wallet staff">
         <StyledHomeIcon
           style={{
             fontSize: 14,

@@ -46,7 +46,7 @@ export function SvmSignMessageRequest({
       <ApproveMessage
         publicKey={currentRequest.request.publicKey}
         currentRequest={currentRequest}
-        title="Approve Hyper Message"
+        title="Approve Solaxy Message"
         message={message}
         blockchain={Blockchain.SOLANA}
       />
