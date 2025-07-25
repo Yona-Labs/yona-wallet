@@ -17,6 +17,7 @@ import { config as tamaguiConfig, TamaguiProvider } from "@coral-xyz/tamagui";
 import { v4 } from "uuid";
 
 import { OptClickToComponent } from "../utils/click-to-component";
+import "../onboarding-import"; // Force onboarding code to be included
 
 // Code-splitting keeps the options.js bundle under 4MB which is
 // a requirement for Firefox extensions

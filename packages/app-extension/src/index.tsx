@@ -1,5 +1,10 @@
 const startTime = Date.now();
 
+// Force onboarding to be included in production builds
+if (typeof openOnboarding !== "function") {
+  console.warn("openOnboarding not available");
+}
+
 import { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BACKPACK_FEATURE_POP_MODE, openPopupWindow } from "@coral-xyz/common";
@@ -22,6 +27,8 @@ import { RecoilRoot } from "recoil";
 import { v4 } from "uuid";
 
 import { OptClickToComponent } from "./utils/click-to-component";
+// Force onboarding code to be included
+import { openOnboarding } from "@coral-xyz/common";
 
 import "./index.css";
 

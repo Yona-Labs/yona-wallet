@@ -16,7 +16,7 @@ const { browserslist, description, version } = require("./package.json");
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const EXTENSION_NAME =
-  NODE_ENV === "development" ? "(DEV) Solaxy" : "Solaxy Wallet";
+  NODE_ENV === "development" ? "Solaxy Wallet" : "Solaxy Wallet";
 
 const isDevelopment = NODE_ENV === "development";
 const appDirectory = path.resolve(__dirname);
@@ -196,7 +196,7 @@ const options = {
   },
   output: {
     filename: "[name].js",
-    chunkFilename: "[name].js",
+    chunkFilename: isDevelopment ? "[name].js" : "[name].[chunkhash].js",
     path: path.resolve(__dirname, dir),
     clean: true,
     publicPath: "",
@@ -360,6 +360,11 @@ const options = {
       ],
     }),
   ],
+  optimization: {
+    splitChunks: false,
+    runtimeChunk: false,
+    minimize: false, // Disable minification to prevent tree shaking
+  },
   ...extras,
 };
 

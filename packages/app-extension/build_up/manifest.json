@@ -1,0 +1,57 @@
+{
+  "description": "A next level crypto wallet for Solaxy Network",
+  "version": "0.0.6",
+  "name": "Solaxy Wallet",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "injected.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+B"
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start",
+      "exclude_globs": [
+        "*chrome-extension*"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "icons": {
+    "16": "solaxy.png",
+    "192": "solaxy.png",
+    "512": "solaxy.png"
+  },
+  "permissions": [
+    "storage",
+    "background"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' http://localhost:8097; object-src 'self'"
+  }
+}
