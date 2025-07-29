@@ -39,7 +39,8 @@ export const CHANNEL_SOLANA_CONNECTION_INJECTED_REQUEST =
   "solaxy:channel-solana-connection-injected-request";
 export const CHANNEL_SOLANA_CONNECTION_INJECTED_RESPONSE =
   "solaxy:channel-solana-connection-injected-response";
-export const CHANNEL_ETHEREUM_RPC_REQUEST = "solaxy:channel-ethereum-rpc-request";
+export const CHANNEL_ETHEREUM_RPC_REQUEST =
+  "solaxy:channel-ethereum-rpc-request";
 export const CHANNEL_ETHEREUM_RPC_RESPONSE =
   "solaxy:channel-ethereum-rpc-response";
 export const CHANNEL_ETHEREUM_NOTIFICATION =
@@ -115,7 +116,8 @@ export const UI_RPC_METHOD_BLOCKCHAINS_ENABLED_DELETE =
   "solaxy:ui-rpc-method-blockchains-enabled-delete";
 export const UI_RPC_METHOD_KEY_IS_COLD_UPDATE =
   "solaxy:ui-rpc-method-key-is-cold-update";
-export const UI_RPC_METHOD_KEYNAME_UPDATE = "solaxy:ui-rpc-method-keyname-update";
+export const UI_RPC_METHOD_KEYNAME_UPDATE =
+  "solaxy:ui-rpc-method-keyname-update";
 export const UI_RPC_METHOD_KEYRING_EXPORT_MNEMONIC =
   "solaxy:ui-rpc-method-export-mnemonic";
 export const UI_RPC_METHOD_KEYRING_EXPORT_SECRET_KEY =
@@ -129,12 +131,14 @@ export const UI_RPC_METHOD_KEYRING_STORE_READ_ALL_PUBKEYS =
   "solaxy:ui-rpc-method-keyring-read-all-pubkeys";
 export const UI_RPC_METHOD_KEYRING_STORE_STATE =
   "solaxy:ui-rpc-method-keyring-store-state";
-export const UI_RPC_METHOD_LEDGER_CONNECT = "solaxy:ui-rpc-method-ledger-connect";
+export const UI_RPC_METHOD_LEDGER_CONNECT =
+  "solaxy:ui-rpc-method-ledger-connect";
 export const UI_RPC_METHOD_NAVIGATION_ACTIVE_TAB_UPDATE =
   "solaxy:ui-rpc-method-navigation-active-tab-update";
 export const UI_RPC_METHOD_NAVIGATION_CURRENT_URL_UPDATE =
   "solaxy:ui-rpc-method-navigation-current-url-update";
-export const UI_RPC_METHOD_NAVIGATION_POP = "solaxy:ui-rpc-method-navigation-pop";
+export const UI_RPC_METHOD_NAVIGATION_POP =
+  "solaxy:ui-rpc-method-navigation-pop";
 export const UI_RPC_METHOD_NAVIGATION_PUSH =
   "solaxy:ui-rpc-method-navigation-push";
 export const UI_RPC_METHOD_NAVIGATION_READ =
@@ -171,7 +175,8 @@ export const UI_RPC_METHOD_SETTINGS_AGGREGATE_WALLETS_UPDATE =
 export const UI_RPC_METHOD_TRY_TO_SIGN_MESSAGE =
   "solaxy:ui-rpc-method-try-to-sign-message";
 export const UI_RPC_METHOD_USER_READ = "solaxy:ui-rpc-method-user-read";
-export const UI_RPC_METHOD_ALL_USERS_READ = "solaxy:ui-rpc-method-all-users-read";
+export const UI_RPC_METHOD_ALL_USERS_READ =
+  "solaxy:ui-rpc-method-all-users-read";
 export const UI_RPC_METHOD_PREFERENCES_READ =
   "solaxy:ui-rpc-method-references-read";
 // User account methods that interact with the API
@@ -240,7 +245,8 @@ export const NOTIFICATION_FEATURE_GATES_UPDATED =
 export const NOTIFICATION_KEYNAME_UPDATE = "solaxy:notification-keyname-update";
 export const NOTIFICATION_KEYRING_ACTIVE_BLOCKCHAIN_UPDATED =
   "solaxy:notification-keyring-active-blockchain-updated";
-export const NOTIFICATION_KEYRING_CREATED = "solaxy:notification-keyring-created";
+export const NOTIFICATION_KEYRING_CREATED =
+  "solaxy:notification-keyring-created";
 export const NOTIFICATION_KEYRING_IMPORTED_WALLET =
   "solaxy:notification-keyring-imported-wallet";
 export const NOTIFICATION_KEYRING_DERIVED_WALLET =
@@ -446,12 +452,12 @@ export const TOKEN_ACCOUNT_RENT_EXEMPTION_LAMPORTS = 2039280 as const;
 export const DISCORD_INVITE_LINK = "https://discord.gg/QtYPJ9KZ";
 export const TWITTER_LINK = "https://twitter.com/yona_network";
 export const XNFT_GG_LINK = "https://xnft.gg";
-export const BACKPACK_LINK = "https://yona.network";
-export const BACKPACK_TERMS_OF_SERVICE = "https://yona.network";
+export const BACKPACK_LINK = "https://solaxy.io/";
+export const BACKPACK_TERMS_OF_SERVICE = "https://solaxy.io/";
 export const BACKPACK_HELP_AND_SUPPORT = "https://discord.gg/QtYPJ9KZ";
 export const BACKPACK_GITHUB_LINK = "https://github.com/Solaxy-Network";
 
-export const EXCHANGE_TERMS_OF_SERVICE_URL = "https://yona.network";
+export const EXCHANGE_TERMS_OF_SERVICE_URL = "https://solaxy.io/";
 export const EXCHANGE_SUMSUB_DOCS_URL =
   "https://sumsub.com/supported-documents";
 

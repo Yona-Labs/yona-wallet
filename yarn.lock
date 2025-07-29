@@ -3628,6 +3628,7 @@ __metadata:
     "@graphql-codegen/cli": "npm:^3.3.1"
     "@graphql-codegen/client-preset": "npm:^3.0.1"
     "@types/react": "npm:^18.2.6"
+    buffer: "npm:^6.0.3"
     eslint-config-custom: "npm:*"
     helius-sdk: "npm:^1.0.12"
     immer: "npm:^10.1.1"

@@ -16,6 +16,7 @@ export function useTokenBalancesRPC({ publicKey }: { publicKey: string }) {
       const data = await fetchTokenBalancesRPC({ publicKey });
       setTokens(publicKey, data);
     } catch (err) {
+      console.log("err fetch tokens", err);
       setError(err);
     } finally {
       setLoading(false);
@@ -37,7 +38,8 @@ export function useTokenBalancesRPC({ publicKey }: { publicKey: string }) {
   const data = useMemo(() => {
     return tokens[publicKey] ? Object.values(tokens[publicKey]) : [];
   }, [tokens, publicKey]);
-
+  console.log("data", data);
+  console.log("tokens", tokens);
   const store = useMemo(() => {
     return tokens[publicKey] || {};
   }, [tokens, publicKey]);

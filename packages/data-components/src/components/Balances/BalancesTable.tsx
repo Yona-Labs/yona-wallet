@@ -50,7 +50,7 @@ export function BalancesTable({
       sections={[{ data: balances }]}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
-      ListFooterComponent={balances.length > 0 ? footerComponent : undefined}
+      ListFooterComponent={footerComponent}
     />
   );
 }
