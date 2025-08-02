@@ -19,8 +19,8 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
       {
         method: "GET",
         headers: {
-          "Accept": "application/json",
-        }
+          Accept: "application/json",
+        },
       }
     );
 
@@ -31,7 +31,7 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
         const transformedData: IGetSolaxyPriceResponse = {
           firstPrice: solaxyData.usd?.toString() || "0",
           high: solaxyData.usd?.toString() || "0",
-          lastPrice: solaxyData.usd?.toString() || "0", 
+          lastPrice: solaxyData.usd?.toString() || "0",
           low: solaxyData.usd?.toString() || "0",
           priceChange: "0", // CoinGecko doesn't provide this directly
           priceChangePercent: solaxyData.usd_24h_change?.toString() || "0",
@@ -40,8 +40,11 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
           trades: "0",
           volume: solaxyData.usd_24h_vol?.toString() || "0",
         };
-        
-        window.localStorage.setItem("solaxyPrice", JSON.stringify(transformedData));
+
+        window.localStorage.setItem(
+          "solaxyPrice",
+          JSON.stringify(transformedData)
+        );
         return transformedData;
       }
     }
@@ -53,8 +56,8 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
       {
         method: "GET",
         headers: {
-          "Accept": "application/json",
-        }
+          Accept: "application/json",
+        },
       }
     );
 
@@ -66,7 +69,7 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
           firstPrice: pair.priceUsd || "0",
           high: pair.priceUsd || "0",
           lastPrice: pair.priceUsd || "0",
-          low: pair.priceUsd || "0", 
+          low: pair.priceUsd || "0",
           priceChange: pair.priceChange24h || "0",
           priceChangePercent: pair.priceChange24h || "0",
           quoteVolume: pair.volume24h || "0",
@@ -74,18 +77,20 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
           trades: "0",
           volume: pair.volume24h || "0",
         };
-        
-        window.localStorage.setItem("solaxyPrice", JSON.stringify(transformedData));
+
+        window.localStorage.setItem(
+          "solaxyPrice",
+          JSON.stringify(transformedData)
+        );
         return transformedData;
       }
     }
 
     // If all APIs fail, throw error
     throw new Error("No API returned Solaxy data");
-
   } catch (error) {
     console.error("Error fetching Solaxy price:", error);
-    
+
     // Only fallback to cached data if available
     const cachedData = window.localStorage.getItem("solaxyPrice");
     if (cachedData) {
@@ -95,9 +100,11 @@ export const getSolaxyPrice = async (): Promise<IGetSolaxyPriceResponse> => {
         console.error("Error parsing cached data:", parseError);
       }
     }
-    
+
     // No fallback data - throw error
-    throw new Error("Failed to fetch Solaxy price from all sources and no cached data available");
+    throw new Error(
+      "Failed to fetch Solaxy price from all sources and no cached data available"
+    );
   }
 };
 
@@ -105,7 +112,7 @@ export const SOLAXY_TOKEN = {
   id: "U09MQU5BX25hdGl2ZV9hZGRyZXNzOkFYaFkzejdyUVl3djdiRHVOSm82ZjZEQ2hmUHdmZGNRQzFXRWR3aFZYSFFv",
   address: "AXhY3z7rQYwv7bDuNJo6f6DChfPwfdcQC1WEdwhVXHQo",
   amount: "0",
-  decimals: 9,
+  decimals: 6,
   displayAmount: "0.0",
   marketData: {
     id: "Y29pbmdlY2tvX21hcmtldF9kYXRhOkFYaFkzejdyUVl3djdiRHVOSm82ZjZEQ2hmUHdmZGNRQzFXRWR3aFZYSFFvL3NvbGFuYQ==",
@@ -120,7 +127,7 @@ export const SOLAXY_TOKEN = {
   tokenListEntry: {
     id: "U09MQU5BX3Rva2VuX2xpc3RfZW50cnk6MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTE=",
     address: "11111111111111111111111111111111",
-    decimals: 9,
+    decimals: 6,
     logo: "./solaxy.png",
     name: "Solaxy",
     symbol: "SOLX",

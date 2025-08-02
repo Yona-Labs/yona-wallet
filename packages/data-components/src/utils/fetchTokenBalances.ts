@@ -28,8 +28,8 @@ const fetchNativeBalance = async (publicKey: string) => {
     id: BTC_TOKEN.token,
     address: publicKey,
     amount: response.value.toString(),
-    decimals: 9,
-    displayAmount: formatTokenAmount(response.value, 9),
+    decimals: BTC_TOKEN.decimals,
+    displayAmount: formatTokenAmount(response.value, BTC_TOKEN.decimals),
     marketData: {
       ...BTC_TOKEN.marketData,
     },
