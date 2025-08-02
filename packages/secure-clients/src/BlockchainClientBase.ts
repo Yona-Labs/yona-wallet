@@ -1,12 +1,12 @@
 import type { Blockchain } from "@coral-xyz/common";
 import type { BlockchainConfig } from "@coral-xyz/secure-background/types";
 
-import type { EthereumClient } from "./EthereumClient/EthereumClient";
+// import type { EthereumClient } from "./EthereumClient/EthereumClient";
 import type { SolanaClient } from "./SolanaClient/SolanaClient";
 
 export type BlockchainClient<B extends Blockchain = Blockchain> =
   B extends Blockchain.ETHEREUM
-    ? EthereumClient
+    ? any // EthereumClient
     : B extends Blockchain.SOLANA
       ? SolanaClient
       : B extends Blockchain.ECLIPSE

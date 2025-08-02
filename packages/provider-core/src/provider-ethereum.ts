@@ -14,7 +14,7 @@ import {
   NOTIFICATION_ETHEREUM_CHAIN_ID_UPDATED,
 } from "@coral-xyz/common";
 import {
-  EthereumClient,
+  // EthereumClient,
   NotificationContentScriptBroadcastListener,
 } from "@coral-xyz/secure-clients";
 import type {
@@ -92,7 +92,7 @@ export class ProviderEthereumInjection
    */
   #connectionRequestManager: InjectedRequestManager;
 
-  #secureEthereumClient: EthereumClient;
+  #secureEthereumClient: any; // EthereumClient
   #secureClientSender: TransportSender<SECURE_EVM_EVENTS>;
   #notificationsReceiver: NotificationContentScriptBroadcastListener;
   /**
@@ -180,7 +180,8 @@ export class ProviderEthereumInjection
     // );
 
     this.#secureClientSender = secureClientSender;
-    this.#secureEthereumClient = new EthereumClient(this.#secureClientSender);
+    // this.#secureEthereumClient = new EthereumClient(this.#secureClientSender);
+    this.#secureEthereumClient = null;
     this.#provider = this.#secureEthereumClient.getProvider();
     this.#notificationsReceiver =
       new NotificationContentScriptBroadcastListener();
@@ -495,7 +496,7 @@ export class ProviderEthereumInjection
    */
   #handleEthSignMessage = async (
     messageHex: string,
-    signer: ReturnType<EthereumClient["getSigner"]>
+    signer: ReturnType<any> // EthereumClient["getSigner"]
   ) => {
     if (!this.isConnected()) {
       throw new Error("wallet not connected");
@@ -510,7 +511,7 @@ export class ProviderEthereumInjection
   #handleEthSignTypedDataV4 = async (
     _address: string,
     messageHex: string,
-    signer: ReturnType<EthereumClient["getSigner"]>
+    signer: ReturnType<any> // EthereumClient["getSigner"]
   ) => {
     if (!this.isConnected()) {
       throw new Error("wallet not connected");
@@ -525,7 +526,7 @@ export class ProviderEthereumInjection
    */
   #handleEthSignTransaction = async (
     transaction: TransactionLike<string>,
-    signer: ReturnType<EthereumClient["getSigner"]>
+    signer: ReturnType<any> // EthereumClient["getSigner"]
   ) => {
     if (!this.isConnected()) {
       throw new Error("wallet not connected");
@@ -539,7 +540,7 @@ export class ProviderEthereumInjection
    */
   #handleEthSendTransaction = async (
     transaction: TransactionRequest,
-    signer: ReturnType<EthereumClient["getSigner"]>
+    signer: ReturnType<any> // EthereumClient["getSigner"]
   ) => {
     if (!this.isConnected()) {
       throw new Error("wallet not connected");

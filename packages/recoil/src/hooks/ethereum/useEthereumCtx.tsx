@@ -1,4 +1,4 @@
-import type { EthereumContext } from "@coral-xyz/secure-clients/legacyCommon";
+// import type { EthereumContext } from "@coral-xyz/secure-clients/legacyCommon";
 import type { FeeData } from "@ethersproject/abstract-provider";
 import { BigNumber, ethers } from "ethers";
 import { useRecoilValue } from "recoil";
@@ -23,7 +23,7 @@ function useEthereumFeeData(): any {
   } as FeeData;
 }
 
-export function useEthereumCtx(): EthereumContext {
+export function useEthereumCtx(): any {
   const wallet = useActiveEthereumWallet();
   const { provider, chainId } = useEthersContext();
   const backgroundClient = useBackgroundClient();

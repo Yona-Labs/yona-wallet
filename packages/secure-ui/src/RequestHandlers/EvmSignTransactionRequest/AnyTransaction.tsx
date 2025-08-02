@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 import { Blockchain, formatWalletAddress } from "@coral-xyz/common";
 import { ethereumClientAtom, secureUserAtom } from "@coral-xyz/recoil";
-import { EthereumClient } from "@coral-xyz/secure-clients";
+// import { EthereumClient } from "@coral-xyz/secure-clients";
 import {
   Button,
   ChevronDownIcon,
@@ -62,7 +62,8 @@ export function AnyTransaction({
   const [blowfishError, setBlowfishError] = useState(false);
 
   const blowfishEvaluation = useFetchEthereumBlowfishEvaluation(
-    EthereumClient.config.blowfishUrl,
+    // EthereumClient.config.blowfishUrl,
+    "https://blowfish.coral.xyz",
     [transaction],
     currentRequest.event.origin.address,
     currentRequest.request.publicKey,

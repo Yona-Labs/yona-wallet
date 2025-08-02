@@ -1,5 +1,5 @@
 import { Blockchain } from "@coral-xyz/common";
-import type { EthereumClient, SolanaClient } from "@coral-xyz/secure-clients";
+import type { SolanaClient } from "@coral-xyz/secure-clients";
 import {
   createBlockchainClient,
   getBlockchainConfig,
@@ -67,7 +67,7 @@ export const blockchainClientAtom = selectorFamily<
   dangerouslyAllowMutability: true,
 });
 
-export const ethereumClientAtom = selector<EthereumClient | null>({
+export const ethereumClientAtom = selector<any | null>({
   key: "ethereumClientAtom",
   get: ({ get }) => {
     const secureBackgroundSender = get(secureBackgroundSenderAtom);

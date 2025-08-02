@@ -1,8 +1,8 @@
 import type { WalletDescriptor } from "@coral-xyz/common";
 import { Blockchain } from "@coral-xyz/common";
 import { mnemonicToSeedSync, validateMnemonic } from "bip39";
-import type { BaseWallet, TransactionRequest } from "ethers6";
-import { HDNodeWallet, hexlify, Mnemonic, Transaction, Wallet } from "ethers6";
+// import type { BaseWallet, TransactionRequest } from "ethers6";
+// import { HDNodeWallet, hexlify, Mnemonic, Transaction, Wallet } from "ethers6";
 
 import { LedgerKeyringBase } from "../../keyring/ledger";
 import type {
@@ -26,21 +26,23 @@ import {
 export class EthereumKeyringFactory implements KeyringFactory {
   init(secretKeys: Array<string>): Keyring {
     const wallets = secretKeys.map((secretKey) => {
-      return new Wallet(secretKey);
+      // return new Wallet(secretKey);
+      return null as any;
     });
     return new EthereumKeyring(wallets);
   }
 
   fromJson(payload: KeyringJson): Keyring {
     const wallets = payload.secretKeys.map((secret: string) => {
-      return new Wallet(Buffer.from(secret, "hex").toString());
+      // return new Wallet(Buffer.from(secret, "hex").toString());
+      return null as any;
     });
     return new EthereumKeyring(wallets);
   }
 }
 
 class EthereumKeyringBase implements KeyringBase {
-  constructor(public wallets: Array<BaseWallet>) {}
+  constructor(public wallets: Array<any>) {} // BaseWallet
 
   public publicKeys(): Array<string> {
     return this.wallets.map((w) => w.address);
@@ -51,7 +53,8 @@ class EthereumKeyringBase implements KeyringBase {
   }
 
   public importSecretKey(secretKey: string, publicKey: string): string {
-    const wallet = new Wallet(secretKey);
+    // const wallet = new Wallet(secretKey);
+    const wallet = null as any;
     if (wallet.address !== publicKey) {
       throw new Error("Invalid Keypair. Keys don't match");
     }
@@ -72,8 +75,9 @@ class EthereumKeyringBase implements KeyringBase {
     if (!wallet) {
       throw new Error(`unable to find ${signerAddress.toString()}`);
     }
-    const tx = Transaction.from(hexlify(serializedTx));
-    return await wallet.signTransaction(tx as TransactionRequest);
+    // const tx = Transaction.from(hexlify(serializedTx));
+    // return await wallet.signTransaction(tx as TransactionRequest);
+    return null as any;
   }
 
   public async signMessage(
@@ -181,10 +185,11 @@ class EthereumHdKeyring extends EthereumKeyringBase implements HdKeyring {
   }
 
   addDerivationPath(derivationPath: string, publicKey: string): string {
-    const wallet = HDNodeWallet.fromMnemonic(
-      Mnemonic.fromPhrase(this.mnemonic),
-      derivationPath
-    );
+    // const wallet = HDNodeWallet.fromMnemonic(
+    //   Mnemonic.fromPhrase(this.mnemonic),
+    //   derivationPath
+    // );
+    const wallet = null as any;
     if (wallet.address !== publicKey) {
       throw new Error("Invalid Keypair. Keys don't match");
     }

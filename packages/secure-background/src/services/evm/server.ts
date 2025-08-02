@@ -1,7 +1,7 @@
 import type { WalletDescriptor } from "@coral-xyz/common";
 import { Blockchain, getLogger } from "@coral-xyz/common";
 import { mnemonicToSeed } from "bip39";
-import { encodeBase58, JsonRpcProvider, Transaction } from "ethers6";
+// import { encodeBase58, JsonRpcProvider, Transaction } from "ethers6";
 
 import { safeClientResponse } from "../../background-clients/safeClientResponse";
 import { SecureUIClient } from "../../background-clients/SecureUIClient";
@@ -28,7 +28,7 @@ export class EVMService {
   private ledgerClient: LedgerClient;
   private userClient: UserClient;
   private keyringStore: KeyringStore;
-  private provider: JsonRpcProvider | null = null;
+  private provider: any | null = null; // JsonRpcProvider
   private providerCacheKey: string | null = null;
   private accounts: string[] = [];
   private accountsCacheKey: string | null = null;
@@ -237,7 +237,8 @@ export class EVMService {
 
     const tx = event.request.txHex;
 
-    const transaction = Transaction.from(tx);
+    // const transaction = Transaction.from(tx);
+    const transaction = null as any;
 
     const confirmation = await safeClientResponse(
       this.secureUIClient.confirm(
@@ -293,7 +294,8 @@ export class EVMService {
     // otherwise sign with keyring
     else {
       const signedTxHex = await blockchainKeyring.signTransaction(
-        encodeBase58(transaction.unsignedSerialized),
+        // encodeBase58(transaction.unsignedSerialized),
+        null as any,
         publicKey
       );
       return event.respond({ signedTxHex });
@@ -318,7 +320,8 @@ export class EVMService {
       const newProviderCacheKey = connectionUrl + chainId;
       if (!this.provider || this.providerCacheKey !== newProviderCacheKey) {
         this.providerCacheKey = newProviderCacheKey;
-        this.provider = new JsonRpcProvider(connectionUrl, parseInt(chainId));
+        // this.provider = new JsonRpcProvider(connectionUrl, parseInt(chainId));
+        this.provider = null as any;
       }
 
       event.respond({

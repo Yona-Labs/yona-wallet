@@ -7,7 +7,7 @@ import { Connection } from "@solana/web3.js";
 
 import { getBlockchainConfig } from "..";
 
-import { EthereumClient } from "./EthereumClient/EthereumClient";
+// import { EthereumClient } from "./EthereumClient/EthereumClient";
 import { SolanaClient } from "./SolanaClient/SolanaClient";
 import type { BlockchainClient } from "./BlockchainClientBase";
 
@@ -36,14 +36,14 @@ export function createBlockchainClient<B extends Blockchain>(
       // this cast is safe due to switch statement;
       return client as BlockchainClient<B>;
     }
-    case Blockchain.ETHEREUM: {
-      const client: BlockchainClient<Blockchain.ETHEREUM> = new EthereumClient(
-        transportSender
-      );
+    // case Blockchain.ETHEREUM: {
+    //   const client: BlockchainClient<Blockchain.ETHEREUM> = new EthereumClient(
+    //     transportSender
+    //   );
 
-      // this cast is safe due to switch statement;
-      return client as BlockchainClient<B>;
-    }
+    //   // this cast is safe due to switch statement;
+    //   return client as BlockchainClient<B>;
+    // }
 
     default: {
       throw new Error(

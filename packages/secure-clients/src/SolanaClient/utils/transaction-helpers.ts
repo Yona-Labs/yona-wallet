@@ -1,7 +1,8 @@
 import { Transaction, VersionedTransaction } from "@solana/web3.js";
-import { ethers } from "ethers5";
+import bs58 from "bs58";
+// import { ethers } from "ethers5";
 
-const { base58: bs58 } = ethers.utils;
+// const { base58: bs58 } = ethers.utils;
 
 export const deserializeTransaction = (
   serializedTx: string

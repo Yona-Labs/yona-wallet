@@ -3,7 +3,7 @@ export * from "@coral-xyz/secure-background/clients";
 
 // Clients
 export { createBlockchainClient } from "./src/createBlockchainClient";
-export { EthereumClient } from "./src/EthereumClient/EthereumClient";
+// export { EthereumClient } from "./src/EthereumClient/EthereumClient";
 export { SolanaClient } from "./src/SolanaClient/SolanaClient";
 export { TensorClient } from "./src/TensorClient/TensorClient";
 

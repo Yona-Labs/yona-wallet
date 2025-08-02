@@ -5,7 +5,7 @@
 export { confirmTransaction } from "./src/SolanaClient/utils/confirmTransaction";
 
 // Only access blockchain data via its client.
-export * from "./src/EthereumClient/ethereum";
+// export * from "./src/EthereumClient/ethereum";
 export {
   Solana,
   type SolanaContext,

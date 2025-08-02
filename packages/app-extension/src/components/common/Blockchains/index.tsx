@@ -7,9 +7,9 @@ import {
   DEFAULT_SOLANA_CLUSTER,
   EthereumConnectionUrl,
 } from "@coral-xyz/secure-background/legacyCommon";
-import type { EthereumContext } from "@coral-xyz/secure-clients/legacyCommon";
+// import type { EthereumContext } from "@coral-xyz/secure-clients/legacyCommon";
 import {
-  ETH_NATIVE_MINT,
+  // ETH_NATIVE_MINT,
   SOL_NATIVE_MINT,
 } from "@coral-xyz/secure-clients/legacyCommon";
 import { Connection as SolanaConnection, PublicKey } from "@solana/web3.js";
@@ -30,7 +30,7 @@ export const BLOCKCHAIN_COMPONENTS: Record<
     // Fee amount to offset a token transfer when clicking the "max" button.
     MaxFeeOffset: (
       token: { address: string; mint?: string },
-      ethereumCtx?: EthereumContext
+      ethereumCtx?: any // EthereumContext
     ) => BigNumber;
   }
 > = {
@@ -55,16 +55,17 @@ export const BLOCKCHAIN_COMPONENTS: Record<
       token: { address: string; mint?: string },
       ethereumCtx?: any
     ) => {
-      if (token.address === ETH_NATIVE_MINT) {
-        // 21,000 GWEI for a standard ETH transfer
-        return BigNumber.from("21000")
-          .mul(ethereumCtx?.feeData.maxFeePerGas!)
-          .add(
-            BigNumber.from("21000").mul(
-              ethereumCtx?.feeData.maxPriorityFeePerGas!
-            )
-          );
-      }
+      // if (token.address === ETH_NATIVE_MINT) {
+      //   // 21,000 GWEI for a standard ETH transfer
+      //   return BigNumber.from("21000")
+      //     .mul(ethereumCtx?.feeData.maxFeePerGas!)
+      //     .add(
+      //       BigNumber.from("21000").mul(
+      //         ethereumCtx?.feeData.maxPriorityFeePerGas!
+      //       )
+      //     );
+      // }
+      console.log("MaxFeeOffset", token, ethereumCtx);
       return BigNumber.from(0);
     },
   },

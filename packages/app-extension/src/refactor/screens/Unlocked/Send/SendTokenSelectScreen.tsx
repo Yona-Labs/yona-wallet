@@ -11,7 +11,7 @@ import { EmptyState, WarningIcon } from "@coral-xyz/react-common";
 import { useActiveWallet } from "@coral-xyz/recoil";
 import { BTC_TOKEN } from "@coral-xyz/secure-background/src/blockchain-configs/bitcoin";
 import {
-  ETH_NATIVE_MINT,
+  // ETH_NATIVE_MINT,
   SOL_NATIVE_MINT,
 } from "@coral-xyz/secure-clients/legacyCommon";
 import {
@@ -64,7 +64,9 @@ function Container({ navigation }: SendTokenSelectScreenProps) {
             percentChange: Number(price?.priceChangePercent),
             value: Number(token.displayAmount) * Number(price?.lastPrice),
             valueChange:
-              Number(token.displayAmount) * Number(price?.lastPrice) * (Number(price?.priceChangePercent) / 100),
+              Number(token.displayAmount) *
+              Number(price?.lastPrice) *
+              (Number(price?.priceChangePercent) / 100),
             marketId: BTC_TOKEN.marketData.marketId,
             marketUrl: BTC_TOKEN.marketData.marketUrl,
           },
@@ -130,9 +132,9 @@ function Container({ navigation }: SendTokenSelectScreenProps) {
         if (token.token === SOL_NATIVE_MINT) {
           return true;
         }
-        if (token.token === ETH_NATIVE_MINT) {
-          return true;
-        }
+        // if (token.token === ETH_NATIVE_MINT) {
+        //   return true;
+        // }
         return parseFloat(token.amount) !== 0;
       }}
     />

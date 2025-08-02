@@ -1,5 +1,5 @@
 import type { Blockchain } from "@coral-xyz/common";
-import type { JsonRpcPayload, JsonRpcResult } from "ethers6";
+// import type { JsonRpcPayload, JsonRpcResult } from "ethers6";
 
 import type { SecureEventBase } from "../../types/transports";
 
@@ -101,9 +101,9 @@ export interface SECURE_EVM_SIGN_TX
 export interface SECURE_EVM_PROVIDER_SEND
   extends SecureEventBase<"SECURE_EVM_PROVIDER_SEND"> {
   request: {
-    payload: JsonRpcPayload[];
+    payload: any[]; // JsonRpcPayload[];
   };
   response: {
-    result: JsonRpcResult[];
+    result: any[]; // JsonRpcResult[];
   };
 }

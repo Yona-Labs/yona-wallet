@@ -28,18 +28,17 @@ import {
 //   });
 // }
 
-// import {
-//   CHANNEL_PLUGIN_RPC_REQUEST,
-//   CHANNEL_PLUGIN_RPC_RESPONSE,
-//   getLogger,
-// } from "@coral-xyz/common";
-// import {
-//   ChainedRequestManager,
-//   ProviderEthereumInjection,
-//   ProviderRootXnftInjection,
-//   ProviderSolanaInjection,
-// } from "@coral-xyz/provider-core";
-// import { initialize } from "@coral-xyz/wallet-standard";
+import {
+  CHANNEL_PLUGIN_RPC_REQUEST,
+  CHANNEL_PLUGIN_RPC_RESPONSE,
+  // getLogger,
+} from "@coral-xyz/common";
+import {
+  ChainedRequestManager,
+  ProviderRootXnftInjection,
+  ProviderSolanaInjection,
+} from "@coral-xyz/provider-core";
+import { initialize } from "@coral-xyz/wallet-standard";
 // import { v4 as uuidV4 } from "uuid";
 
 // import type {
@@ -47,7 +46,7 @@ import {
 //   EIP6963RequestProviderEvent,
 //   WindowEthereum,
 // } from "./types";
-// import { TransportSender } from "@coral-xyz/secure-clients/types";
+import { TransportSender } from "@coral-xyz/secure-clients/types";
 // import { UserClient } from "@coral-xyz/secure-clients";
 
 // const logger = getLogger("provider-injection");

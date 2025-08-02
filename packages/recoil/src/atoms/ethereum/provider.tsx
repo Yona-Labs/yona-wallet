@@ -1,5 +1,5 @@
 import { Blockchain } from "@coral-xyz/common";
-import type { FeeData } from "@ethersproject/abstract-provider";
+// import type { FeeData } from "@ethersproject/abstract-provider";
 import { BigNumber } from "ethers";
 import type { Provider } from "ethers6";
 import { atom, selector } from "recoil";
@@ -28,7 +28,8 @@ export const ethersContext = selector<{
   dangerouslyAllowMutability: true,
 });
 
-export const ethereumFeeData = atom<FeeData>({
+export const ethereumFeeData = atom<any>({
+  // FeeData
   key: "ethereumFeeData",
   default: selector({
     key: "ethereumFeeDataDefault",

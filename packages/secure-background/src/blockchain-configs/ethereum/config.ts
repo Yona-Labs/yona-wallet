@@ -1,5 +1,5 @@
 import { Blockchain } from "@coral-xyz/common";
-import { ethers } from "ethers5";
+// import { ethers } from "ethers5";
 
 import type { BlockchainConfig } from "../../types/blockchain";
 
@@ -66,7 +66,7 @@ export const ethereumBlockchainConfig: BlockchainConfig<Blockchain.ETHEREUM> = {
   },
   validatePublicKey: (address: string) => {
     try {
-      ethers.utils.getAddress(address);
+      // ethers.utils.getAddress(address);
     } catch (e) {
       return false;
     }
