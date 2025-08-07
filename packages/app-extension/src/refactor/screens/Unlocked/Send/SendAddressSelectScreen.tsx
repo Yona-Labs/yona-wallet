@@ -22,6 +22,7 @@ function Container({
     params: { assetId, blockchain },
   },
 }: SendAddressSelectScreenProps) {
+  console.log("route", assetId, blockchain);
   return (
     <AddressSelector
       blockchain={blockchain}

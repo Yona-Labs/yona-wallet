@@ -59,10 +59,11 @@ function _CollectibleDetails({
   const [height, setHeight] = useState(size);
   const { t } = useTranslation();
 
-  const imageSource =
+  const [imageSource, setImageSource] = useState(
     data.image && data.image !== ""
       ? proxyImageUrl(externalResourceUri(data.image), undefined, true)
-      : UNKNOWN_NFT_ICON_SRC;
+      : UNKNOWN_NFT_ICON_SRC
+  );
 
   /**
    * Component layout effect to fetch the dimensions of the image from the
@@ -97,6 +98,9 @@ function _CollectibleDetails({
           source={{ uri: imageSource, width: size }}
           minHeight={height}
           width="100%"
+          onError={() => {
+            setImageSource(UNKNOWN_NFT_ICON_SRC);
+          }}
         />
       </XStack>
       <XStack flex={1} gap={8} maxWidth="100%">

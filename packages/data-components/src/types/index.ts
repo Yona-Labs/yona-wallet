@@ -75,7 +75,7 @@ export type TokenBalance = {
   tokenListEntry: {
     address: string;
     decimals: number;
-    logo: string;
+    logo: string | null;
     name: string;
     symbol: string;
   } | null;

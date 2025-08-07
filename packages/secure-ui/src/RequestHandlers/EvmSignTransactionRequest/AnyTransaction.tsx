@@ -11,7 +11,7 @@ import type {
 import { useEffect, useState } from "react";
 
 import { Blockchain, formatWalletAddress } from "@coral-xyz/common";
-import { ethereumClientAtom, secureUserAtom } from "@coral-xyz/recoil";
+import { secureUserAtom } from "@coral-xyz/recoil";
 // import { EthereumClient } from "@coral-xyz/secure-clients";
 import {
   Button,
@@ -61,17 +61,17 @@ export function AnyTransaction({
   const transaction = Transaction.from(currentRequest.request.txHex);
   const [blowfishError, setBlowfishError] = useState(false);
 
-  const blowfishEvaluation = useFetchEthereumBlowfishEvaluation(
-    // EthereumClient.config.blowfishUrl,
-    "https://blowfish.coral.xyz",
-    [transaction],
-    currentRequest.event.origin.address,
-    currentRequest.request.publicKey,
-    (error) => {
-      setBlowfishError(true);
-      console.error(error);
-    }
-  );
+  // const blowfishEvaluation = useFetchEthereumBlowfishEvaluation(
+  //   // EthereumClient.config.blowfishUrl,
+  //   "https://blowfish.coral.xyz",
+  //   [transaction],
+  //   currentRequest.event.origin.address,
+  //   currentRequest.request.publicKey,
+  //   (error) => {
+  //     setBlowfishError(true);
+  //     console.error(error);
+  //   }
+  // );
 
   const [transactionOverrides, setTransactionOverrides] =
     useState<TransactionOverrides>(getOverrides(transaction, 100));
@@ -97,24 +97,9 @@ export function AnyTransaction({
     <RequireUserUnlocked
       onReset={() => currentRequest.error(new Error("Login Failed"))}
     >
-      {blowfishEvaluation.isLoading ? (
+      {/* {blowfishEvaluation.isLoading ? (
         <Loading />
       ) : (
-        //  : (blowfishError ||
-        //     blowfishEvaluation.error ||
-        //     !blowfishEvaluation.normalizedEvaluation) &&
-        //   showSimulationFailed ? (
-        //     <BlockingWarning
-        //       title="Simulation failed"
-        //       warning={{
-        //       severity: "WARNING",
-        //       kind: "error",
-        //       message: "Please try again.",
-        //     }}
-        //       onIgnore={() => setShowSimulationFailed(false)}
-        //       onDeny={onDeny}
-        //   />
-        // )
         <BlowfishTransactionDetails
           origin={currentRequest.event.origin}
           signerPublicKey={currentRequest.request.publicKey}
@@ -173,7 +158,7 @@ export function AnyTransaction({
             </YStack>,
           ]}
         />
-      )}
+      )} */}
       <TransactionSettingsDrawer
         isOpen={settingsOpen}
         setIsOpen={setSettingsOpen}

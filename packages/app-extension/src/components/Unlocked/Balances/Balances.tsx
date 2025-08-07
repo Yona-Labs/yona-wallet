@@ -1,6 +1,7 @@
 import { formatUsd, proxyImageUrl, UNKNOWN_ICON_SRC } from "@coral-xyz/common";
 import { temporarilyMakeStylesForBrowserExtension } from "@coral-xyz/tamagui";
 import { ListItemIcon, Typography } from "@mui/material";
+import { useState } from "react";
 
 const useStyles = temporarilyMakeStylesForBrowserExtension((theme) => ({
   balancesTableCellContainer: {
@@ -84,8 +85,8 @@ export function BalancesTableCell({ props }: any) {
     (balanceChange ?? 0) > 0.004
       ? "positive"
       : (balanceChange ?? 0) < -0.004
-      ? "negative"
-      : "neutral";
+        ? "negative"
+        : "neutral";
 
   const changeLabel =
     polarity === "positive" ? (
@@ -138,14 +139,18 @@ export function BalancesTableCell({ props }: any) {
 }
 
 function ProxyImage(props: any) {
+  const [imageSource, setImageSource] = useState(proxyImageUrl(props.src));
+
   return (
     <img
       {...props}
       onError={({ currentTarget }) => {
         currentTarget.onerror = props.onError || null;
-        currentTarget.src = props.src;
+        // currentTarget.src = props.src;
+        // currentTarget.src = UNKNOWN_ICON_SRC;
+        setImageSource(UNKNOWN_ICON_SRC);
       }}
-      src={proxyImageUrl(props.src)}
+      src={imageSource}
     />
   );
 }

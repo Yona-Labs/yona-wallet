@@ -50,14 +50,15 @@ export function proxyImageUrl(
   size = 400,
   unbounded?: boolean
 ): string {
-  if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
-    if (url.includes("swr.xnftdata.com/avatars/")) {
-      url += `?size=${size}`;
-    }
-    return `https://imageresizer.xnftdata.com/fit=contain,${
-      unbounded ? `width=${size},` : `width=${size},height=${size},`
-    }quality=85/${url}`;
-  }
+  // if (url && (url.startsWith("http://") || url.startsWith("https://"))) {
+  //   if (url.includes("swr.xnftdata.com/avatars/")) {
+  //     url += `?size=${size}`;
+  //   }
+  //   return `https://imageresizer.xnftdata.com/fit=contain,${
+  //     unbounded ? `width=${size},` : `width=${size},height=${size},`
+  //   }quality=85/${url}`;
+  // }
+
   return url;
 }
 

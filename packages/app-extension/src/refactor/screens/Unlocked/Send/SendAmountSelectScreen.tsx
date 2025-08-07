@@ -154,7 +154,7 @@ function _SendInner({
   const { t } = useTranslation();
   const active = useActiveWallet();
   const { provider: solanaProvider } = useAnchorContext();
-  const ethereumCtx = useEthereumCtx();
+  // const ethereumCtx = useEthereumCtx();
   const blockchainClient = useRecoilValue(
     blockchainClientAtom(active.blockchain)
   );
@@ -177,18 +177,19 @@ function _SendInner({
     active.blockchain,
     to.address,
     solanaProvider.connection,
-    ethereumCtx.provider
+    // ethereumCtx.provider
+    undefined
   );
 
-  useEffect(() => {
-    if (!token) return;
-    setFeeOffset(
-      BLOCKCHAIN_COMPONENTS[active.blockchain].MaxFeeOffset(
-        { address: token.address, mint: token.token },
-        ethereumCtx
-      )
-    );
-  }, [active.blockchain, token]); // eslint-disable-line
+  // useEffect(() => {
+  //   if (!token) return;
+  //   setFeeOffset(
+  //     BLOCKCHAIN_COMPONENTS[active.blockchain].MaxFeeOffset(
+  //       { address: token.address, mint: token.token },
+  //       ethereumCtx
+  //     )
+  //   );
+  // }, [active.blockchain, token]); // eslint-disable-line
 
   const amountSubFee = BigNumber.from(token!.amount).sub(feeOffset);
   const maxAmount = amountSubFee.gt(0) ? amountSubFee : BigNumber.from(0);

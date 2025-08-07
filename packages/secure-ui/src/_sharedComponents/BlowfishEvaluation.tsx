@@ -264,7 +264,7 @@ export function BlowfishTransactionDetails({
   }
 
   const originAddress = origin.address;
-  const isYona = origin.address === "https://yona.network";
+  const isSolaxy = origin.address === "https://solaxy.io/";
   const originIcon =
     originAddress.startsWith("http") && !originAddress.includes("localhost")
       ? `https://www.google.com/s2/favicons?domain=${originAddress}&sz=50`
@@ -369,7 +369,6 @@ export function BlowfishTransactionDetails({
           <XStack alignItems="center" justifyContent="flex-start" space="$3">
             <Square
               size={24}
-              // circular={originAddress !== "https://yona.network"}
               overflow="hidden"
               alignItems="center"
               justifyContent="center"
@@ -379,18 +378,18 @@ export function BlowfishTransactionDetails({
                 source={{
                   width: 24,
                   height: 24,
-                  uri: isYona
-                    ? "https://yona.network/new-icon.svg"
+                  uri: isSolaxy
+                    ? "https://solaxy.io/assets/images/svg-icons/token.svg"
                     : originIcon,
                 }}
               />
             </Square>
             <YStack space="$1">
               <StyledText fontWeight="$bold" fontSize="$md">
-                {isYona ? "yona.network" : new URL(originAddress).host}
+                {isSolaxy ? "solaxy.io" : new URL(originAddress).host}
               </StyledText>
               <StyledText color="$baseTextMedEmphasis" fontSize="$xs">
-                {isYona ? "Solaxy Extension" : origin.name}
+                {isSolaxy ? "Solaxy Extension" : origin.name}
               </StyledText>
             </YStack>
           </XStack>

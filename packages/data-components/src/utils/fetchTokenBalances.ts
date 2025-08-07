@@ -7,6 +7,7 @@ import {
   parseSplTokenAccount,
   parseSplTokenAccountWithDecimals,
 } from "./decodeSolanaSplTokenData";
+import { fetchTokenMetadata } from "./fetchTokenMetadata";
 
 const fetchNativeBalance = async (publicKey: string) => {
   const res = await fetch(RPC_API_URL, {
@@ -80,6 +81,8 @@ const fetchSplTokenBalances = async (publicKey: string) => {
           );
 
           if (parsedData && parsedData.mint && parsedData.amount) {
+            const metadata = await fetchTokenMetadata(parsedData?.mint.address);
+
             // Определяем decimals и displayAmount
             const decimals = parsedData.token?.decimals ?? 0;
             const displayAmount = parsedData.amount.ui ?? parsedData.amount.raw;
@@ -92,7 +95,13 @@ const fetchSplTokenBalances = async (publicKey: string) => {
               displayAmount: displayAmount,
               marketData: null,
               token: parsedData.mint.address,
-              tokenListEntry: null,
+              tokenListEntry: {
+                address: parsedData.mint.address,
+                decimals: decimals,
+                logo: metadata.jsonMetadata?.image ?? null,
+                name: metadata.name,
+                symbol: metadata.symbol,
+              },
             });
           } else {
             console.warn("Не удалось спарсить данные токена:", token.pubkey);
@@ -107,6 +116,10 @@ const fetchSplTokenBalances = async (publicKey: string) => {
             basicParsedData.mint &&
             basicParsedData.amount
           ) {
+            const metadata = await fetchTokenMetadata(
+              basicParsedData?.mint.address
+            );
+
             result.push({
               id: basicParsedData.mint.address,
               address: token.pubkey,
@@ -115,11 +128,21 @@ const fetchSplTokenBalances = async (publicKey: string) => {
               displayAmount: basicParsedData.amount.raw,
               marketData: null,
               token: basicParsedData.mint.address,
-              tokenListEntry: null,
+              tokenListEntry: {
+                address: basicParsedData.mint.address,
+                decimals: 0,
+                logo: metadata.jsonMetadata?.image ?? null,
+                name: metadata.name,
+                symbol: metadata.symbol,
+              },
             });
           }
         }
       } else {
+        const metadata = await fetchTokenMetadata(
+          token.account.data.parsed.info.mint
+        );
+
         // Используем готовые распарсенные данные из RPC
         result.push({
           id: token.account.data.parsed.info.mint,
@@ -130,7 +153,13 @@ const fetchSplTokenBalances = async (publicKey: string) => {
             token.account.data.parsed.info.tokenAmount.uiAmountString,
           marketData: null,
           token: token.account.data.parsed.info.mint,
-          tokenListEntry: null,
+          tokenListEntry: {
+            address: token.account.data.parsed.info.mint,
+            decimals: token.account.data.parsed.info.tokenAmount.decimals,
+            logo: metadata.jsonMetadata?.image ?? null,
+            name: metadata.name,
+            symbol: metadata.symbol,
+          },
         });
       }
     }

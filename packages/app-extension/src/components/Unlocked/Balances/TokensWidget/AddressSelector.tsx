@@ -94,14 +94,15 @@ export const AddressSelector = ({
   const classes = useStyles();
   const [inputContent, setInputContent] = useState("");
   const { provider: solanaProvider } = useAnchorContext();
-  const ethereumCtx = useEthereumCtx();
+  // const ethereumCtx = useEthereumCtx();
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const { isValidAddress, isErrorAddress, normalizedAddress } =
     useIsValidAddress(
       blockchain,
       inputContent,
       solanaProvider.connection,
-      ethereumCtx.provider
+      // ethereumCtx.provider
+      undefined
     );
 
   return (

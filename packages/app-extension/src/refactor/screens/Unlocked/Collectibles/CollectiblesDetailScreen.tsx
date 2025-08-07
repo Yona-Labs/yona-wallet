@@ -233,10 +233,11 @@ function CollectibleDetails({
     apollo.cache,
   ]);
 
-  const imageSource =
+  const [imageSource, setImageSource] = useState(
     data.image && data.image !== ""
       ? proxyImageUrl(externalResourceUri(data.image), undefined, true)
-      : UNKNOWN_NFT_ICON_SRC;
+      : UNKNOWN_NFT_ICON_SRC
+  );
 
   /**
    * Component layout effect to fetch the dimensions of the image from the
@@ -271,6 +272,9 @@ function CollectibleDetails({
           source={{ uri: imageSource, width: size }}
           minHeight={height}
           width="100%"
+          onError={() => {
+            setImageSource(UNKNOWN_NFT_ICON_SRC);
+          }}
         />
       </XStack>
       {data.collection &&
