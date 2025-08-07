@@ -1,11 +1,38 @@
 import { BACKEND_API_URL, RPC_API_URL } from "@coral-xyz/common";
 import { SOL_NATIVE_MINT } from "../solanaLegacy";
+import { AccountLayout } from "@solana/spl-token";
+import { PublicKey } from "@solana/web3.js";
 
 type GetAssetProofResponse = {
   id: string;
   proof: string[];
   root: string;
 } | null;
+
+/**
+ * Парсит данные токен аккаунта из base64 используя SPL Token AccountLayout
+ */
+function parseTokenAccountData(
+  base64Data: string
+): { mint: string; amount: string; decimals?: number } | null {
+  try {
+    const buffer = Buffer.from(base64Data, "base64");
+
+    // Используем официальный AccountLayout из @solana/spl-token
+    const accountInfo = AccountLayout.decode(buffer);
+
+    return {
+      mint: accountInfo.mint.toBase58(),
+      amount: accountInfo.amount.toString(),
+    };
+  } catch (error) {
+    console.error(
+      "Ошибка при парсинге токен аккаунта с помощью SPL Token AccountLayout:",
+      error
+    );
+    return null;
+  }
+}
 
 export async function getAssetProof(
   assetId: string
@@ -71,7 +98,7 @@ export async function getSolanaAssetById(
 ): Promise<SolanaAsset> {
   if (assetId === SOL_NATIVE_MINT) {
     return {
-      decimals: 9,
+      decimals: 6,
       fungibleAta: address,
       mint: SOL_NATIVE_MINT,
       __typename: "TokenBalance",
@@ -186,10 +213,28 @@ export async function getSolanaAssetById(
 
   const { account, pubkey } = data.result.value[0];
 
-  return {
-    mint: account.data.parsed.info.mint,
-    decimals: account.data.parsed.info.tokenAmount.decimals,
-    fungibleAta: pubkey,
-    __typename: "TokenBalance",
-  };
+  // Если есть parsed данные, используем их
+  if (account.data.parsed?.info) {
+    return {
+      mint: account.data.parsed.info.mint,
+      decimals: account.data.parsed.info.tokenAmount.decimals,
+      fungibleAta: pubkey,
+      __typename: "TokenBalance",
+    };
+  }
+
+  // Если нет parsed данных, используем кастомный парсер
+  if (account.data[0] && account.data[1] === "base64") {
+    const parsedAccount = parseTokenAccountData(account.data[0]);
+    if (parsedAccount) {
+      return {
+        mint: parsedAccount.mint,
+        decimals: parsedAccount.decimals || 6, // decimals нужно получать отдельно для mint
+        fungibleAta: pubkey,
+        __typename: "TokenBalance",
+      };
+    }
+  }
+
+  throw new Error("Unable to parse token account data");
 }

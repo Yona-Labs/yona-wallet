@@ -3874,6 +3874,7 @@ __metadata:
     "@types/bn.js": "npm:^5.1.1"
     bn.js: "npm:^5.2.1"
     bs58: "npm:^5.0.0"
+    buffer: "npm:^6.0.3"
     eslint-config-custom: "npm:*"
     ethers5: "npm:ethers@^5.5.1"
     ethers6: "npm:ethers@^6.8.0"

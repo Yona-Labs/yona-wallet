@@ -1,5 +1,5 @@
 import type { Wallet as AnchorWallet } from "@coral-xyz/anchor";
-import { AnchorProvider } from "@coral-xyz/anchor";
+import { AccountClient, AnchorProvider } from "@coral-xyz/anchor";
 import { Blockchain } from "@coral-xyz/common";
 import {
   getBlockchainConfig,
@@ -18,6 +18,7 @@ import type {
   ConnectionConfig,
   ParsedAccountData,
 } from "@solana/web3.js";
+import { AccountLayout } from "@solana/spl-token";
 import { Keypair, PublicKey } from "@solana/web3.js";
 
 import type { BackpackAssetId, BackpackEntity } from "../BlockchainClientBase";
@@ -142,28 +143,28 @@ export class SolanaClient extends BlockchainClientBase<Blockchain.SOLANA> {
           assetId,
           address
         );
+
         if (!asset.mint || asset.mint === SOL_NATIVE_MINT.toString()) {
           return asset;
         }
 
         const parseAta = async (publicKey: string) => {
-          const accountInfo = await this.connection.getParsedAccountInfo(
+          const accountInfo = await this.connection.getAccountInfo(
             new PublicKey(publicKey)
           );
-          if (accountInfo.value === null) {
+
+          console.log("PARSEDACCOUNT INFO", accountInfo);
+
+          if (!accountInfo?.data) {
             throw new Error("Asset associated token account not found");
           }
-          const data = accountInfo.value.data;
-          if ((data as ParsedAccountData).parsed === null) {
-            throw new Error(
-              "Asset associated token account data was not parsed"
-            );
-          }
-          const amountInt = parseInt(
-            (data as ParsedAccountData).parsed.info.tokenAmount.amount
-          );
+
+          const parsedAccount = AccountLayout.decode(accountInfo.data);
+
+          const amountInt = parseInt(parsedAccount.amount.toString());
+
           return {
-            programId: accountInfo.value.owner.toBase58(),
+            programId: accountInfo.owner.toBase58(),
             amount: amountInt,
           };
         };

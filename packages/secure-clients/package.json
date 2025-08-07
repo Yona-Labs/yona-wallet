@@ -46,6 +46,7 @@
     "@solana/web3.js": "1.63.1",
     "bn.js": "^5.2.1",
     "bs58": "^5.0.0",
+    "buffer": "^6.0.3",
     "ethers5": "npm:ethers@^5.5.1",
     "ethers6": "npm:ethers@^6.8.0"
   },
