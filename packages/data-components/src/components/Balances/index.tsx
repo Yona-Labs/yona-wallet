@@ -103,7 +103,9 @@ function _TokenBalances({
             percentChange: Number(price?.priceChangePercent),
             value: Number(token.displayAmount) * Number(price?.lastPrice),
             valueChange:
-              Number(token.displayAmount) * Number(price?.priceChangePercent),
+              Number(token.displayAmount) *
+              Number(price?.lastPrice) *
+              (Number(price?.priceChangePercent) / 100),
           },
         };
       }

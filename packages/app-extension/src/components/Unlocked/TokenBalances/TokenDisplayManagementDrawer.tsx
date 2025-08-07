@@ -100,7 +100,9 @@ const useTokenBalancesQuery = (address: string, blockchain: Blockchain) => {
                     value:
                       Number(token.displayAmount) * Number(price?.lastPrice),
                     valueChange:
-                      Number(token.displayAmount) * Number(price?.lastPrice) * (Number(price?.priceChangePercent) / 100),
+                      Number(token.displayAmount) *
+                      Number(price?.lastPrice) *
+                      (Number(price?.priceChangePercent) / 100),
                     marketId: BTC_TOKEN.marketData.marketId,
                     marketUrl: BTC_TOKEN.marketData.marketUrl,
                   },
